@@ -1,12 +1,12 @@
 
 .wrapper{
-  width: 500px;
   display: flex;
   flex-wrap: wrap;
 }
+
 .card-activity{
   flex: 1 1 150px; /* je voudrais afficher trois cartes par ligne */
-  width: 300px;
+  width: 350px;
   overflow: scroll; /* pourquoi ça ne marche pas ?? */
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
