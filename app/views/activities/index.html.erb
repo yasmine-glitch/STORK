@@ -1,9 +1,15 @@
-<% @activities.each do |activity| %>
-  <%= link_to activity_path(activity)%>
-  <% if activity.photo.attached? %>
-    <%= cl_image_tag activity.photo %>
+<div class="container">
+  <% @activities.each do |activity| %>
+    <%= link_to activity_path(activity) do%>
+      <div class="card-activity">
+        <% if activity.photo.attached? %>
+          <%= cl_image_tag activity.photo.key %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= activity.name %></h5>
+          <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At nesciunt non ad illo nisi adipisci, tempora in, sapiente sequi inventore sed modi ab, quo cum ducimus cupiditate quos dicta! Quisquam!</p>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-  <p><%= activity.name %></p>
-  <p><%= activity.place %></p>
-  <p><%= activity.start_date %></p>
-<% end %>
+</div>
