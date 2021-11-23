@@ -18,3 +18,10 @@ require("channels")
 
 import "controllers"
 import "bootstrap"
+
+import { initFlatpickr } from "../plugins/flatpickr";
+
+initFlatpickr();
+flatpickr(".datepicker", {
+  altInput: true
+});
