@@ -46,7 +46,6 @@ class ActivitiesController < ApplicationController
       render :new
     end
   end
-end
 
   private
 
