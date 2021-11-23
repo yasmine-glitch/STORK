@@ -19,7 +19,7 @@
   <div class="photo">
     <% if @activity.photo.attached? %>
       <%= cl_image_tag @activity.photo.key, height: 300, width: 400, crop: :fill  %>
-    <%end%>
+    <% end %>
   </div>
   <div class="participants">
     <p><%=pluralize(@activity.users.count, "registered participant")%> for this event  Max <%= @activity.capacity_max%> </p>
