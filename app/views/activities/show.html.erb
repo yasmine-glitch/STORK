@@ -1,15 +1,20 @@
-<div class="activity-show-header">
-  <h2>
-    Happening <i class="far fa-calendar-alt"></i>
-    <%= @activity.start_date.strftime("%A %B %e at %l:%M %p %Z") %>
-  </h2>
-  <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
-  <p> hosted by <p><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></p>
-  <p> <%= @activity.owner.company %></p>
-  <p> <%= @activity.owner.industry %></p>
-  <p> <%= @activity.owner.job_title %></p>
-</div>
 <div class="container">
+  <div class="activity-show-header">
+    <h2>
+      Happening on
+      <p><i class="far fa-calendar-alt"></i>
+      <%= @activity.start_date.strftime("%A %B %e at %l:%M %p %:z") %></p>
+    </h2>
+    <div class="hosting">
+      <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
+      <div class = "name">
+        <%= @activity.owner.first_name %> <%= @activity.owner.last_name %>
+      </div>
+      <%= @activity.owner.company %>
+      <%= @activity.owner.industry %>
+      <%= @activity.owner.job_title %>
+    </div>
+  </div>
   <div class="activity-description">
     <p><%= @activity.name %></p>
     <p><%= @activity.description %></p>
