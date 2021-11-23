@@ -1,0 +1,9 @@
+<% @activities.each do |activity| %>
+  <%= link_to activity_path(activity)%>
+  <% if activity.photo.attached? %>
+    <%= cl_image_tag activity.photo %>
+  <% end %>
+  <p><%= activity.name %></p>
+  <p><%= activity.place %></p>
+  <p><%= activity.start_date %></p>
+<% end %>
