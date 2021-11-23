@@ -20,11 +20,19 @@
       <%= f.submit class: "btn-send"%>
     <% end %>
   </div>
-
-
-
-
-
-
-
+  <div class="photo">
+    <% if @activity.photo.attached? %>
+      <%= cl_image_tag @activities.photo.key, height: 300, width: 400, crop: :fill  %>
+    <%end%>
+  </div>
+  <div class="participants">
+    <p><%=pluralize(@users.count, registered participant for this event) %> Max <%= @activity.capacity_max%> </p>
+    <%= link_to "Count me in!", activity_path(@activity) %>
+    <% @users.each do |user| %>
+      <%= cl_image_tag user.photo.key, width: "200px", height: "200px"%>
+      <p><%= user.first_name %> <%= user.last_name %></p>
+      <p> <%= user.company %></p>
+      <p> <%= user.job_title %></p>
+    <%end%>
+  </div>
 </div>
