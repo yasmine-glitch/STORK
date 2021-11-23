@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
+
     # PUNDIT @activites = policy_scope(Activity).order(created_at: :desc)
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
@@ -32,11 +33,7 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @activity = activity.find(params[:id])
-    @user = current_user
-    @booking.user = @user
-    @users = User.all
-    @users.activity = @users
+    @activity = Activity.find(params[:id])
     @booking = Booking.new
   end
 
@@ -48,12 +45,12 @@ class ActivitiesController < ApplicationController
     else
       render :new
     end
-
   end
 end
 
-private
+  private
 
-def activity_params
-  params.require(:activity).permit(:name, :place, :start_date, :end_date, :capacity_max, :photo)
+  def activity_params
+    params.require(:activity).permit(:name, :place, :start_date, :end_date, :capacity_max, :photo)
+  end
 end

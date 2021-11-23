@@ -1,0 +1,25 @@
+.activity-show-header {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.activity-show-header .avatar {
+  position: absolute;
+  right: 90px;
+  top: 10px;
+  width: 60px;
+}
+
+.activity-show-header .hosting {
+  display: inline-block;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 60px;
+}
+
+.activity-show-header p {
+  width: 700px;
+}
