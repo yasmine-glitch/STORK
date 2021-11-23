@@ -1,32 +1,31 @@
 <div class="activity-show-header">
-  <h2> Happening <i class="far fa-calendar-alt"></i> <%= @activity.start_date.strftime("%A %B %e at %l:%M %p %Z") %> </h2>
-  <%= image_tag <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>, class: "avatar", alt: "avatar" %>
-  hosted by <p><%= @activity.owner.first_name %> <%= @activity.owner.last_name %> </p>
+  <h2>
+    Happening <i class="far fa-calendar-alt"></i>
+    <%= @activity.start_date.strftime("%A %B %e at %l:%M %p %Z") %>
+  </h2>
+  <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
+  <p> hosted by <p><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></p>
   <p> <%= @activity.owner.company %></p>
   <p> <%= @activity.owner.industry %></p>
   <p> <%= @activity.owner.job_title %></p>
 </div>
 <div class="container">
   <div class="activity-description">
-    <p><%= @activity.name %>></p>
-    <p><%= @activity.description %>></p>
-    <p><i class="fas fa-map-marked-alt"></i> <%= @activity.place %>></p>
-    <p><%= km distance from you %>></p>
-    <%= simple_form_for (@activity), remote: true do |f| %>
-      <%= f.input :content, label: false, placeholder: "Write a message to #{@activity.owner}" %>
-      <%= f.submit class: "btn-send"%>
-    <% end %>
+    <p><%= @activity.name %></p>
+    <p><%= @activity.description %></p>
+    <p><i class="fas fa-map-marked-alt"></i> <%= @activity.place %></p>
+    <p> ? km distance from you</p>
   </div>
   <div class="photo">
     <% if @activity.photo.attached? %>
-      <%= cl_image_tag @activities.photo.key, height: 300, width: 400, crop: :fill  %>
+      <%= cl_image_tag @activity.photo.key, height: 300, width: 400, crop: :fill  %>
     <%end%>
   </div>
   <div class="participants">
-    <p><%=pluralize(@users.count, registered participant for this event) %> Max <%= @activity.capacity_max%> </p>
+    <p><%=pluralize(@activity.users.count, "registered participant")%> for this event  Max <%= @activity.capacity_max%> </p>
     <%= link_to "Count me in!", activity_path(@activity) %>
-    <% @users.each do |user| %>
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>%>
+    <% @activity.users.each do |user| %>
+      <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
       <p><%= user.first_name %> <%= user.last_name %></p>
       <p> <%= user.company %></p>
       <p> <%= user.job_title %></p>
