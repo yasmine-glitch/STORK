@@ -1,2 +1,31 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-3">
+  <h1 class="text-center">Stork</h1>
+  <p class="text-center">The best app ever</p>
+
+
+  <div class="box_for_search_bar" style="width: fit-content" >
+    <%= form_tag activities_path, method: :get do %>
+      <div class="search_bar">
+        <div class= "btn btn-filter" style="width: 400px" data-controller="geocoder" data-geocoder-api-key-value="<%=ENV['MAPBOX_API_KEY']%>">
+          <%= text_field_tag :query,
+            params[:query],
+            data: { geocoder_target: "address" },
+            class: "form-control d-none"
+          %>
+        </div>
+
+        <div class= "btn btn-filter" style="width: 200px">
+          <%= text_field_tag :start_date,
+            params[:start_date],
+            class: "datepicker form-control",
+            placeholder: "Choose a date..."
+          %>
+        </div>
+        <div>
+          <%= button_tag(type: "submit", class: "btn btn-default") do %>
+            <i class="fas fa-search"></i>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
