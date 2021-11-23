@@ -1,14 +1,10 @@
 class ActivitiesController < ApplicationController
   def index
-    @activity = Activity.all
+    @activities = Activity.all
   end
 
   def show
-    @activity = activity.find(params[:id])
-    @user = current_user
-    @booking.user = @user
-    @users = User.all
-    @users.activity = @users
+    @activity = Activity.find(params[:id])
     @booking = Booking.new
   end
 
@@ -20,12 +16,11 @@ class ActivitiesController < ApplicationController
     else
       render :new
     end
-
-    end
   end
 
   private
+
   def activity_params
-    params.require(:activity).permit(:name, :place, :address, :start_date, :end_date, :capacity_max, :is_full, :owner_id, :photo)
+    params.require(:activity).permit(:name, :place, :place, :start_date, :end_date, :capacity_max, :photo)
   end
 end
