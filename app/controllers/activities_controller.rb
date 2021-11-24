@@ -1,8 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = Activity.all
 
-    @activites = policy_scope(Activity).order(created_at: :desc)
+    @activities = policy_scope(Activity).order(created_at: :desc)
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
     # check if the user typed an address in the searchbar
