@@ -10,6 +10,7 @@
 
 .activity-main-infos  {
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .activity-main-infos img {
@@ -19,16 +20,22 @@
 .hosting {
   text-align: center;
   width: 25%;
-  height: 42vh;
+  height: 46vh;
 }
 
 .hosting .name {
   padding-top: 20px;
   font-size: 18px;
   font-weight: bold;
+  color: #e65c5d;
 }
 
 .owner {
   font-size: 16px;
   text-align: center;
+}
+
+.activity-description i {
+  font-size: 20px;
+  padding-bottom: 10px;
 }
