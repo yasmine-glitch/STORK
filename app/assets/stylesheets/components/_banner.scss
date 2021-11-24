@@ -1,10 +1,14 @@
+.banner-show {
+  position: relative;
+  padding-top: 10px;
+}
 .banner {
   background-size: cover;
   background-position: center;
   height: 60vh;
 }
 
-.banner h1 {
+.banner-show h1 {
   margin: 0;
   color: black;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -12,7 +16,7 @@
   font-weight: bold;
 }
 
-.banner p {
+.banner-show p {
   font-size: 16px;
   color: black;
   opacity: .7;
@@ -23,6 +27,18 @@
   padding-top: 90px;
   padding-bottom: 150px;
 }
+
+.banner-show .blurry-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.8;
 
 #search_bar_div {
   padding-top: 220px;
