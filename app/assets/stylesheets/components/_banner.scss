@@ -1,9 +1,9 @@
-.banner {
+.banner-show {
   position: relative;
   padding-top: 10px;
 }
 
-.banner h1 {
+.banner-show h1 {
   margin: 0;
   color: black;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -11,7 +11,7 @@
   font-weight: bold;
 }
 
-.banner p {
+.banner-show p {
   font-size: 16px;
   color: black;
   opacity: .7;
@@ -23,7 +23,7 @@
   padding-bottom: 150px;
 }
 
-.blurry-background {
+.banner-show .blurry-background {
   position: absolute;
   top: 0;
   left: 0;
