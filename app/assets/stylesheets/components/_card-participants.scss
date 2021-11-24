@@ -1,0 +1,30 @@
+.card-participants {
+  overflow: hidden;
+  height: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.card-participants h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #3d56d1;
+  padding: 6px 0px;
+}
+
+.card-participants p {
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+}
+
+.card-participants .card-participants-infos {
+  padding: 16px;
+}
+
+.card-participants i {
+  color: #3d56d1;
+}
