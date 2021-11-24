@@ -25,12 +25,30 @@
 
 .activity-main-infos p {
   padding-left: 10px;
+  color: black;
+  font-size: 18px;
+}
+
+.activity-main-infos .date {
+  color: #e65c5d;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+.activity-main-infos i {
+color: #e65c5d;
 }
 
 .hosting {
   text-align: center;
   width: 25%;
   height: 46vh;
+}
+
+.hosting i {
+  color: #3d56d1;
 }
 
 .hosting .name {
@@ -45,10 +63,14 @@
 }
 
 .activity-description i {
-  font-size: 24px;
-  padding-bottom: 20px;
+  font-size: 18px;
+  padding-bottom: 10px;
 }
 
 .activity-description {
   background-color: white;
+  padding-left: 10px;
+  h3 {
+    font-size: 22px;
+  }
 }
