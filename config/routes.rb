@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :activities, only: [:index, :show] do
     resources :bookings, only: [:create]
   end
+  resources :users, only: [:show]
 
   get "/dashboard", to: "pages#dashboard"
 
