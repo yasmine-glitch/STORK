@@ -1,39 +1,42 @@
 <div class="container">
   <div class="activity-show-header">
-    <h2>
-      Happening on
+    <div class="activity-main-infos">
+      <h3><%= @activity.name %></h3>
       <p><i class="far fa-calendar-alt"></i>
-      <%= @activity.start_date.strftime("%A %B %e at %l:%M %p %:z") %></p>
-    </h2>
+      <%= @activity.start_date.strftime("%A %B %e at %l:%M %p %:z") %><p>
+      <div class="photo">
+        <% if @activity.photo.attached? %>
+          <%= cl_image_tag @activity.photo.key, height: 400, width: 800, crop: :fill  %>
+        <% end %>
+      </div>
+    </div>
     <div class="hosting">
+      <h3> Hosted by </h3>
       <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
       <div class = "name">
-        <%= @activity.owner.first_name %> <%= @activity.owner.last_name %>
+        <p><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></p>
       </div>
-      <%= @activity.owner.company %>
-      <%= @activity.owner.industry %>
-      <%= @activity.owner.job_title %>
+        <div class="owner">
+          <p><i class="fas fa-laptop-house"></i> <%= @activity.owner.company %></p>
+          <p><i class="fas fa-briefcase"></i> <%= @activity.owner.industry %></p>
+          <p><i class="fas fa-address-card"></i> <%= @activity.owner.job_title %></p>
+        </div>
     </div>
   </div>
-  <div class="activity-description">
-    <p><%= @activity.name %></p>
-    <p><%= @activity.description %></p>
-    <p><i class="fas fa-map-marked-alt"></i> <%= @activity.place %></p>
-    <p> ? km distance from you</p>
-  </div>
-  <div class="photo">
-    <% if @activity.photo.attached? %>
-      <%= cl_image_tag @activity.photo.key, height: 300, width: 400, crop: :fill  %>
-    <% end %>
-  </div>
-  <div class="participants">
-    <p><%=pluralize(@activity.users.count, "registered participant")%> for this event  Max <%= @activity.capacity_max%> </p>
-    <%= link_to "Count me in!", activity_path(@activity) %>
-    <% @activity.users.each do |user| %>
-      <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
-      <p><%= user.first_name %> <%= user.last_name %></p>
-      <p> <%= user.company %></p>
-      <p> <%= user.job_title %></p>
-    <% end %>
-  </div>
+    <div class="activity-description">
+      <p><i class="fas fa-map-marked-alt"></i> <%= @activity.place %></p>
+      <p><%= @activity.description %></p>
+      <p> ? km distance from you</p>
+    </div>
+
+    <div class="participants">
+      <p><%=pluralize(@activity.users.count, "registered participant")%> for this event  Max <%= @activity.capacity_max%> </p>
+      <%= link_to "Count me in!", activity_path(@activity) %>
+      <% @activity.users.each do |user| %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
+        <p><%= user.first_name %> <%= user.last_name %></p>
+        <p> <%= user.company %></p>
+        <p> <%= user.job_title %></p>
+      <% end %>
+    </div>
 </div>
