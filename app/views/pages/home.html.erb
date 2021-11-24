@@ -39,18 +39,18 @@
 </div>
 
 <div class="container mt-3">
-  <h2>Look for activities in...</h2>
-    <% @cities.each do |city| %>
-      <div class="card-city">
+  <h2>Popular activities on Stork...</h2>
+    <% @activities.each do |activity| %>
+      <div>
         <%= link_to root_path do%>
           <div>
-            <% if city.photo.attached? %>
-              <%= cl_image_tag city.photo.key %>
+            <% if activity.photo.attached? %>
+              <%= cl_image_tag activity.photo.key %>
             <% end %>
           </div>
           <div>
-            <h5><%= city.name %></h5>
-            <p><%= city.description %></p>
+            <h5><%= activity.name %></h5>
+            <p><%= activity.description %></p>
           </div>
         <% end %>
       </div>
