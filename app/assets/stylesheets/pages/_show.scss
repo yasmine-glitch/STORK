@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: white;
+  margin-top: 20px;
 }
 
 .activity-show-header .avatar {
@@ -17,6 +19,14 @@
   width: 100%;
 }
 
+.activity-main-infos h3 {
+  padding-left: 10px;
+}
+
+.activity-main-infos p {
+  padding-left: 10px;
+}
+
 .hosting {
   text-align: center;
   width: 25%;
@@ -24,18 +34,21 @@
 }
 
 .hosting .name {
-  padding-top: 20px;
+  padding: 10px 0px;
   font-size: 18px;
-  font-weight: bold;
   color: #e65c5d;
+  font-weight: bold;
 }
 
-.owner {
-  font-size: 16px;
+.hosting .owner {
   text-align: center;
 }
 
 .activity-description i {
-  font-size: 20px;
-  padding-bottom: 10px;
+  font-size: 24px;
+  padding-bottom: 20px;
+}
+
+.activity-description {
+  background-color: white;
 }

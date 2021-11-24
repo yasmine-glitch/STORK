@@ -1,7 +1,6 @@
 .banner {
-  background-size: cover;
-  background-position: center;
-  height: 600px;
+  position: relative;
+  padding-top: 10px;
 }
 
 .banner h1 {
@@ -13,7 +12,7 @@
 }
 
 .banner p {
-  font-size: 20px;
+  font-size: 16px;
   color: black;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -22,4 +21,17 @@
 #header {
   padding-top: 150px;
   padding-bottom: 150px;
+}
+
+.blurry-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.8;
 }
