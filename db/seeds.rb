@@ -39,6 +39,7 @@ end
 
 
 puts "Creating activities..."
+
 activity1 = { name: "Visiting Sintra", place: "Sintra, Lisbon, Portugal", description: "Let's go on a day trip to Sintra to visit the Palaces. Who wants to join ? :)", owner_id: User.find_by_first_name('Amelie').id, capacity_max: "10", start_date: DateTime.new(2021,12,1,17), end_date: DateTime.new(2021,12,2,17), photo: "https://images.unsplash.com/photo-1562195168-c82fea0f0953?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c2ludHJhfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" }
 
 activity2 = { name: "The pastry tour : tasting typical Lisbon egg tarts in Alfama", place: "Alfama, Lisbon, Portugal", description: "If you too love pastries, join me on a tour of all the pastries in Alfama. The goal is to taste the best pasteis de nata to choose our favorite. Ready ?", owner_id: User.find_by_first_name('Amelie').id, capacity_max: "8", start_date: DateTime.new(2021,11,29,11), end_date: DateTime.new(2021,11,29,13), photo: "https://media.istockphoto.com/photos/portugal-egg-tart-with-azulejo-picture-id1124635330?b=1&k=20&m=1124635330&s=170667a&w=0&h=PbHCGQhL-kaB7Q8Ya1TXKrWe6uOLRE5woiAmSUWdbpU=" }
@@ -56,6 +57,7 @@ activity7 = { name: "Crazy night in Shibuya : bars !", place: "Shibuya, Tokyo, J
 activity8 = { name: "Shopping in Akihabara", place: "Akihabara, Tokyo, Japan", description: "Wanna buy some brand new games, Sonic Cosplays, gadgets ? Let's go to Akihabara on sunday :):)", owner_id: User.find_by_first_name('Sam').id, capacity_max: "5", start_date: DateTime.new(2021,12,1,15), end_date: DateTime.new(2021,12,1,19), photo: "https://media.istockphoto.com/photos/akihabara-tokyo-japan-picture-id468356740?b=1&k=20&m=468356740&s=170667a&w=0&h=kLkcA2hevgkassPl_1rWOPbRpLaZuzarV7KHlD3LH2g=" }
 
 activity9 = { name: "Samba ! Dance lessons with Ricardo and Manuela ", place: "Lapa, Rio de Janeiro, Brazil", description: "I love dancing and am really excited about learning the basics of Samba with Ricardo and Manuela ! I met them during Carnival and they proposed to teach me some steps. Wanna join ?", owner_id: User.find_by_first_name('Yukio').id, capacity_max: "6", start_date: DateTime.new(2021,12,2,18), end_date: DateTime.new(2021,12,2,22), photo: "https://media.istockphoto.com/photos/couple-dancers-practicing-in-studio-holding-hands-picture-id1264865152?b=1&k=20&m=1264865152&s=170667a&w=0&h=Hd2LdgDMsfhenPsHtAJuv7h4QdbW1qLrcJbQZEV06HA=" }
+
 
 [activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9].each_with_index do |attributes, index|
   activity = Activity.new(attributes)

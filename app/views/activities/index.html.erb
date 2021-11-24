@@ -1,1 +1,22 @@
-<h1> Test </h1>
+
+<div class="container">
+  <div class="wrapper">
+    <% @activities.each do |activity| %>
+        <div class="card-activity">
+          <%= link_to activity_path(activity) do%>
+          <% if activity.photo.attached? %>
+            <%= cl_image_tag activity.photo.key %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= activity.name %></h5>
+            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At nesciunt non ad illo nisi adipisci, tempora in, sapiente sequi inventore sed modi ab, quo cum ducimus cupiditate quos dicta! Quisquam!</p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  </div>
+
+<!-- ajouter les avatars des participants et de l'organisateur-->
+<!-- itérer sur activity.users for each -->
+<!-- insérer une carte en display flex avec les cartes des activités-->
