@@ -31,6 +31,15 @@ class ActivitiesController < ApplicationController
       @activities = @activities.filter { |activity| activity.start_date >= DateTime.now }
     end
     ## END OF HOMEPAGE SEARCH'S RESULTS
+
+    # créer une variable avec les coord. GPS de chaque activité
+    @markers = @activities.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { activity: activity }),
+      }
+    end
   end
 
   def show
