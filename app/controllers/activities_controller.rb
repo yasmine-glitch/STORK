@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
   def index
     @activities = Activity.all
 
-    # PUNDIT @activites = policy_scope(Activity).order(created_at: :desc)
+    @activites = policy_scope(Activity).order(created_at: :desc)
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
     # check if the user typed an address in the searchbar
@@ -35,11 +35,13 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    authorize @activity
     @booking = Booking.new
   end
 
   def create
     @activity = Activity.new(activity_params)
+    authorize @activity
     @activity.owner = current_user
     if @activity.save!
       redirect_to activity_path(@activity)
