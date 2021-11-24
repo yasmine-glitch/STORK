@@ -1,4 +1,5 @@
 require "open-uri"
+require "faker"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -37,6 +38,27 @@ user8 = { first_name: "Yukio", last_name: "Mishima", company: "Sony", job_title:
   puts "Created #{user.first_name}"
 end
 
+puts 'Creating 90 users dev blockchain with faker...'
+90.times do
+  user = User.new(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    company: ["Coinbase", "Binance", "Freelance cryptography expert"].sample,
+    job_title: "blockchain developer",
+    industry: "Tech",
+    bio: "I love bitcoin",
+    country: ["USA", "Taïwan", "Australia", "India"].sample,
+    age: ["25", "28", "30", "32", "37", "45"].sample,
+    years_exp: ["5", "8", "10"].sample,
+    password: "hellostork",
+    password_confirmation: "hellostork"
+  )
+  user.email = "#{user.first_name}.#{user.last_name}@gmail.com"
+  user.save!
+  puts "Created #{user.first_name}"
+end
+puts 'Finished!'
+
 
 puts "Creating activities..."
 
@@ -58,8 +80,13 @@ activity8 = { name: "Shopping in Akihabara", place: "Akihabara, Tokyo, Japan", d
 
 activity9 = { name: "Samba ! Dance lessons with Ricardo and Manuela ", place: "Lapa, Rio de Janeiro, Brazil", description: "I love dancing and am really excited about learning the basics of Samba with Ricardo and Manuela ! I met them during Carnival and they proposed to teach me some steps. Wanna join ?", owner_id: User.find_by_first_name('Yukio').id, capacity_max: "6", start_date: DateTime.new(2021,12,2,18), end_date: DateTime.new(2021,12,2,22), photo: "https://media.istockphoto.com/photos/couple-dancers-practicing-in-studio-holding-hands-picture-id1264865152?b=1&k=20&m=1264865152&s=170667a&w=0&h=Hd2LdgDMsfhenPsHtAJuv7h4QdbW1qLrcJbQZEV06HA=" }
 
+activity10 = { name: "The blockchain Job Fair in Hong Kong", place: "5 Connaught Rd Central, Central, Hong Kong", description: "Are you looking for the opportunity of your dreams in Data or Blockchain technologies? This unique event is for you! Register quickly as places are limited and we will not be able to accept all registrations 👨🏼‍🎓", owner_id: User.find_by_first_name('Yukio').id, capacity_max: "100", start_date: DateTime.new(2021,12,2,8), end_date: DateTime.new(2021,12,2,18), photo: "https://media.istockphoto.com/photos/bitcoin-network-concept-on-digital-screen-picture-id1297465792?b=1&k=20&m=1297465792&s=170667a&w=0&h=w4ADFjvxsfswEwKcsX1QZNVlBaXmPyYbzF13iuUggm0=" }
 
-[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9].each_with_index do |attributes, index|
+activity11 = { name: "Giant basketball tournament in Hong Kong", place: "2 Tse Wai Ave, Ngau Chi Wan, Hong Kong", description: "For basketball fans! Come and participate in our giant basketball tournament on a legendary court overlooking the city of Hong Kong. We'll have a drink at the end of the tournament;)", owner_id: User.find_by_first_name('Karim').id, capacity_max: "40", start_date: DateTime.new(2021,12,2,16), end_date: DateTime.new(2021,12,2,22), photo: "https://images.unsplash.com/photo-1465509419584-d2b0ff1ce390?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJhc2tldGJhbGwlMjBob25nJTIwa29uZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" }
+
+
+[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11].each_with_index do |attributes, index|
+
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save
@@ -76,3 +103,13 @@ booking2 = { user_id: User.find_by_first_name('Yukio').id, activity_id: Activity
 end
 
 puts "Finished!"
+
+puts 'Creating 90 bookings for the blockchain job fair...'
+90.times do
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('The blockchain Job Fair in Hong Kong').id,
+    user_id: User.all.sample.id
+  )
+  booking.save!
+end
+puts 'Finished!'
