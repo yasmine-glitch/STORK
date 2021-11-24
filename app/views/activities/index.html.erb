@@ -9,14 +9,21 @@
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= activity.name %></h5>
-            <p class="card-text">Lorem ipsum dolor, sit amet consectetur adipisicing elit. At nesciunt non ad illo nisi adipisci, tempora in, sapiente sequi inventore sed modi ab, quo cum ducimus cupiditate quos dicta! Quisquam!</p>
+            <p class="card-text"><%= activity.description %> Ajouter des desciptions dans la seed</p>
           </div>
         </div>
       <% end %>
     <% end %>
   </div>
-  </div>
+</div>
 
-<!-- ajouter les avatars des participants et de l'organisateur>
+
+
+<!-- carte Mapbox-->
+<div style="width: 100%; height: 600px;"
+  data-controller="mapbox"
+  data-mapbox-markers-value="<%= @markers.to_json %>"
+  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<!-- ajouter les avatars des participants et de l'organisateur -->
 <!-- itérer sur activity.users for each -->
 <!-- insérer une carte en display flex avec les cartes des activités-->
