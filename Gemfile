@@ -38,6 +38,7 @@ gem 'simple_form'
 
 gem 'pg_search', '~> 2.3.0'
 gem "geocoder"
+gem 'pundit'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
