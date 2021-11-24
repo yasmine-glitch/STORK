@@ -1,2 +1,5 @@
-<h2><%= activity.name %></h2>
+<% if activity.photo.attached? %>
+<%= cl_image_tag activity.photo.key %>
+<% end %>
+<h5><%= activity.name.truncate(20) %></h5>
 <p><%= activity.place %></p>
