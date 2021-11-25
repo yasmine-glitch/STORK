@@ -15,6 +15,6 @@ class Activity < ApplicationRecord
   pg_search_scope :search_by_place,
                   against: :place,
                   using: {
-                    tsearch: { prefix: true }
+                    tsearch: { prefix: true, any_word: true } # <-- now `superman batm` will return something!
                   }
 end

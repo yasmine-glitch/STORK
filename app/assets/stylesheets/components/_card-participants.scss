@@ -4,6 +4,7 @@
   background: white;
   display: flex;
   align-items: center;
+  padding-left: 20px;
 }
 
 .card-participants h2 {
@@ -23,8 +24,11 @@
 
 .card-participants .card-participants-infos {
   padding: 16px;
+  margin-right: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .card-participants i {
   color: #3d56d1;
 }
+

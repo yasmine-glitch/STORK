@@ -17,9 +17,10 @@
       </div>
       <div class="hosting">
         <div class="hosting-infos">
-
           <h3>Hosted by</h3>
+          <%= link_to user_path(@activity.owner_id) do %>
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-show-large", alt: "avatar-show-large" %>
+          <% end %>
           <div class="name"><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></div>
           <div class="owner">
             <p><i class="fas fa-laptop-house"></i> <%= @activity.owner.company %></p>
@@ -28,9 +29,16 @@
             <p><i class="fas fa-globe"></i> <%= @activity.owner.country %></p>
           </div>
         </div>
-        <div class="hosting-btn">
-          <% if policy(@activity).create? %>
-            <%= link_to "Count me in!", activity_bookings_path(@activity), method: :post, class: "btn btn-gradient" %>
+        <div class="hosting-btn" data-controller="sweetalert">
+          <%if @activity.users.include?(current_user)%>
+            <p id="already_in">You're already in!</p>
+            <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+          <% elsif policy(@activity).create? && @activity.users.count < @activity.capacity_max %>
+            <button id="registration" class="btn btn-gradient">Count me in!</button>
+            <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
+          <% else %>
+            <p id="sorry_full">Sorry, Activity full! 🙇</p>
+            <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
           <% end %>
         </div>
       </div>
@@ -38,14 +46,18 @@
   </div>
 </div>
 <div class="container">
-  <div class="activity-description">
-    <i class="fas fa-map-marked-alt"> <%= @activity.place %></i>
+  <div class="show_bottom_page">
+    <div class="activity-description">
+    <div class="place"><i class="fas fa-map-marked-alt"></i> <%= @activity.place %></div>
     <p><%= @activity.description %></p>
     <h3><%=pluralize(@activity.users.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
+    </div>
     <div class="card-participants">
       <% @activity.users.each do |user| %>
         <div class="card-participants-infos">
+        <%= link_to user_path(user) do %>
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-show", alt: "avatar-show" %>
+        <% end %>
           <h2><%= user.first_name %> <%= user.last_name %></h2>
           <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
           <p><i class="fas fa-briefcase"></i> <%= user.industry %></p>
