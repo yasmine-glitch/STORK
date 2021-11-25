@@ -9,11 +9,14 @@ export default class extends Controller {
   connect() {
     this.geocoder = new MapboxGeocoder({
       accessToken: this.apiKeyValue,
-      types: "country,region,place,postcode,locality,neighborhood,address",
-      placeholder: 'Enter your location...'
+      types: "country,place,postcode,locality,address",
+      placeholder: 'Enter your location...',
+      language: "en",
     });
     this.geocoder.addTo(this.element);
-    this.geocoder.on("result", event => this._setInputValue(event));
+    this.geocoder.on("result", event => {
+      this._setInputValue(event)
+    });
     this.geocoder.on("clear", () => this._clearInputValue());
   }
 
