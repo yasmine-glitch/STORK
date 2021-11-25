@@ -1,13 +1,12 @@
 class ActivitiesController < ApplicationController
   def index
-
     @activities = policy_scope(Activity).order(created_at: :desc)
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
     # check if the user typed an address in the searchbar
     if params[:query].present?
       # if yes, render all activities located XX km around this address
-      @activities = Activity.search_by_place(params[:query]).near(params[:query], 6)
+      @activities = Activity.search_by_place(params[:query]).near(params[:query], 100)
       @title = "We found #{@activities.length} activities near #{params[:query]}."
       # @activities = Activity.near(params[:query], 6)
       # return only the activity which are not full
