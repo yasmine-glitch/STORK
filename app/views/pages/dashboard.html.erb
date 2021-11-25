@@ -1,1 +1,100 @@
-<h1>Dashboard</h1>
+<div class="container">
+  <h1 class="text-center" id="dashboard_title">Dashboard</h1>
+  <div class = "d-flex justify-content-between three_dashboard_cards">
+    <div class="dashboard_card" id="information_card">
+      <h2>My Information</h2>
+        <%= image_tag "https://ca.slack-edge.com/T02NE0241-U02G0UEGWHH-c3394b1963ed-512", width: "200px", height: "200px"%>
+        <table class="table" id="information_table">
+          <tr>
+            <th><i class="fas fa-user"></i></th>
+            <td><%= @user.first_name %> <%= @user.last_name %></td>
+          </tr>
+          <tr>
+            <th><i class="fas fa-envelope-open-text"></i></th>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <th><i class="fas fa-laptop-house"></th>
+            <td><%= @user.company %></td>
+          </tr>
+          <tr>
+            <th><i class="fas fa-address-card"></th>
+            <td><%= @user.job_title %></td>
+          </tr>
+        </table>
+        <div class="text-center">
+          <button class="dashboard_button"><%= link_to "Update Profile", edit_user_registration_path%></button>
+        </div>
+    </div>
+    <div>
+      <div class="dashboard_card" id="reservation_card">
+        <h2>My Planned Activities (<%= @user.bookings.count %>)</h2>
+          <% if @user.bookings.exists? %>
+            <table class="table">
+              <tr>
+                <th>Activity</th>
+                <th>Place</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+              </tr>
+
+              <% @user.bookings.each do |booking| %>
+                <tr>
+                  <td><%= Activity.find_by_id(booking.activity_id).name %></td>
+                  <td><%= Activity.find_by_id(booking.activity_id).place %></td>
+                  <td><%= booking.activity.start_date.strftime("%e %^b %Y %R") %></td>
+                  <td><%= booking.activity.end_date.strftime("%e %^b %Y %R") %></td>
+                  <td><%= booking.status %></td>
+
+                  <td>
+                    <%= link_to activity_path(Activity.find_by_id(booking.activity_id)) do %>
+                      <i class="far fa-eye"></i>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to dashboard_path do %>
+                      <i class="fas fa-exchange-alt"></i>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+            <div class="book_btn"><button class="dashboard_button"><%= link_to "Book another activity !", activities_path %></button></div>
+
+          <% else %>
+            <p>You have no booking for the moment.</p>
+            <button class="dashboard_button"><%= link_to "Look for activities", activities_path %></button>
+          <% end %>
+      </div>
+
+
+      <div class="dashboard_card">
+        <h2>My Past Trips (<%= @user.activities.count %>)</h2>
+          <% if @user.activities.exists? %>
+            <table class="table">
+              <tr>
+                <th>Activity</th>
+                <th>Place</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+              </tr>
+
+              <% @user.activities.each do |activity| %>
+                <tr>
+                  <td><%= activity.name %></td>
+                  <td><%= activity.place %> year(s) old</td>
+                  <td><%= activity.start_date.strftime("%e %^b %Y") %></td>
+                  <td><%= activity.end_date.strftime("%e %^b %Y") %></td>
+                  <td>
+                    <%= link_to activity_path(activity.id) do %>
+                      <i class="far fa-eye"></i>
+                    <% end %>
+                  </td>
+              <% end %>
+            </table>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

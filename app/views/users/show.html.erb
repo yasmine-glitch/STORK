@@ -1,11 +1,55 @@
-<div class="container">
-<%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
-  <h3><%= @user.first_name %> <%= @user.last_name %></h3>
-  <p><i class="fas fa-laptop-house"></i> <%= @user.company %></p>
-  <p><i class="fas fa-briefcase"></i> <%= @user.industry %></p>
-  <p><i class="fas fa-address-card"></i> <%= @user.job_title %></p>
-  <p><i class="fas fa-globe"></i> <%= @user.country %></p>
-  <p><i class="fas fa-birthday-cake"></i> <%= @user.age %></p>
-  <p><i class="fas fa-jedi"></i> <%= @user.years_exp %></p>
-  <p><%= @user.bio %></p>
+<div class="flex-container">
+ <!-- affiche en haut de la page les infos sur le user-->
+ <!-- dans un encadré à gauche : avatar, nom, company, job title, industry, age, years exp-->
+  <%# <div class="container"> %>
+    <div class="wrapper">
+      <div class="card-user">
+        <% if @user.photo.attached? %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-large", alt: "avatar-large"   %>
+        <% end %>
+        <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+        <p><i class="fas fa-laptop-house"></i>  <%= @user.company %></p>
+        <p><i class="fas fa-briefcase"></i>  <%= @user.industry %></p>
+        <p><i class="fas fa-address-card"></i>  <%= @user.job_title %></p>
+        <p><i class="fas fa-globe"></i>  lives in <%= @user.country %></p>
+        <p><i class="fas fa-birthday-cake"></i>  <%= @user.age %> years old</p>
+        <p><i class="fas fa-jedi"></i>  <%= @user.years_exp %> years of experience</p>
+      </div>
+    </div>
+  <%# </div> %>
+
+  <!-- dans un encadré à droite : la bio -->
+  <div class="wrapper">
+    <div class="user-bio">
+      <h3>Hello, my name is <%= @user.first_name %></h3>
+      <p>member since <%= @user.created_at %></p>
+      <h4>About <%= @user.first_name %></h4>
+      <p><%= @user.bio %></p>
+    </div>
+  </div>
 </div>
+
+<div class="wrapper">
+  <div class="card-user-activities">
+    <h3>Discover events where <%= @user.first_name %> participated lately</h3>
+    <p><% @user.activities.each do |activity| %></p>
+    <p><%= activity.name %></p>
+    <p><%= activity.place %></p>
+    <p><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
+    <p><%= activity.description %></p>
+    <% end %>
+  </div>
+</div>
+<div class="wrapper">
+  <div class="card-owner-activities">
+  <h3>Discover events organized by <%= @user.first_name %></h3>
+   <p><% @activities.each do |activity| %></p>
+   <p><%= activity.name %></p>
+   <p><%= activity.place %></p>
+   <p><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
+   <p><%= activity.description %></p>
+   <% end %>
+  </div>
+</div>
+
+<!-- afficher en bas de la page : activités, voyages, reviews, amis-->
