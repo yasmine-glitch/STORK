@@ -1,0 +1,31 @@
+.card-user{
+    flex-grow: 1;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    margin: 20px;
+    flex-direction: column;
+    padding: 25px;
+    p{
+    color: $black;
+    };
+    h3{
+      color: $red-poppy;
+    };
+  }
+
+.user-bio{
+  flex-grow: 1;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  margin: 20px;
+  flex-direction: column;
+  padding: 25px;
+  p{
+  color: $black;
+  };
+  h3{
+    color: $red-poppy;
+  };
+}
