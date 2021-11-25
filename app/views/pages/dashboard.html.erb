@@ -6,19 +6,19 @@
         <%= image_tag "https://ca.slack-edge.com/T02NE0241-U02G0UEGWHH-c3394b1963ed-512", width: "200px", height: "200px"%>
         <table class="table" id="information_table">
           <tr>
-            <th>Name</th>
+            <th><i class="fas fa-user"></i></th>
             <td><%= @user.first_name %> <%= @user.last_name %></td>
           </tr>
           <tr>
-            <th>Email</th>
+            <th><i class="fas fa-envelope-open-text"></i></th>
             <td><%= @user.email %></td>
           </tr>
           <tr>
-            <th>Company</th>
+            <th><i class="fas fa-laptop-house"></th>
             <td><%= @user.company %></td>
           </tr>
           <tr>
-            <th>Job</th>
+            <th><i class="fas fa-address-card"></th>
             <td><%= @user.job_title %></td>
           </tr>
         </table>
@@ -28,7 +28,7 @@
     </div>
     <div>
       <div class="dashboard_card" id="reservation_card">
-        <h2>My Activities (<%= @user.bookings.count %>)</h2>
+        <h2>My Planned Activities (<%= @user.bookings.count %>)</h2>
           <% if @user.bookings.exists? %>
             <table class="table">
               <tr>
@@ -43,19 +43,24 @@
                 <tr>
                   <td><%= Activity.find_by_id(booking.activity_id).name %></td>
                   <td><%= Activity.find_by_id(booking.activity_id).place %></td>
-                  <td><%= booking.activity.start_date %></td>
-                  <td><%= booking.activity.end_date %></td>
+                  <td><%= booking.activity.start_date.strftime("%e %^b %Y %R") %></td>
+                  <td><%= booking.activity.end_date.strftime("%e %^b %Y %R") %></td>
+                  <td><%= booking.status %></td>
 
                   <td>
                     <%= link_to activity_path(Activity.find_by_id(booking.activity_id)) do %>
                       <i class="far fa-eye"></i>
                     <% end %>
                   </td>
+                  <td>
+                    <%= link_to dashboard_path do %>
+                      <i class="fas fa-exchange-alt"></i>
+                    <% end %>
+                  </td>
                 </tr>
               <% end %>
             </table>
-
-            <button class="dashboard_button"><%= link_to "Book another activity !", activities_path %></button>
+            <div class="book_btn"><button class="dashboard_button"><%= link_to "Book another activity !", activities_path %></button></div>
 
           <% else %>
             <p>You have no booking for the moment.</p>
@@ -65,7 +70,7 @@
 
 
       <div class="dashboard_card">
-        <h2>My travels (<%= @user.activities.count %>)</h2>
+        <h2>My Past Trips (<%= @user.activities.count %>)</h2>
           <% if @user.activities.exists? %>
             <table class="table">
               <tr>
@@ -79,22 +84,16 @@
                 <tr>
                   <td><%= activity.name %></td>
                   <td><%= activity.place %> year(s) old</td>
-                  <td><%= activity.start_date %></td>
-                  <td><%= activity.end_date %></td>
+                  <td><%= activity.start_date.strftime("%e %^b %Y") %></td>
+                  <td><%= activity.end_date.strftime("%e %^b %Y") %></td>
                   <td>
                     <%= link_to activity_path(activity.id) do %>
                       <i class="far fa-eye"></i>
                     <% end %>
                   </td>
-                  <td>
-                    <%= link_to dashboard_path do %>
-                      <i class="fas fa-exchange-alt"></i>
-                    <% end %>
-                  </td>
               <% end %>
             </table>
           <% end %>
-            <button class="dashboard_button"><%= link_to "Book another activity !", activities_path %></button>
       </div>
     </div>
   </div>
