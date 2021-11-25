@@ -21,7 +21,6 @@
           <%= link_to user_path(@activity.owner_id) do %>
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-show-large", alt: "avatar-show-large" %>
           <% end %>
-          <%# <%= link_to  user_path(@activity.owner_id)%>
           <div class="name"><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></div>
           <div class="owner">
             <p><i class="fas fa-laptop-house"></i> <%= @activity.owner.company %></p>
@@ -50,7 +49,9 @@
     <div class="card-participants">
       <% @activity.users.each do |user| %>
         <div class="card-participants-infos">
+        <%= link_to user_path(user) do %>
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-show", alt: "avatar-show" %>
+        <% end %>
           <h2><%= user.first_name %> <%= user.last_name %></h2>
           <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
           <p><i class="fas fa-briefcase"></i> <%= user.industry %></p>
