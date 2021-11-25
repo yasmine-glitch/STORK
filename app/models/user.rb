@@ -9,5 +9,6 @@ class User < ApplicationRecord
   has_many :travels, dependent: :destroy
   has_one_attached :photo
 
+  validates :photo, presence: true
   validates :first_name, :last_name, presence: true
 end
