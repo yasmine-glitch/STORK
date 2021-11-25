@@ -53,19 +53,18 @@
     <h3><%=pluralize(@activity.users.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
     </div>
     <div class="card-participants">
-      <% @activity.users.each do |user| %>
+      <% @activity.users.first(6).each do |user| %>
         <div class="card-participants-infos">
         <%= link_to user_path(user) do %>
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-show", alt: "avatar-show" %>
         <% end %>
           <h2><%= user.first_name %> <%= user.last_name %></h2>
           <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
-          <p><i class="fas fa-briefcase"></i> <%= user.industry %></p>
-          <p><i class="fas fa-address-card"></i> <%= user.job_title %></p>
-          <p><i class="fas fa-globe"></i> <%= user.country %></p>
         </div>
       <% end %>
     </div>
-    <p> ? km distance from you</p>
+    <div class="map_show">
+      <p> ? km distance from you</p>
+    </div>
   </div>
 </div>
