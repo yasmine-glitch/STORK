@@ -30,7 +30,8 @@
         </div>
         <div class="hosting-btn">
           <% if policy(@activity).create? %>
-            <%= link_to "Count me in!", activity_bookings_path(@activity), method: :post, class: "btn btn-gradient" %>
+            <button id="registration" class="btn btn-gradient">Count me in!</button>
+            <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
           <% end %>
         </div>
       </div>
