@@ -29,7 +29,9 @@
           </div>
         </div>
         <div class="hosting-btn">
-          <%= link_to "Count me in!", activity_path(@activity), class: "btn btn-gradient" %>
+          <% if policy(@activity).create? %>
+            <%= link_to "Count me in!", activity_bookings_path(@activity), method: :post, class: "btn btn-gradient" %>
+          <% end %>
         </div>
       </div>
     </div>
