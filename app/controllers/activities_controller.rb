@@ -8,6 +8,7 @@ class ActivitiesController < ApplicationController
     if params[:query].present?
       # if yes, render all activities located XX km around this address
       @activities = Activity.search_by_place(params[:query]).near(params[:query], 6)
+      @title = "We found #{@activities.length} activities near #{params[:query]}."
       # @activities = Activity.near(params[:query], 6)
       # return only the activity which are not full
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
@@ -31,7 +32,7 @@ class ActivitiesController < ApplicationController
     end
     ## END OF HOMEPAGE SEARCH'S RESULTS
 
-    # créer une variable avec les coord. GPS de chaque activité
+    # GET ALL ACTIVITIES GPS COORD;
     @markers = @activities.map do |activity|
       {
         lat: activity.latitude,
