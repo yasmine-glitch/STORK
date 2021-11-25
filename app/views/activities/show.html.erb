@@ -19,7 +19,7 @@
         <div class="hosting-infos">
 
           <h3>Hosted by</h3>
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar-large" %>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-show-large", alt: "avatar-show-large" %>
           <div class="name"><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></div>
           <div class="owner">
             <p><i class="fas fa-laptop-house"></i> <%= @activity.owner.company %></p>
@@ -29,7 +29,9 @@
           </div>
         </div>
         <div class="hosting-btn">
-          <%= link_to "Count me in!", activity_path(@activity), class: "btn btn-gradient" %>
+          <% if policy(@activity).create? %>
+            <%= link_to "Count me in!", activity_bookings_path(@activity), method: :post, class: "btn btn-gradient" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -43,7 +45,7 @@
     <div class="card-participants">
       <% @activity.users.each do |user| %>
         <div class="card-participants-infos">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar", alt: "avatar" %>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-show", alt: "avatar-show" %>
           <h2><%= user.first_name %> <%= user.last_name %></h2>
           <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
           <p><i class="fas fa-briefcase"></i> <%= user.industry %></p>
