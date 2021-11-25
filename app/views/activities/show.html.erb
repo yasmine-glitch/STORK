@@ -29,10 +29,16 @@
             <p><i class="fas fa-globe"></i> <%= @activity.owner.country %></p>
           </div>
         </div>
-        <div class="hosting-btn">
-          <% if policy(@activity).create? %>
+        <div class="hosting-btn" data-controller="sweetalert">
+          <%if @activity.users.include?(current_user)%>
+            <p id="already_in">You're already in!</p>
+            <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+          <% elsif policy(@activity).create? && @activity.users.count < @activity.capacity_max %>
             <button id="registration" class="btn btn-gradient">Count me in!</button>
             <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
+          <% else %>
+            <p id="sorry_full">Sorry, Activity full! 🙇</p>
+            <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
           <% end %>
         </div>
       </div>
