@@ -23,33 +23,79 @@
     <div class="user-bio">
       <h3>Hello, my name is <%= @user.first_name %></h3>
       <p>member since <%= @user.created_at %></p>
+      <br>
+      <br>
       <h4>About <%= @user.first_name %></h4>
       <p><%= @user.bio %></p>
     </div>
   </div>
 </div>
 
-<div class="wrapper">
-  <div class="card-user-activities">
-    <h3>Discover events where <%= @user.first_name %> participated lately</h3>
-    <p><% @user.activities.each do |activity| %></p>
-    <p><%= activity.name %></p>
-    <p><%= activity.place %></p>
-    <p><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
-    <p><%= activity.description %></p>
-    <% end %>
-  </div>
-</div>
-<div class="wrapper">
-  <div class="card-owner-activities">
-  <h3>Discover events organized by <%= @user.first_name %></h3>
-   <p><% @activities.each do |activity| %></p>
-   <p><%= activity.name %></p>
-   <p><%= activity.place %></p>
-   <p><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
-   <p><%= activity.description %></p>
-   <% end %>
-  </div>
+<h2 class="m-4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork...</h2>
+<h3 class="m-4 ps-3"> <%= @user.first_name %> participated in <%= @user.activities.length %> events !</h3>
+<div class="d-flex justify-content-center">
+  <% @user.activities.each do |activity| %>
+    <div class="card-user-activities">
+      <%= link_to activity_path(activity) do%>
+        <div class="user-activity">
+          <% if activity.photo.attached? %>
+            <div class="card-user-image" style="background-image: url(<%= cl_image_path activity.photo.key %>)">
+            </div>
+          <% end %>
+          <div class="user-card-body p-3 d-flex flex-column">
+            <div class="user-card-body-first-part">
+              <div class="d-flex justify-content-between">
+                <h5 class="popular-card-title"><%= activity.name %></h5>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="popular-card-place"><%= activity.place %></p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="popular-card-place"><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
+              </div>
+              <p class="popular-card-text"><%= activity.description %></p>
+              <p>Implement categories here ! (act_as_taggable)</p>
+            </div>
+            <div class="user-card-body-second-part">
+            <p><%= activity.users.length %> participants</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
-<!-- afficher en bas de la page : activités, voyages, reviews, amis-->
+<h3 class="m-4 ps-3"> <%= @user.first_name %> organized <%= @activities.length %> events !</h3>
+<div class="d-flex justify-content-center">
+  <% @activities.each do |activity| %>
+    <div class="card-user-activities">
+      <%= link_to activity_path(activity) do%>
+        <div class="user-activity">
+          <% if activity.photo.attached? %>
+            <div class="card-user-image" style="background-image: url(<%= cl_image_path activity.photo.key %>)">
+            </div>
+          <% end %>
+          <div class="user-card-body p-3 d-flex flex-column">
+            <div class="user-card-body-first-part">
+              <div class="d-flex justify-content-between">
+                <h5 class="popular-card-title"><%= activity.name %></h5>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="popular-card-place"><%= activity.place %></p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="popular-card-place"><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
+              </div>
+              <p class="popular-card-text"><%= activity.description %></p>
+              <p>Implement categories here ! (act_as_taggable)</p>
+            </div>
+            <div class="user-card-body-second-part">
+            <p><%= activity.users.length %> participants</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

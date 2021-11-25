@@ -29,3 +29,45 @@
     color: $red-poppy;
   };
 }
+
+
+.card-user-activities{
+   /* je voudrais afficher trois cartes par ligne */
+  width: 30%;
+  overflow: scroll; /* pourquoi ça ne marche pas ?? */
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin: 10px;
+    img{
+    height: 200px;
+    width: -webkit-fill-available;
+    object-fit: cover;
+    };
+    a {
+      color: black
+    }
+    h5 {
+      color: $red-poppy;
+    }
+}
+
+
+.card-user-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: end;
+}
+
+.user-activity {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.user-card-body {
+  flex-grow: 1;
+}
+
