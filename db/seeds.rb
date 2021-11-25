@@ -138,50 +138,59 @@ end
 puts "Finished!"
 
 puts 'Creating 90 bookings for the activity -- The blockchain job fair...'
-90.times do
+User.all.sample(90).each do |user|
   booking = Booking.new(
-    activity_id: Activity.find_by_name('The blockchain Job Fair in Hong Kong').id,
-    user_id: User.all.sample.id
+    activity: Activity.find_by_name('The blockchain Job Fair in Hong Kong'),
+    user: user
   )
   booking.save!
 end
 
 puts 'Creating 35 bookings for the activity -- Giant basketball tournament in Hong Kong...'
-35.times do
+User.all.sample(35).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Giant basketball tournament in Hong Kong').id,
-    user_id: User.all.sample.id
+    user_id: user.id
   )
   booking.save!
 end
 
 puts 'Creating 51 bookings for the activity -- Samba ! Dance lessons with Ricardo and Manuela...'
-51.times do
+User.all.sample(51).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Samba ! Dance lessons with Ricardo and Manuela').id,
-    user_id: User.all.sample.id
+    user_id: user.id
   )
   booking.save!
 end
 
+# 51.times do
+#   booking = Booking.new(
+#     activity_id: Activity.find_by_name('Samba ! Dance lessons with Ricardo and Manuela').id,
+#     user_id: User.all.sample.id
+#   )
+#   booking.save
+# end
+
 puts 'Creating 38 bookings for the activity -- Visiting Nara : culture and history...'
-38.times do
+
+User.all.sample(38).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Visiting Nara : culture and history').id,
-    user_id: User.all.sample.id
+    user_id: user.id
   )
   booking.save!
 end
 
 puts 'Creating 25 bookings for the activity -- Learning Fado with Lourenço and Carla - singing lesson...'
-25.times do
+
+User.all.sample(25).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Learning Fado with Lourenço and Carla - singing lesson').id,
-    user_id: User.all.sample.id
+    user_id: user.id
   )
   booking.save!
 end
-
 
 puts 'Finished!'
 
