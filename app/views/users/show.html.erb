@@ -35,7 +35,7 @@
     <p><% @user.activities.each do |activity| %></p>
     <p><%= activity.name %></p>
     <p><%= activity.place %></p>
-    <p><%= activity.start_date %></p>
+    <p><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
     <p><%= activity.description %></p>
     <% end %>
   </div>
@@ -46,7 +46,7 @@
    <p><% @activities.each do |activity| %></p>
    <p><%= activity.name %></p>
    <p><%= activity.place %></p>
-   <p><%= activity.start_date %></p>
+   <p><%= activity.start_date.strftime("%R %:z" " " "UTC") %></p>
    <p><%= activity.description %></p>
    <% end %>
   </div>

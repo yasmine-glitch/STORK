@@ -17,9 +17,11 @@
       </div>
       <div class="hosting">
         <div class="hosting-infos">
-
           <h3>Hosted by</h3>
+          <%= link_to user_path(@activity.owner_id) do %>
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-show-large", alt: "avatar-show-large" %>
+          <% end %>
+          <%# <%= link_to  user_path(@activity.owner_id)%>
           <div class="name"><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></div>
           <div class="owner">
             <p><i class="fas fa-laptop-house"></i> <%= @activity.owner.company %></p>
