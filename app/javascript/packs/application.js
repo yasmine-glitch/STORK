@@ -25,3 +25,18 @@ initFlatpickr();
 flatpickr(".datepicker", {
   altInput: true
 });
+
+import { initSweetalert } from '../plugins/init_sweetalert';
+const activity = document.querySelector(".activity-main-infos h3").innerText
+const date = document.querySelector(".activity-main-infos .date").innerText
+console.log(activity)
+initSweetalert('#registration', {
+  title:`Great! Get ready for ${activity}`,
+  text: `Happening on ${date}`,
+  icon: "success",
+}, (value) => {
+  if (value) {
+    const link = document.querySelector('.registration_hidden_btn');
+    link.click();
+  }
+});
