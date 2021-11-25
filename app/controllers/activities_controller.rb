@@ -7,27 +7,29 @@ class ActivitiesController < ApplicationController
     if params[:query].present?
       # if yes, render all activities located XX km around this address
       @activities = Activity.search_by_place(params[:query]).near(params[:query], 100)
-      @title = "We found #{@activities.length} activities near #{params[:query]}."
       # @activities = Activity.near(params[:query], 6)
       # return only the activity which are not full
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
+      @title = "We found #{@activities.length} activities near #{params[:query]}."
       # check if the user enter a date
       if params[:start_date].present?
         # if yes, filter the previous search results by start_date
         @activities = @activities.filter { |activity| activity.start_date >= params[:start_date] }
+        @title = "We found #{@activities.length} activities near #{params[:query]}."
       end
 
     # if the user didn't typed an address, check if he typed a date
     elsif params[:start_date].present?
       # if yes, render all activities with the same start date
       @activities = @activities.filter { |activity| activity.start_date >= params[:start_date] }
-    # if the user didn't type any place or date
-
+      @title = "We found #{@activities.length} activities in the world."
+      # if the user didn't type any place or date
     else
       # render all activities not fully booked
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter activities with a future start date
       @activities = @activities.filter { |activity| activity.start_date >= DateTime.now }
+      @title = "We found #{@activities.length} activities in the world."
     end
     ## END OF HOMEPAGE SEARCH'S RESULTS
 
