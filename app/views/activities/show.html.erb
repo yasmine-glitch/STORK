@@ -1,45 +1,57 @@
-<div class="container">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4));">
+<div class="banner-show">
+  <div class="blurry-background" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(<%= cl_image_path @activity.photo.key %>)">
+  </div>
+  <div class="container">
+    <div class="activity-main-infos" >
+      <h3><%= @activity.name %></h3>
+      <div class="date"><i class="far fa-calendar-alt"></i>
+      <%= @activity.start_date.strftime("%A %B %e") %></div>
+      <p><i class="fas fa-clock"></i>
+      <%= @activity.start_date.strftime("%R %:z" " " "UTC") %><p>
+    </div>
     <div class="activity-show-header">
-      <div class="activity-main-infos">
-        <h3><%= @activity.name %></h3>
-        <p><i class="far fa-calendar-alt"></i>
-        <%= @activity.start_date.strftime("%A %B %e at %l:%M %p %:z") %><p>
-        <div class="photo">
-          <% if @activity.photo.attached? %>
-            <%= cl_image_tag @activity.photo.key, height: 400, width: 800, crop: :fill  %>
-          <% end %>
-        </div>
+      <div class="photo">
+        <% if @activity.photo.attached? %>
+          <%= cl_image_tag @activity.photo.key  %>
+        <% end %>
       </div>
       <div class="hosting">
-        <h3> Hosted by </h3>
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
-        <div class = "name">
-          <p><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></p>
-        </div>
+        <div class="hosting-infos">
+
+          <h3>Hosted by</h3>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar-large" %>
+          <div class="name"><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></div>
           <div class="owner">
             <p><i class="fas fa-laptop-house"></i> <%= @activity.owner.company %></p>
             <p><i class="fas fa-briefcase"></i> <%= @activity.owner.industry %></p>
             <p><i class="fas fa-address-card"></i> <%= @activity.owner.job_title %></p>
             <p><i class="fas fa-globe"></i> <%= @activity.owner.country %></p>
-            <%= link_to "Count me in!", activity_path(@activity), class: "btn btn-gradient" %>
           </div>
+        </div>
+        <div class="hosting-btn">
+          <%= link_to "Count me in!", activity_path(@activity), class: "btn btn-gradient" %>
+        </div>
       </div>
     </div>
-      <div class="activity-description">
-        <i class="fas fa-map-marked-alt"> <%= @activity.place %></i>
-        <p><%= @activity.description %></p>
-        <p> ? km distance from you</p>
-      </div>
-    </div>
-
-    <p><%=pluralize(@activity.users.count, "registered participant")%> for this event  Max <%= @activity.capacity_max%> </p>
-    <div class="participants">
+  </div>
+</div>
+<div class="container">
+  <div class="activity-description">
+    <i class="fas fa-map-marked-alt"> <%= @activity.place %></i>
+    <p><%= @activity.description %></p>
+    <h3><%=pluralize(@activity.users.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
+    <div class="card-participants">
       <% @activity.users.each do |user| %>
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar-large", alt: "avatar-large" %>
-        <p><%= user.first_name %> <%= user.last_name %></p>
-        <p> <%= user.company %></p>
-        <p> <%= user.job_title %></p>
+        <div class="card-participants-infos">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class: "avatar", alt: "avatar" %>
+          <h2><%= user.first_name %> <%= user.last_name %></h2>
+          <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+          <p><i class="fas fa-briefcase"></i> <%= user.industry %></p>
+          <p><i class="fas fa-address-card"></i> <%= user.job_title %></p>
+          <p><i class="fas fa-globe"></i> <%= user.country %></p>
+        </div>
       <% end %>
     </div>
+    <p> ? km distance from you</p>
+  </div>
 </div>

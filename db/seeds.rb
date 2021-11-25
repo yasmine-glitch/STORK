@@ -86,6 +86,7 @@ activity11 = { name: "Giant basketball tournament in Hong Kong", place: "2 Tse W
 
 
 [activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11].each_with_index do |attributes, index|
+
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save

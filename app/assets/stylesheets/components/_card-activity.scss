@@ -5,8 +5,8 @@
 }
 
 .card-activity{
-  flex: 1 1 150px; /* je voudrais afficher trois cartes par ligne */
-  width: 350px;
+  flex-basis: 300px;
+  flex-grow: 1;
   overflow: scroll; /* pourquoi ça ne marche pas ?? */
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -15,7 +15,33 @@
   justify-content: space-between;
   img{
   height: 200px;
-  width: 300px;
+  width: 100%;
   object-fit: cover;
   };
+  p{
+    color: $black;
+    font-size: smaller;
+  }
+  h5{
+    color: $red-poppy;
+  }
+}
+
+.flex-container{
+  display: flex;
+}
+
+.users-avatar{
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  margin-right: 10px;
+
+  .avatar{
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    margin-right: -15px;
+
+  }
 }
