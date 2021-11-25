@@ -1,0 +1,56 @@
+#dashboard_title {
+  margin-bottom: 20px;
+}
+
+.dashboard_card {
+  padding: 40px;
+  box-shadow: 2px 5px 18px 1px rgba(196, 196, 196, 0.4);
+  height: fit-content;
+}
+
+#information_card {
+  margin-right: 20px;
+  text-align: center;
+}
+
+#reservation_card {
+  margin-bottom: 20px;
+}
+
+#information_card h2 {
+  text-align: center;
+}
+
+.dashboard_button {
+  margin-top: 20px;
+  background-color: #e65c5d;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  a{
+    color: white;
+  }
+}
+
+.dashboard_button:hover {
+  margin-top: 20px;
+  background-color: #e65c5d;
+  border: none;
+  border-radius: 8px;
+  color: #f7dd74;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+
+#information_table {
+  text-align: left;
+}
