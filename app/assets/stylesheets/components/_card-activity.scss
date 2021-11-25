@@ -1,10 +1,10 @@
-
 .wrapper{
   display: flex;
   flex-wrap: wrap;
 }
 
 .card-activity{
+  height: 500px;
   flex-basis: 300px;
   flex-grow: 1;
   overflow: scroll; /* pourquoi ça ne marche pas ?? */
@@ -13,24 +13,28 @@
   border-radius: 5px;
   margin: 10px;
   justify-content: space-between;
+
   img{
   height: 200px;
   width: 100%;
   object-fit: cover;
-  };
-  p{
-    color: $black;
-    font-size: smaller;
   }
+
   h5{
     color: $red-poppy;
+  }
+
+  a{
+    color: black;
   }
 }
 
 .flex-container{
   display: flex;
+
   h1{
-    color: $red-poppy;
+    color: black;
+    margin: 10px;
   }
 }
 
@@ -45,6 +49,29 @@
     height: 40px;
     border: 1px solid white;
     margin-right: -15px;
-
   }
+}
+
+.card-body{
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  a.btn.btn-gradient{
+    position: relative;
+    width: 100%;
+    color: white;
+  }
+
+  .wrapper{
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.card-text{
+  padding-top: 15px;
+  font-size: medium;
+  height: 63px;
 }
