@@ -39,10 +39,12 @@
   </div>
 </div>
 <div class="container">
-  <div class="activity-description">
-    <i class="fas fa-map-marked-alt"> <%= @activity.place %></i>
+  <div class="show_bottom_page">
+    <div class="activity-description">
+    <div class="place"><i class="fas fa-map-marked-alt"></i> <%= @activity.place %></div>
     <p><%= @activity.description %></p>
     <h3><%=pluralize(@activity.users.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
+    </div>
     <div class="card-participants">
       <% @activity.users.each do |user| %>
         <div class="card-participants-infos">
