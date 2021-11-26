@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :activities, through: :bookings
   has_many :travels, dependent: :destroy
   has_one_attached :photo
+  acts_as_taggable_on :hobbies
 
   validates :photo, presence: true
   validates :first_name, :last_name, presence: true
