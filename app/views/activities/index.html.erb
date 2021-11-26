@@ -20,7 +20,6 @@
                 </div>
               </div>
               <p class="card-text"><%= activity.description.truncate(100) %></p>
-              <p><i class="fas fa-map-marked-alt"></i> <%= activity.place %></p>
               <div class="users-avatar">
                 <% activity.users.first(5).each do |user| %>
                   <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
