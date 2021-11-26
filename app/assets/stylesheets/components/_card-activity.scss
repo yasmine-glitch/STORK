@@ -13,12 +13,30 @@
   border-radius: 5px;
   margin: 10px;
   justify-content: space-between;
+  position: relative;
 
-  img{
+  .activity-img{
   height: 200px;
   width: 100%;
   object-fit: cover;
+  background-size: cover;
+  background-position: center;
+
+    p{
+      color: white;
+      padding-top: 170px;
+      padding-left: 10px;
+      font-size: large;
+    }
   }
+
+  // .activity-place{
+  // position: absolute;
+  // bottom: 300px;
+  // left: 16px;
+  // color: white;
+  // font-weight: bolder;
+  // }
 
   h5{
     color: $red-poppy;

@@ -7,7 +7,9 @@
           <div class="card-activity">
             <%= link_to activity_path(activity) do%>
             <% if activity.photo.attached? %>
-              <%= cl_image_tag activity.photo.key %>
+              <div class="activity-img" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path activity.photo.key %>);">
+                <p><i class="fas fa-map-marked-alt"></i> <%= activity.place %></p>
+              </div>
             <% end %>
             <div class="card-body">
               <div class="wrapper">
