@@ -19,6 +19,10 @@
     }
 }
 
+.popular-card-activity:hover {
+  box-shadow: 0 0 50px rgba(0,0,0,0.2);
+}
+
 .banner-places-left {
   background-color: $red-poppy;
   opacity: 0.95;
@@ -50,6 +54,12 @@
 }
 
 
-.popular-card-body-second-part {
+.popular-card-body-first-part {
   flex-grow: 1;
+}
+
+.popular-card-body-second-part {
+  p {
+    text-align: right
+  }
 }
