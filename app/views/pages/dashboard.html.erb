@@ -3,11 +3,11 @@
   <div class = "d-flex justify-content-between three_dashboard_cards">
     <div class="dashboard_card" id="information_card">
       <h2>My Information</h2>
-        <%= image_tag "https://ca.slack-edge.com/T02NE0241-U02G0UEGWHH-c3394b1963ed-512", width: "200px", height: "200px"%>
+        <%= cl_image_tag @user.photo.key, width: "200px", height: "200px"%>
         <table class="table" id="information_table">
           <tr>
             <th><i class="fas fa-user"></i></th>
-            <td><%= @user.first_name %> <%= @user.last_name %></td>
+            <td><strong><%= @user.first_name %> <%= @user.last_name %><strong></td>
           </tr>
           <tr>
             <th><i class="fas fa-envelope-open-text"></i></th>

@@ -51,10 +51,10 @@
     <div class="activity-description">
     <div class="place"><i class="fas fa-map-marked-alt"></i> <%= @activity.place %></div>
     <p><%= @activity.description %></p>
-    <h3><%=pluralize(@activity.users.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
+    <h3><%=pluralize(@all_participants.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
     </div>
     <div class="card-participants">
-      <% @activity.users.first(6).each do |user| %>
+      <% @all_participants.first(7).each do |user| %>
         <div class="card-participants-infos">
         <%= link_to user_path(user) do %>
           <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
