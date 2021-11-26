@@ -49,6 +49,13 @@ class ActivitiesController < ApplicationController
     @booking = Booking.new
     @booking_exist = Booking.find_by(activity_id: params[:id], user_id: current_user)
     @all_participants = [@activity.owner, @activity.users].flatten
+
+    @markers = [
+      {
+        lat: @activity.latitude,
+        lng: @activity.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { activity: @activity }),
+      } ]
   end
 
   def create
