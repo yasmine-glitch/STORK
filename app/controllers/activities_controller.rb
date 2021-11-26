@@ -15,14 +15,15 @@ class ActivitiesController < ApplicationController
       # check if the user enter a date
       if params[:start_date].present?
         # if yes, filter the previous search results by start_date
-        @activities = @activities.filter { |activity| activity.start_date == params[:start_date] }
+        # raise
+        @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
         # if there is no activity on the selected date
         if @activities.empty?
           # inform the user and advise him to take a look to other activities
           @title = "We didn't find any activity for #{params[:start_date]} ... but look at the coming events in #{params[:query]}!"
           @activities = Activity.search_by_place(params[:query]).near(params[:query], 100)
           @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
-          @activities = @activities.filter { |activity| activity.start_date > params[:start_date] }
+          @activities = @activities.filter { |activity| activity.start_date.to_date > params[:start_date].to_date }
         else
           @title = "We found #{@activities.length} activities near #{params[:query]}"
         end
@@ -31,13 +32,13 @@ class ActivitiesController < ApplicationController
     # if the user didn't typed an address, check if he typed a date
     elsif params[:start_date].present?
       # if yes, render all activities with the same start date
-      @activities = @activities.filter { |activity| activity.start_date == params[:start_date] }
+      @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
       # if there is no activity at that date
       if @activities.empty?
         # inform the user and advise him to take a look to other activities
         @title = "We didn't find any activity for #{params[:start_date]} ... but look at the coming events!"
         @activities = policy_scope(Activity).order(start_date: :asc)
-        @activities = @activities.filter { |activity| activity.start_date >= params[:start_date] }
+        @activities = @activities.filter { |activity| activity.start_date.to_date >= params[:start_date].to_date }
       else
         @title = "We found #{@activities.length} activities in the world"
       end
@@ -47,15 +48,16 @@ class ActivitiesController < ApplicationController
       # render all activities not fully booked
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter activities with a future start date
-      @activities = @activities.filter { |activity| activity.start_date == DateTime.now }
+      @activities = @activities.filter { |activity| activity.start_date.to_date == DateTime.now }
        # if there is no activity today
       if @activities.empty?
         # inform the user and advise him to take a look to other activities
         @title = "We didn't find any activity for #{params[:start_date]} but look at the coming events!"
         @activities = policy_scope(Activity).order(start_date: :asc)
         if params[:start_date]
-          @activities = @activities.filter { |activity| activity.start_date > params[:start_date] }
+          @activities = @activities.filter { |activity| activity.start_date.to_date > DateTime.now }
         end
+
       else
         @title = "We found #{@activities.length} activities today in the world"
       end
