@@ -33,6 +33,7 @@
           <%if @activity.users.include?(current_user)%>
             <p id="already_in">You're already in!</p>
             <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+            <p><%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "btn btn-ghost" %></p>
           <% elsif policy(@activity).create? && @activity.users.count < @activity.capacity_max %>
             <button id="registration" class="btn btn-gradient">Count me in!</button>
             <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>

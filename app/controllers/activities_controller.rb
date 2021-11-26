@@ -47,6 +47,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     authorize @activity
     @booking = Booking.new
+    @booking_exist = Booking.find_by(activity_id: params[:id], user_id: current_user)
   end
 
   def create
