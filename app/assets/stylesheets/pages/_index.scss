@@ -2,3 +2,18 @@
 @import "home";
 @import "show";
 @import "dashboard";
+
+.flex-container{
+  display: flex;
+
+  h1{
+    color: black;
+    margin: 10px;
+  }
+}
+
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
