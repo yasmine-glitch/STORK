@@ -54,7 +54,10 @@ class ActivitiesController < ApplicationController
         # inform the user and advise him to take a look to other activities
         @title = "We didn't find any activity for #{params[:start_date]} but look at the coming events!"
         @activities = policy_scope(Activity).order(start_date: :asc)
-        @activities = @activities.filter { |activity| activity.start_date.to_date > DateTime.now }
+        if params[:start_date]
+          @activities = @activities.filter { |activity| activity.start_date.to_date > DateTime.now }
+        end
+
       else
         @title = "We found #{@activities.length} activities today in the world"
       end
