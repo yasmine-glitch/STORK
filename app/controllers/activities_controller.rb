@@ -1,8 +1,9 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = policy_scope(Activity).order(created_at: :desc)
+    @activities = policy_scope(Activity).order(start_date: :asc)
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
+
     # check if the user typed an address in the searchbar
     if params[:query].present?
       # if yes, render all activities located XX km around this address
@@ -14,22 +15,48 @@ class ActivitiesController < ApplicationController
       # check if the user enter a date
       if params[:start_date].present?
         # if yes, filter the previous search results by start_date
-        @activities = @activities.filter { |activity| activity.start_date >= params[:start_date] }
-        @title = "We found #{@activities.length} activities near #{params[:query]}"
+        @activities = @activities.filter { |activity| activity.start_date == params[:start_date] }
+        # if there is no activity on the selected date
+        if @activities.empty?
+          # inform the user and advise him to take a look to other activities
+          @title = "We didn't find any activity for #{params[:start_date]} ... but look at the coming events in #{params[:query]}!"
+          @activities = Activity.search_by_place(params[:query]).near(params[:query], 100)
+          @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
+          @activities = @activities.filter { |activity| activity.start_date > params[:start_date] }
+        else
+          @title = "We found #{@activities.length} activities near #{params[:query]}"
+        end
       end
 
     # if the user didn't typed an address, check if he typed a date
     elsif params[:start_date].present?
       # if yes, render all activities with the same start date
-      @activities = @activities.filter { |activity| activity.start_date >= params[:start_date] }
-      @title = "We found #{@activities.length} activities in the world"
-      # if the user didn't type any place or date
+      @activities = @activities.filter { |activity| activity.start_date == params[:start_date] }
+      # if there is no activity at that date
+      if @activities.empty?
+        # inform the user and advise him to take a look to other activities
+        @title = "We didn't find any activity for #{params[:start_date]} ... but look at the coming events!"
+        @activities = policy_scope(Activity).order(start_date: :asc)
+        @activities = @activities.filter { |activity| activity.start_date >= params[:start_date] }
+      else
+        @title = "We found #{@activities.length} activities in the world"
+      end
+
+    # if the user didn't type any place or date
     else
       # render all activities not fully booked
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter activities with a future start date
-      @activities = @activities.filter { |activity| activity.start_date >= DateTime.now }
-      @title = "We found #{@activities.length} activities in the world"
+      @activities = @activities.filter { |activity| activity.start_date == DateTime.now }
+       # if there is no activity today
+      if @activities.empty?
+        # inform the user and advise him to take a look to other activities
+        @title = "We didn't find any activity for #{params[:start_date]} but look at the coming events!"
+        @activities = policy_scope(Activity).order(start_date: :asc)
+        @activities = @activities.filter { |activity| activity.start_date > params[:start_date] }
+      else
+        @title = "We found #{@activities.length} activities today in the world"
+      end
     end
     ## END OF HOMEPAGE SEARCH'S RESULTS
 
@@ -38,7 +65,7 @@ class ActivitiesController < ApplicationController
       {
         lat: activity.latitude,
         lng: activity.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { activity: activity }),
+        info_window: render_to_string(partial: "info_window", locals: { activity: activity })
       }
     end
   end
