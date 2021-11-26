@@ -15,7 +15,8 @@ class ActivitiesController < ApplicationController
       # check if the user enter a date
       if params[:start_date].present?
         # if yes, filter the previous search results by start_date
-        @activities = @activities.filter { |activity| activity.start_date == params[:start_date] }
+        # raise
+        @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
         # if there is no activity on the selected date
         if @activities.empty?
           # inform the user and advise him to take a look to other activities
