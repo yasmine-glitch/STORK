@@ -34,9 +34,9 @@
       </div>
 </div>
 
-<h2 class="m-4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork...</h2>
-<h3 class="m-4 ps-3"> <%= @user.first_name %> participated in <%= @user.activities.length %> events !</h3>
-<div class="d-flex justify-content-center">
+<h2 class="mt4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork...</h2>
+<h3 class="mt4 ps-3"> <%= @user.first_name %> participated in <%= @user.activities.length %> events !</h3>
+<div class="d-flex justify-content-start">
   <% @user.activities.each do |activity| %>
     <div class="card-user-activities">
       <%= link_to activity_path(activity) do%>
@@ -54,7 +54,7 @@
                 <p class="popular-card-place"><%= activity.place %></p>
               </div>
               <div class="d-flex justify-content-between">
-                <p class="popular-card-place"><%= activity.start_date.strftime("%e %^b %Y") %></p>
+                <p class="popular-card-date"><%= activity.start_date.strftime("%e %^b %Y") %></p>
               </div>
               <p class="popular-card-text"><%= activity.description.first(50) %></p>
             </div>
@@ -68,7 +68,7 @@
   <% end %>
 </div>
 
-<h3 class="m-4 ps-3"> <%= @user.first_name %> organized <%= @activities.length %> events !</h3>
+<h3 class="mt-4 ps-3"> <%= @user.first_name %> organized <%= @activities.length %> events !</h3>
 <div class="d-flex justify-content-center">
   <% @activities.each do |activity| %>
     <div class="card-user-activities">
@@ -87,7 +87,7 @@
                 <p class="popular-card-place"><%= activity.place %></p>
               </div>
               <div class="d-flex justify-content-between">
-                <p class="popular-card-place"><%= activity.start_date.strftime("%e %^b %Y %R") %></p>
+                <p class="popular-card-date"><%= activity.start_date.strftime("%e %^b %Y %R") %></p>
               </div>
               <p class="popular-card-text"><%= activity.description.first(50) %></p>
             </div>

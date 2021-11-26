@@ -52,6 +52,10 @@
     h5 {
       color: $red-poppy;
     }
+    .popular-card-date {
+      color: #e65c5d;
+      font-weight: bold;
+    }
 }
 
 
@@ -82,8 +86,9 @@
   flex-direction: column;
   padding: 25px;
   text-align:center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   img {
-    width: 105%;
+    width: 102%;
   }
   p {
     font-size: 28px;
