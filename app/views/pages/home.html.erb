@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between">
       <div id="header">
         <h1 id="stork_title"><strong>Stork</strong></h1>
-        <p>Develop your network, travelling for work !</p>
+        <p style="font-size: 20px">Develop your network, travelling for work !</p>
       </div>
       <div id="search_bar_div">
         <div class="box_for_search_bar" style="width: fit-content">
@@ -22,7 +22,7 @@
                 <%= text_field_tag :start_date,
                   params[:start_date],
                   class: "datepicker form-control",
-                  placeholder: "Choose a date..."
+                  value: Date.today
                 %>
               </div>
               <div>
@@ -39,7 +39,7 @@
 </div>
 
 
-<h2 class="m-4 ps-3">Most popular activities on Stork...</h2>
+<h2 class="container mt-3">Most popular activities on Stork...</h2>
 <div class="d-flex justify-content-center">
   <% @activities.each do |activity| %>
     <div class="popular-card-activity">
@@ -59,7 +59,6 @@
                 <p> 🔥 </p>
               </div>
               <p class="popular-card-text"><%= activity.description %></p>
-              <p>Implement categories here ! (act_as_taggable)</p>
             </div>
             <div class="popular-card-body-second-part">
             <p><%= activity.users.length %> participants</p>
@@ -70,3 +69,31 @@
     </div>
   <% end %>
 </div>
+
+
+<%# <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+
+    <div class="carousel-item active">
+      <div class="d-flex">
+      <img src="https://source.unsplash.com/random" class="d-block w-25" alt="...">
+      <img src="https://source.unsplash.com/random" class="d-block w-25" alt="...">
+      </div>
+
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/random" class="d-block w-25" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/random" class="d-block w-25" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> %>
