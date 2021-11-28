@@ -123,8 +123,13 @@ activity11 = { name: "Giant basketball tournament in Hong Kong", category: "Spor
 
 activity12 = { name: "Ping Pong", category: "Sports", place: "Campo dos Mártires da Pátria, Lisbon", description: "Don't miss this crazy event for ping pong lovers ! If you like to ping, if you like to pong. Be there !", owner_id: User.find_by_first_name('Caroline').id, capacity_max: "20", start_date: DateTime.new(2021,11,26,16), end_date: DateTime.new(2021,11,26,22), photo: "https://images.unsplash.com/photo-1593786481097-cf281dd12e9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGluZyUyMHBvbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" }
 
+activity13 = { name: "Olympiades du Wagon Lisboa", category: "Bars", place: "R. Dom Pedro V 89, 1250-093 Lisbon", description: "Come and test yourself against the best Ruby developers in Lisbon, the students at Le Wagon! Bag races, blind tests, surfing, beer pong: get ready !", owner_id: User.find_by_first_name('Sam').id, capacity_max: "30", start_date: DateTime.new(2021,11,26,16), end_date: DateTime.new(2021,11,26,22), photo: "https://media.istockphoto.com/photos/taking-aim-to-shoot-picture-id497960796?b=1&k=20&m=497960796&s=170667a&w=0&h=zQa5vznMz38sZM5JgrDpHJZx_3_vj5N_bDa2Z1uHldw=" }
 
-[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12].each_with_index do |attributes, index|
+activity14 = { name: "Biggest bacalhau eater contest", category: "Food", place: "Jardim do Príncipe Real, Lisbon", description: "Do you like fish? So much the better because in this event you will eat it like never before. In all the sauces and in all its forms, it will be the cod festival ! Viva bacalhau", owner_id: User.find_by_first_name('Yasmine').id, capacity_max: "20", start_date: DateTime.new(2021,11,26,16), end_date: DateTime.new(2021,11,26,22), photo: "https://media.istockphoto.com/photos/dried-codfish-picture-id1130773985?b=1&k=20&m=1130773985&s=170667a&w=0&h=D3tEKGIFvvTLYcQA6Xe8L9efDsJbuYLFc77kQo0HCN4=" }
+
+activity15 = { name: "Breakfast at Pokawa", category: "Food", place: "R. da Misericórdia 71, Lisbon", description: "Join Karim for a delicious breakfast at Pokawa. Never enough poké 🙈. Miam Délish.", owner_id: User.find_by_first_name('Karim').id, capacity_max: "8", start_date: DateTime.new(2021,11,26,8), end_date: DateTime.new(2021,11,26,9), photo: "https://media.istockphoto.com/photos/dried-codfish-picture-id1130773985?b=1&k=20&m=1130773985&s=170667a&w=0&h=D3tEKGIFvvTLYcQA6Xe8L9efDsJbuYLFc77kQo0HCN4=" }
+
+[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15].each_with_index do |attributes, index|
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save

@@ -6,6 +6,7 @@
     margin: 20px;
     flex-direction: column;
     padding: 25px;
+    text-align: center;
     p{
     color: $black;
     };
@@ -24,6 +25,7 @@
   padding: 25px;
   p{
   color: $black;
+  text-align: justify;
   };
   h3{
     color: $red-poppy;
@@ -50,6 +52,10 @@
     h5 {
       color: $red-poppy;
     }
+    .popular-card-date {
+      color: #e65c5d;
+      font-weight: bold;
+    }
 }
 
 
@@ -71,3 +77,22 @@
   flex-grow: 1;
 }
 
+.chat-show-profile {
+  margin-top: 20px;
+  height: 50%;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+  flex-direction: column;
+  padding: 25px;
+  text-align:center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  img {
+    width: 102%;
+  }
+  p {
+    font-size: 28px;
+    color: #e65c5d;
+    font-weight: bold;
+  }
+}

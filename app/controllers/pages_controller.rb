@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     @activities = Activity.all.select do |activity|
-      activity.bookings.count > 0
+      activity.bookings.count > 35
     end
     # @activities = Activity.where("bookings.length > 0")
   end

@@ -19,12 +19,12 @@ require("channels")
 import "controllers"
 import "bootstrap"
 
-import { initFlatpickr } from "../plugins/flatpickr";
+// import { initFlatpickr } from "../plugins/flatpickr";
 
-initFlatpickr();
-flatpickr(".datepicker", {
-  altInput: true
-});
+// initFlatpickr();
+// flatpickr(".datepicker", {
+//   altInput: true
+// });
 
 /* import { initSweetalert } from '../plugins/init_sweetalert'; */
 /* const activity = document.querySelector(".activity-main-infos h3").innerText
