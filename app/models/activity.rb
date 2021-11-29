@@ -3,6 +3,7 @@ class Activity < ApplicationRecord
   has_many :bookings
   has_many :users, through: :bookings
   has_one_attached :photo
+  has_one :chatroom
 
   # Geocoding set-up
   geocoded_by :place

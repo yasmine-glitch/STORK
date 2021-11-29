@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :activities, through: :bookings
   has_many :travels, dependent: :destroy
+  has_many :messages
   has_one_attached :photo
 
   validates :photo, presence: true

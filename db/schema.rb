@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2021_11_26_113845) do
 
   # These are extensions that must be enabled in order to support this database
@@ -63,6 +64,23 @@ ActiveRecord::Schema.define(version: 2021_11_26_113845) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "activity_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_chatrooms_on_activity_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+=======
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -130,6 +148,10 @@ ActiveRecord::Schema.define(version: 2021_11_26_113845) do
   add_foreign_key "activities", "users", column: "owner_id"
   add_foreign_key "bookings", "activities"
   add_foreign_key "bookings", "users"
+
+  add_foreign_key "chatrooms", "activities"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "taggings", "tags"
   add_foreign_key "travels", "users"
 end
