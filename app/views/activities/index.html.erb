@@ -20,11 +20,17 @@
 
 <div class="flex-container">
   <!-- affiche les résultats d'activity cards correspondant à la recherche-->
-  <div class="container flex-item" style="width: 50vw;">
+  <div class="container flex-item"
+       style="width: 50vw;"
+       data-controller="card-topop">
     <h1><%= @title %></h1>
     <div class="wrapper">
       <% @activities.each do |activity| %>
-          <div class="card-activity">
+          <div class="card-activity"
+               id = 'activity_<%= activity.id %>'
+               data-card-topop-target="card"
+               data-action="mouseenter->card-topop#openPopup"
+               data-action="mouseleave->card-topop#closePopup">
             <%= link_to activity_path(activity) do%>
             <% if activity.photo.attached? %>
               <div class="activity-img" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path activity.photo.key %>);">
@@ -60,5 +66,3 @@
     data-mapbox-markers-value="<%= @markers.to_json %>"
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-
-<%= console %>

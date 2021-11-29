@@ -30,14 +30,6 @@
     }
   }
 
-  // .activity-place{
-  // position: absolute;
-  // bottom: 300px;
-  // left: 16px;
-  // color: white;
-  // font-weight: bolder;
-  // }
-
   h5{
     color: $red-poppy;
   }
@@ -45,6 +37,10 @@
   a{
     color: black;
   }
+}
+
+.card-activity:hover{
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);;
 }
 
 .flex-container{
