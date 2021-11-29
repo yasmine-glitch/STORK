@@ -26,7 +26,25 @@
           <button class="dashboard_button"><%= link_to "Update Profile", edit_user_registration_path%></button>
         </div>
     </div>
+
     <div>
+      <div class="title" id="hobbies">
+        <h5> What I like doing the most 🔥 </h3>
+      </div>
+      <div class="wrapper-tags" id="hobbies">
+          <span class="tags-precision">Sports   🏓</span>
+          <span class="tags-precision">Nature   🏔</span>
+          <span class="tags-precision">Visiting   🗽</span>
+          <span class="tags-precision">Food   🍜</span>
+          <span class="tags-precision">Bars   🍺</span>
+          <span class="tags-precision">Tech   💾</span>
+          <span class="tags-precision">Arts   🎨</span>
+          <span class="tags-precision">Crafts   🪚</span>
+          <span class="tags-precision">Dancing   🕺🏼</span>
+          <span class="tags-precision">Singing   🎤</span>
+          <span class="tags-precision">Shopping   🛍</span>
+      </div>
+
       <div class="dashboard_card" id="reservation_card">
         <h2>My Planned Activities (<%= @user.bookings.count %>)</h2>
           <% if @user.bookings.exists? %>

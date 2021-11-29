@@ -6,7 +6,7 @@ class ActivitiesController < ApplicationController
 
     # check if the user typed an address in the searchbar
     if params[:query].present?
-      # and corresponding to current user's hobbies (each user has 3 hobbies)
+      # and corresponding to current user's hobbies (each user has 8 hobbies)
       @activities = Activity.where(category: current_user.hobby_list)
       # if yes, render all activities located XX km around this address
       @activities = @activities.search_by_place(params[:query]).near(params[:query], 100)
