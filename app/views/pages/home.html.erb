@@ -22,6 +22,7 @@
                 <%= text_field_tag :start_date,
                   params[:start_date],
                   class: "datepicker form-control",
+                  "data-controller": "flatpickr",
                   value: Date.today
                 %>
               </div>
