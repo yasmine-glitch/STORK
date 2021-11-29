@@ -4,6 +4,7 @@
   background: white;
   display: flex;
   padding-left: 20px;
+  padding-right: 10px;
 }
 
 .card-participants h2 {
@@ -31,12 +32,19 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   width: 80%;
   text-align: center;
+  margin: 10px 0px 10px 10px;
 }
 
 .card-participants i {
   color: #3d56d1;
   padding-right: 5px;
 }
+
+.left-participants .card-participants-infos i {
+  color: #3d56d1;
+  padding-right: 5px;
+}
+
 
 
 .left-participants {
@@ -52,9 +60,8 @@
   margin-right: 10px;
   text-align: center;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  flex-basis: 355px;
+  flex-basis: 170px;
   flex-grow: 1;
-  display: flex;
 }
 
 .left-participants h2 {
