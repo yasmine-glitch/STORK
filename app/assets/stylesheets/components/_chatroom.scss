@@ -1,0 +1,97 @@
+.chatroom {
+  background: white;
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  h1 {
+    border-bottom: 1px solid $red-poppy;
+    margin-bottom: 0;
+    padding: 1rem;
+  }
+
+  .messages {
+    height: 100%;
+    overflow: scroll;
+    padding: 1rem;
+  }
+}
+
+.new_message {
+  border-top: 1px solid #a8a8a8;
+  padding: 1rem;
+  font-size: 16px;
+  background-color: #f7f7f7;
+
+  .form-group {
+    margin-bottom: 0;
+  }
+}
+
+.all_chats {
+  height: calc(100vh - 75px);
+  background: white;
+  border-right: 3px solid $red-poppy ;
+  h1 {
+    border-bottom: 1px solid $red-poppy;
+  }
+}
+
+#new_message {
+  background-color: $red-poppy;
+}
+
+#input_form {
+  margin: 0
+}
+
+
+.chatbox_box {
+  border: 1px solid rgb(220, 220, 220);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.card-chat {
+  overflow: hidden;
+  height: 120px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  width: 500px;
+  margin: 10px;
+  .avatar{
+    width: 40px;
+    height: 40px;
+    border: 1px solid white;
+    margin-right: -15px;
+  }
+}
+
+.card-chat-image {
+  height: 100%;
+  width: 120px;
+  object-fit: cover;
+}
+
+.card-chat h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-chat p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-chat .card-chat-infos {
+  padding: 16px;
+}
