@@ -3,19 +3,26 @@
   <div class="title">
     <h5>Filter all activities by categories 🔥 </h3>
   </div>
-    <div class="wrapper-tags">
-        <span class="tags-precision">Sports   🏓</span>
-        <span class="tags-precision">Nature   🏔</span>
-        <span class="tags-precision">Visiting   🗽</span>
-        <span class="tags-precision">Food   🍜</span>
-        <span class="tags-precision">Bars   🍺</span>
-        <span class="tags-precision">Tech   💾</span>
-        <span class="tags-precision">Arts   🎨</span>
-        <span class="tags-precision">Crafts   🪚</span>
-        <span class="tags-precision">Dancing   💃🏾🕺🏼</span>
-        <span class="tags-precision">Singing   🎤</span>
-        <span class="tags-precision">Shopping   🛍</span>
-    </div>
+
+  <div class="wrapper-tags">
+
+    <%= form_tag activities_path, method: :get do %>
+      <%= hidden_field_tag "query", params[:query] %>
+      <%= hidden_field_tag "start_date", params[:start_date] %>
+      <% Activity::CATEGORIES.each do |category| %>
+        <span class="tags-precision">
+          <% filter_tags = params[:categories].present? ? params[:categories] : @user_hobbies %>
+          <%= check_box_tag "categories[]", category[0], filter_tags.include?(category[0]), id: category[0] %>
+          <%= label_tag category[0], "#{category[0].capitalize} #{category[1]}" %>
+        </span>
+      <% end %>
+
+      <%= button_tag(type: "submit", class: "btn btn-default") do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+
+    <% end %>
+
 </div>
 
 <div class="flex-container">
@@ -61,4 +68,5 @@
     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 
-<%= console %>
+
+<% console %>

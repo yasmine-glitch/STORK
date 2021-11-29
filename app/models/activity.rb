@@ -18,4 +18,18 @@ class Activity < ApplicationRecord
                   using: {
                     tsearch: { prefix: true, any_word: true } # <-- now `superman batm` will return something!
                   }
+
+  CATEGORIES = [
+    ["Sports", "🏓" ],
+    ["Nature", "🏔"],
+    ["Visiting", "🗽"],
+    ["Food", "🍜"],
+    ["Bars", "🍺"],
+    ["Tech", "💾"],
+    ["Arts", "🎨"],
+    ["Crafts", "🪚"],
+    ["Dancing", "🕺🏼"],
+    ["Singing", "🎤"],
+    ["Shopping", "🛍"]
+  ]
 end
