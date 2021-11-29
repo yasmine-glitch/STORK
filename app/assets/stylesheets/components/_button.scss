@@ -22,3 +22,15 @@
 .btn-ghost:hover {
   opacity: 1;
 }
+
+button {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: linear-gradient(#e25151, #e65c5d);
+  transition: background 0.3s ease;
+  border: 1px solid #e65c5d;
+  font-size: 14px;
+  margin: 15px;
+}
