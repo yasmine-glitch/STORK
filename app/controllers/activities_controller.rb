@@ -100,6 +100,7 @@ class ActivitiesController < ApplicationController
     @activity.owner = current_user
     if @activity.save!
       redirect_to activity_path(@activity)
+      Chatroom.create(activity: @activity, name: "#{@activity.name} chat")
     else
       render :new
     end
