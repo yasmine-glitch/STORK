@@ -6,9 +6,10 @@ class ActivitiesController < ApplicationController
 
     # check if the user typed an address in the searchbar
     if params[:query].present?
+      # and corresponding to current user's hobbies (each user has 3 hobbies)
+      @activities = Activity.where(category: current_user.hobby_list)
       # if yes, render all activities located XX km around this address
-      @activities = Activity.search_by_place(params[:query]).near(params[:query], 100)
-      # @activities = Activity.near(params[:query], 6)
+      @activities = @activities.search_by_place(params[:query]).near(params[:query], 100)
       # return only the activity which are not full
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       @title = "We found #{@activities.length} activities near #{params[:query]}"
@@ -31,6 +32,8 @@ class ActivitiesController < ApplicationController
 
     # if the user didn't typed an address, check if he typed a date
     elsif params[:start_date].present?
+      # and corresponding to current user hobbies (each user has 3 hobbies)
+      @activities = Activity.where(category: current_user.hobby_list)
       # if yes, render all activities with the same start date
       @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
       # if there is no activity at that date
@@ -45,6 +48,8 @@ class ActivitiesController < ApplicationController
 
     # if the user didn't type any place or date
     else
+      # and corresponding to current user hobbies (each user has 3 hobbies)
+      @activities = Activity.where(category: current_user.hobby_list)
       # render all activities not fully booked
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter activities with a future start date

@@ -1,0 +1,38 @@
+.title{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.wrapper-tags{
+    -webkit-box-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tags{
+    display: inline-block !important;
+    white-space: nowrap !important;
+    padding-right: 8px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+    width: 100% !important;
+}
+
+.tags-precision{
+  cursor: pointer !important;
+  text-align: center !important;
+  border: 1px solid rgb(221, 221, 221) !important;
+  background-color: rgb(255, 255, 255) !important;
+  outline: none !important;
+  margin: 0px !important;
+  border-radius: 30px !important;
+  color: rgb(34, 34, 34) !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  position: relative !important;
+  padding: 10px 16px !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  width: 100% !important;
+  font-size: larger;
+}
