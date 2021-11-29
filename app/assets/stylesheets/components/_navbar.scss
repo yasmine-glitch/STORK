@@ -11,3 +11,12 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-lewagon .logo-name {
+  display: flex;
+  align-items: center;
+  p{
+    font-size: 22px;
+    font-family:'Sora', sans-serif;
+  }
+}
