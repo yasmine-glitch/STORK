@@ -4,7 +4,6 @@
   background: white;
   display: flex;
   padding-left: 20px;
-  overflow-x: scroll;
 }
 
 .card-participants h2 {
@@ -22,6 +21,10 @@
   margin-bottom: 0;
 }
 
+.left-participants-hidden {
+  display: none;
+}
+
 .card-participants .card-participants-infos {
   padding: 16px;
   margin-right: 10px;
@@ -33,4 +36,44 @@
 .card-participants i {
   color: #3d56d1;
   padding-right: 5px;
+}
+
+
+.left-participants {
+  height: 100%;
+  background: white;
+  padding-left: 20px;
+  overflow-x: scroll;
+  padding-top : 20px;
+}
+
+.left-participants .card-participants-infos {
+  padding: 16px;
+  margin-right: 10px;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  flex-basis: 300px;
+  flex-grow: 1;
+  display: flex;
+}
+
+.left-participants h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  color: #3d56d1;
+  padding: 6px 0px;
+}
+
+.left-participants p {
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+}
+
+.left-participants-info{
+  display: flex;
+  flex-wrap: wrap;
 }
