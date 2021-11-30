@@ -1,40 +1,40 @@
-<div class="banner-general">
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.04),rgba(0,0,0,0.04)), url('<%= image_path "home-final.jpg" %>');">
-    <div id="header">
-            <h1 id="stork_title"><strong>Meet people and enjoy!</strong></h1>
-            <p>Develop your network <span data-controller="typed-js"></span></p>
-          </div>
-    <div class="container">
-      <div class="d-flex justify-content-between">
-        <div id="search_bar_div">
-          <div class="box_for_search_bar" style="width: fit-content">
-          <p>Search an activity</p>
-            <%= form_tag activities_path, method: :get do %>
-              <div class="search_bar">
-                <div class= "btn btn-filter" style="width: 400px" data-controller="geocoder" data-geocoder-api-key-value="<%=ENV['MAPBOX_API_KEY']%>">
-                  <%= text_field_tag :query,
-                    params[:query],
-                    data: { geocoder_target: "address" },
-                    class: "form-control d-none"
-                  %>
-                </div>
 
-                <div class= "btn btn-filter" style="width: 200px">
-                  <%= text_field_tag :start_date,
-                    params[:start_date],
-                    class: "datepicker form-control",
-                    "data-controller": "flatpickr",
-                    value: Date.today
-                  %>
-                </div>
-                <div>
-                  <%= button_tag(type: "submit", class: "btn btn-gradient") do %>
-                  Search
-                  <% end %>
-                </div>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.04),rgba(0,0,0,0.04)), url('<%= image_path "homepage/homepage_background.png" %>');">
+  <div class="container">
+    <div class="d-flex justify-content-between">
+      <div id="header">
+        <h1 id="stork_title"><strong>Meet people and enjoy!</strong></h1>
+        <p>
+          <span data-controller="typed-js"></span>
+        </p>
+      </div>
+      <div id="search_bar_div">
+        <div class="box_for_search_bar" style="width: fit-content">
+          <%= form_tag activities_path, method: :get do %>
+            <div class="search_bar">
+              <div class= "btn btn-filter" style="width: 400px" data-controller="geocoder" data-geocoder-api-key-value="<%=ENV['MAPBOX_API_KEY']%>">
+                <%= text_field_tag :query,
+                  params[:query],
+                  data: { geocoder_target: "address" },
+                  class: "form-control d-none"
+                %>
               </div>
-            <% end %>
-          </div>
+
+              <div class= "btn btn-filter" style="width: 200px">
+                <%= text_field_tag :start_date,
+                  params[:start_date],
+                  class: "datepicker form-control",
+                  "data-controller": "flatpickr",
+                  value: Date.today
+                %>
+              </div>
+              <div>
+                <%= button_tag(type: "submit", class: "btn btn-default") do %>
+                  <i class="fas fa-search"></i>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -46,6 +46,7 @@
   <% @activities.each do |activity| %>
     <div class="popular-card-activity">
       <%= link_to activity_path(activity) do%>
+
         <div class="pop-activity" style="
         <% if activity.photo.attached? %>
         background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
