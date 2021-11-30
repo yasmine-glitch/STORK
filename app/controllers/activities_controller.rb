@@ -1,41 +1,46 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = policy_scope(Activity).order(start_date: :asc)
+    @user_hobbies = current_user.hobby_list
+    params[:categories] ||= []
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
 
     # check if the user typed an address in the searchbar
     if params[:query].present?
-      # and corresponding to current user's hobbies (each user has 3 hobbies)
-      @activities = Activity.where(category: current_user.hobby_list)
       # if yes, render all activities located XX km around this address
       @activities = @activities.search_by_place(params[:query]).near(params[:query], 100)
       # return only the activity which are not full
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
-      @title = "We found #{@activities.length} activities near #{params[:query]}"
+      # filter the activities depending on the hobbies of the user || the filters he clicks on the index
+      filter_activities
       # check if the user enter a date
       if params[:start_date].present?
         # if yes, filter the previous search results by start_date
-        # raise
         @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
         # if there is no activity on the selected date
         if @activities.empty?
           # inform the user and advise him to take a look to other activities
           @title = "We didn't find any activity for #{params[:start_date]} ... but look at the coming events in #{params[:query]}!"
-          @activities = Activity.search_by_place(params[:query]).near(params[:query], 100)
+          @activities = policy_scope(Activity).order(start_date: :asc).search_by_place(params[:query]).near(params[:query], 100)
+          # filter the activities depending on the hobbies of the user || the filters he clicks on the index
+          filter_activities
+          # return only the activity which are not full
           @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
+          # filter the previous search results by start_date
           @activities = @activities.filter { |activity| activity.start_date.to_date > params[:start_date].to_date }
         else
+          # write a sentence for the user
           @title = "We found #{@activities.length} activities near #{params[:query]}"
         end
       end
 
-    # if the user didn't typed an address, check if he typed a date
+      # if the user didn't typed an address, check if he typed a date
     elsif params[:start_date].present?
-      # and corresponding to current user hobbies (each user has 3 hobbies)
-      @activities = Activity.where(category: current_user.hobby_list)
       # if yes, render all activities with the same start date
       @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
+      # filter activities
+      filter_activities
       # if there is no activity at that date
       if @activities.empty?
         # inform the user and advise him to take a look to other activities
@@ -46,15 +51,15 @@ class ActivitiesController < ApplicationController
         @title = "We found #{@activities.length} activities in the world"
       end
 
-    # if the user didn't type any place or date
+      # if the user didn't type any place or date
     else
-      # and corresponding to current user hobbies (each user has 3 hobbies)
-      @activities = Activity.where(category: current_user.hobby_list)
       # render all activities not fully booked
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter activities with a future start date
       @activities = @activities.filter { |activity| activity.start_date.to_date == DateTime.now }
-       # if there is no activity today
+      # filter activities
+      filter_activities
+      # if there is no activity today
       if @activities.empty?
         # inform the user and advise him to take a look to other activities
         @title = "We didn't find any activity for #{params[:start_date]} but look at the coming events!"
@@ -77,6 +82,8 @@ class ActivitiesController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { activity: activity })
       }
     end
+
+
   end
 
   def show
@@ -91,7 +98,7 @@ class ActivitiesController < ApplicationController
         lat: @activity.latitude,
         lng: @activity.longitude,
         info_window: render_to_string(partial: "info_window", locals: { activity: @activity }),
-      } ]
+        } ]
   end
 
   def create
@@ -110,5 +117,12 @@ class ActivitiesController < ApplicationController
 
   def activity_params
     params.require(:activity).permit(:name, :place, :start_date, :end_date, :capacity_max, :photo)
+  end
+
+  def filter_activities
+    @activities = @activities.select do |activity|
+      filter_tags = params[:categories].present? ? params[:categories] : @user_hobbies
+      filter_tags.include?(activity.category)
+    end
   end
 end
