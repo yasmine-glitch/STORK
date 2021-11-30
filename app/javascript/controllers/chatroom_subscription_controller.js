@@ -16,6 +16,17 @@ export default class extends Controller {
         //   last_message.classList.remove("new_message")
         // }
         this.allmessagesTarget.insertAdjacentHTML("beforeend", data);
+        const currentuserId = document.body.getAttribute("data-current-user-id")
+        const messageWrappers = document.querySelectorAll(".message-wrapper")
+        const lastMessage = messageWrappers[messageWrappers.length - 1]
+        const usermessageId = lastMessage.getAttribute("data-user-id")
+        console.log(currentuserId);
+        console.log(usermessageId);
+
+        if (currentuserId !== usermessageId) {
+          lastMessage.querySelector(".message-right").classList.add("d-none")
+          lastMessage.querySelector(".message-left").classList.remove("d-none")
+        }
         this.allmessagesTarget.scrollTop = this.allmessagesTarget.scrollHeight
       }
     }
