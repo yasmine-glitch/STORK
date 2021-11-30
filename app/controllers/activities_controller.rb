@@ -56,7 +56,7 @@ class ActivitiesController < ApplicationController
       # render all activities not fully booked
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter activities with a future start date
-      @activities = @activities.filter { |activity| activity.start_date.to_date == DateTime.now }
+      @activities = @activities.filter { |activity| activity.start_date.to_date >= DateTime.now }
       # filter activities
       filter_activities
       # if there is no activity today
@@ -82,9 +82,8 @@ class ActivitiesController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { activity: activity })
       }
     end
-
-
   end
+
 
   def show
     @activity = Activity.find(params[:id])
