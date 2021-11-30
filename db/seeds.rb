@@ -1,12 +1,5 @@
 require "open-uri"
 require "faker"
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Cleaning database... lets gooooooo 🗑🕺"
 Travel.destroy_all
@@ -40,7 +33,7 @@ user8 = { first_name: "Yukio", last_name: "Mishima", company: "Sony", job_title:
 [user1, user2, user3, user4, user5, user6, user7, user8].each do |attributes|
   user = User.new(attributes)
   user.photo.attach(io: URI.open(attributes[:photo]), filename: "#{user.first_name}#{user.last_name}.png", content_type: "image/jpg")
-  user.hobby_list.add(["Sports", "Nature", "Visiting", "Food", "Bars", "Tech", "Arts", "Crafts", "Dancing", "Singing", "Shopping"].sample(8))
+  user.hobby_list.add(["Sports", "Nature", "Visiting", "Food", "Bars", "Tech", "Arts", "Crafts", "Dancing", "Singing", "Shopping"].sample(5))
   user.save
   puts "Created #{user.first_name}"
 end
@@ -65,7 +58,7 @@ picture_id = 1
   )
   user.email = "#{user.first_name}.#{user.last_name}@gmail.com"
   user.photo.attach(io: URI.open("https://randomuser.me/api/portraits/men/#{picture_id}.jpg"), filename: "#{user.first_name}#{user.last_name}.png", content_type: "image/jpg")
-  user.hobby_list.add(["Sports", "Nature", "Visiting", "Food", "Bars", "Tech", "Arts", "Crafts", "Dancing", "Singing", "Shopping"].sample(8))
+  user.hobby_list.add(["Sports", "Nature", "Visiting", "Food", "Bars", "Tech", "Arts", "Crafts", "Dancing", "Singing", "Shopping"].sample(5))
   user.save
   picture_id += 1
   puts "Created #{user.first_name} 🧑‍🦱"
@@ -90,7 +83,7 @@ picture_id_woman = 1
   )
   user.email = "#{user.first_name}.#{user.last_name}@gmail.com"
   user.photo.attach(io: URI.open("https://randomuser.me/api/portraits/men/#{picture_id_woman}.jpg"), filename: "#{user.first_name}#{user.last_name}.png", content_type: "image/jpg")
-  user.hobby_list.add(["Sports", "Nature", "Visiting", "Food", "Bars", "Tech", "Arts", "Crafts", "Dancing", "Singing", "Shopping"].sample(8))
+  user.hobby_list.add(["Sports", "Nature", "Visiting", "Food", "Bars", "Tech", "Arts", "Crafts", "Dancing", "Singing", "Shopping"].sample(5))
   user.save
   picture_id += 1
   puts "Created #{user.first_name} 👩‍🦰"
@@ -121,7 +114,7 @@ activity10 = { name: "The blockchain Job Fair in Hong Kong", category: "Tech", p
 
 activity11 = { name: "Giant basketball tournament in Hong Kong", category: "Sports", place: "2 Tse Wai Ave, Ngau Chi Wan, Hong Kong", description: "For basketball fans! Come and participate in our giant basketball tournament on a legendary court overlooking the city of Hong Kong. We'll have a drink at the end of the tournament;)", owner_id: User.find_by_first_name('Karim').id, capacity_max: "40", start_date: DateTime.new(2021,12,2,16), end_date: DateTime.new(2021,12,2,22), photo: "https://images.unsplash.com/photo-1465509419584-d2b0ff1ce390?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJhc2tldGJhbGwlMjBob25nJTIwa29uZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" }
 
-activity12 = { name: "Ping Pong", category: "Sports", place: "Campo dos Mártires da Pátria, Lisbon", description: "Don't miss this crazy event for ping pong lovers ! If you like to ping, if you like to pong. Be there !", owner_id: User.find_by_first_name('Caroline').id, capacity_max: "20", start_date: DateTime.new(2021,11,30,16), end_date: DateTime.new(2021,11,30,22), photo: "https://images.unsplash.com/photo-1593786481097-cf281dd12e9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGluZyUyMHBvbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" }
+activity12 = { name: "Ping Pong tournament", category: "Sports", place: "Campo dos Mártires da Pátria, Lisbon", description: "Don't miss this crazy event for ping pong lovers ! If you like to ping, if you like to pong. Be there !", owner_id: User.find_by_first_name('Caroline').id, capacity_max: "20", start_date: DateTime.new(2021,11,30,16), end_date: DateTime.new(2021,11,30,22), photo: "https://images.unsplash.com/photo-1593786481097-cf281dd12e9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGluZyUyMHBvbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" }
 
 activity13 = { name: "Olympiades du Wagon Lisboa", category: "Bars", place: "R. Dom Pedro V 89, 1250-093 Lisbon", description: "Come and test yourself against the best Ruby developers in Lisbon, the students at Le Wagon! Bag races, blind tests, surfing, beer pong: get ready !", owner_id: User.find_by_first_name('Sam').id, capacity_max: "30", start_date: DateTime.new(2021,11,30,16), end_date: DateTime.new(2021,11,30,22), photo: "https://media.istockphoto.com/photos/taking-aim-to-shoot-picture-id497960796?b=1&k=20&m=497960796&s=170667a&w=0&h=zQa5vznMz38sZM5JgrDpHJZx_3_vj5N_bDa2Z1uHldw=" }
 
@@ -129,7 +122,19 @@ activity14 = { name: "Biggest bacalhau eater contest", category: "Food", place: 
 
 activity15 = { name: "Breakfast at Pokawa", category: "Food", place: "R. da Misericórdia 71, Lisbon", description: "Join Karim for a delicious breakfast at Pokawa. Never enough poké 🙈. Miam Délish.", owner_id: User.find_by_first_name('Karim').id, capacity_max: "8", start_date: DateTime.new(2021,11,30,8), end_date: DateTime.new(2021,11,30,9), photo: "https://media.istockphoto.com/photos/dried-codfish-picture-id1130773985?b=1&k=20&m=1130773985&s=170667a&w=0&h=D3tEKGIFvvTLYcQA6Xe8L9efDsJbuYLFc77kQo0HCN4=" }
 
-[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15].each_with_index do |attributes, index|
+activity16 = { name: "Horse riding experiences on the way to the stunning Costa de Caparica beach.", category: "Nature", place: "Costa de Caparica beach, Lisbon", description: "We'll board an air-conditioned minivan to reach the starting point of our scenic horseback tour. When we arrive at our starting point, we take in panoramic views of the coast from atop cliffs covered in prehistoric fossils. Then we get on our trusty steed and start exploring the landscape at a gallop.", owner_id: User.sample.id, capacity_max: "10", start_date: DateTime.new(2021,12,4,10), end_date: DateTime.new(2021,12,4,12), photo: "https://media.istockphoto.com/photos/horseback-riding-on-the-beach-picture-id1051648716?b=1&k=20&m=1051648716&s=170667a&w=0&h=-8PUy70JBBWhGv_faLov_Ot4iBY94ecbJIVKS1wE19o=" }
+
+activity17 = { name: "Small-Group Dolphin Watching Lisbon", category: "Nature", place: "Santo Amaro pier, Lisbon", description: "Our main goal is to find dolphins! We leave from Lisbon on a fast rigid inflatable boat. The adventure begins on a speedboat in search of dolphins in the broad Atlantic Ocean. We will get to know the different species of cetaceans and sea birds with an expert marine biologist. For 3 hours, we will live the adventure of searching for wild marine species, such as sunfish, sharks, jellyfish, whales or even sea turtles.", owner_id: User.sample.id, capacity_max: "6", start_date: DateTime.new(2021,12,2,14), end_date: DateTime.new(2021,12,2,17), photo:"https://images.unsplash.com/photo-1547382442-d17c21625a44?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZG9scGhpbiUyMG9ic2VydmF0aW9ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" }
+
+activity18 = { name: "Museu do Azulejos", category: "Arts", place: "Rua da Madre de Deus 4, Lisbon", description: "For a closer look at Lisbon's iconic azulejos, head to the National Azulejo Museum. There we will find many examples of ceramic art from the 15th century to the present day.", owner_id: User.sample.id, capacity_max: "10", start_date: DateTime.new(2021,12,2,14), end_date: DateTime.new(2021,12,2,17), photo: "https://media.istockphoto.com/photos/old-lisbon-tiles-azulejos-picture-id183584154?b=1&k=20&m=183584154&s=170667a&w=0&h=LQGVZxI9TnrdWP3jjs_tRegbN2MG2rmgHJ1gzJihVAE=" }
+
+activity19 = { name: "Pottery class with Tiago", category: "Crafts", place: "Rua Augusta 164, Lisbon", description: "With 18 years of experience in ceramics, Tiago is a figure in the Lisbon craft landscape. His work is impeccable and neat, his workshop is small and messy. He will guide us in making a ceramic plate, cup, pot and sardine.", owner_id: User.sample.id, capacity_max: "6", start_date: DateTime.new(2021,12,3,15), end_date: DateTime.new(2021,12,3,18), photo: "https://images.unsplash.com/photo-1529690840038-f38da8894ff6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG90dGVyeXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" }
+
+activity20 = { name: "Shopping spree in downtown Lisbon!", category: "Shopping", place: "Avenida da Liberdade, Lisbon", description: "Lisbon is a great city to shop! Join me for a friendly trip through the city's best shopping streets. We will start with Avenida da Liberdade then Rua Garrett, then Alfama and finally Rua Augusta.", owner_id: User.sample.id, capacity: "8", start_date: DateTime.new(2021,12,2,14), end_date: DateTime.new(2021,12,2,18), photo: "https://media.istockphoto.com/photos/rua-augusta-and-baixa-lisbon-picture-id531477763?b=1&k=20&m=531477763&s=170667a&w=0&h=qlOvsCEf7RbmFtuFgtzsEnAZYpP8at1OhV0wEITJIhw=" }
+
+activity21 = { name: "We are going to dance ! Salsa, Kizomba", category: "Dancing", place: "Edifício 78, Santos, Rua da Cintura do Porto de Lisboa Armazem, Lisbon", description: "For lovers of Salsa and Kizomba, go for an evening of madness with very very good dancers. Be careful, you need a minimum level in Latin dance to really have fun on the dance floor.", owner_id: User.sample.id, capacity: "20", start_date: DateTime.new(2021,12,5,20), end_date: DateTime.new(2021,12,6,2), photo: "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2Fsc2F8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" }
+
+[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15, activity16, activity17, activity18, activity19, activity20, activity21].each_with_index do |attributes, index|
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save
@@ -174,16 +179,7 @@ User.all.sample(51).each do |user|
   booking.save!
 end
 
-# 51.times do
-#   booking = Booking.new(
-#     activity_id: Activity.find_by_name('Samba ! Dance lessons with Ricardo and Manuela').id,
-#     user_id: User.all.sample.id
-#   )
-#   booking.save
-# end
-
 puts 'Creating 38 bookings for the activity -- Visiting Nara : culture and history...'
-
 User.all.sample(38).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Visiting Nara : culture and history').id,
@@ -193,7 +189,6 @@ User.all.sample(38).each do |user|
 end
 
 puts 'Creating 25 bookings for the activity -- Learning Fado with Lourenço and Carla - singing lesson...'
-
 User.all.sample(25).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Learning Fado with Lourenço and Carla - singing lesson').id,
@@ -201,6 +196,125 @@ User.all.sample(25).each do |user|
   )
   booking.save!
 end
+
+puts 'Creating 14 bookings for the activity -- We are going to dance ! Salsa, Kizomba...'
+User.all.sample(14).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('We are going to dance ! Salsa, Kizomba').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 5 bookings for the activity -- Shopping spree in downtown Lisbon!...'
+User.all.sample(5).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Shopping spree in downtown Lisbon!').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 5 bookings for the activity -- Pottery class with Tiago...'
+User.all.sample(5).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Pottery class with Tiago').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 4 bookings for the activity -- Museu do Azulejos...'
+User.all.sample(4).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Museu do Azulejos').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 4 bookings for the activity -- Small-Group Dolphin Watching Lisbon...'
+User.all.sample(4).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Small-Group Dolphin Watching Lisbon').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 2 bookings for the activity -- Breakfast at Pokawa....'
+User.all.sample(2).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Breakfast at Pokawa').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 8 bookings for the activity -- Biggest bacalhau eater contest....'
+User.all.sample(8).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Biggest bacalhau eater contest').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 28 bookings for the activity -- Olympiades du Wagon Lisboa....'
+User.all.sample(28).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Olympiades du Wagon Lisboa').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 17 bookings for the activity -- Ping Pong tournament....'
+User.all.sample(17).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Ping Pong tournament').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 8 bookings for the activity -- The pastry tour : tasting typical Lisbon egg tarts in Alfama....'
+User.all.sample(8).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('The pastry tour : tasting typical Lisbon egg tarts in Alfama').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 3 bookings for the activity -- Cooking class with Bruna....'
+User.all.sample(3).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Cooking class with Bruna').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 26 bookings for the activity -- Networking event for tech people in Bairro Alto....'
+User.all.sample(26).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Networking event for tech people in Bairro Alto').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 26 bookings for the activity -- Networking event for tech people in Bairro Alto....'
+User.all.sample(26).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Networking event for tech people in Bairro Alto').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+
 
 puts 'Finished!'
 
@@ -227,9 +341,3 @@ puts "A CLOUD ! ☁"
 sleep(1)
 
 puts "Congrats if you found it ! ✅🤪"
-
-
-
-
-# if user.first_name == []
-#   user.photo.attach(io: URI.open(user_pictures_url.sample), filename: "#{user.name}.png", content_type: 'image/png')

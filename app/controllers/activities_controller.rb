@@ -12,24 +12,25 @@ class ActivitiesController < ApplicationController
       @activities = @activities.search_by_place(params[:query]).near(params[:query], 100)
       # return only the activity which are not full
       @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
-      # filter activities
+      # filter the activities depending on the hobbies of the user || the filters he clicks on the index
       filter_activities
-      @title = "We found #{@activities.length} activities near #{params[:query]}"
       # check if the user enter a date
       if params[:start_date].present?
         # if yes, filter the previous search results by start_date
-        # raise
         @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
         # if there is no activity on the selected date
         if @activities.empty?
           # inform the user and advise him to take a look to other activities
           @title = "We didn't find any activity for #{params[:start_date]} ... but look at the coming events in #{params[:query]}!"
           @activities = policy_scope(Activity).order(start_date: :asc).search_by_place(params[:query]).near(params[:query], 100)
-          # filter activities
+          # filter the activities depending on the hobbies of the user || the filters he clicks on the index
           filter_activities
+          # return only the activity which are not full
           @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
+          # filter the previous search results by start_date
           @activities = @activities.filter { |activity| activity.start_date.to_date > params[:start_date].to_date }
         else
+          # write a sentence for the user
           @title = "We found #{@activities.length} activities near #{params[:query]}"
         end
       end
@@ -71,8 +72,6 @@ class ActivitiesController < ApplicationController
         @title = "We found #{@activities.length} activities today in the world"
       end
     end
-
-
     ## END OF HOMEPAGE SEARCH'S RESULTS
 
     # GET ALL ACTIVITIES GPS COORD;
@@ -125,5 +124,4 @@ class ActivitiesController < ApplicationController
       filter_tags.include?(activity.category)
     end
   end
-
 end
