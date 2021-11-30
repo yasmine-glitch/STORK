@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
 
   get "/dashboard", to: "pages#dashboard"
+  get "/test", to: "pages#test"
 end

@@ -12,7 +12,7 @@
     <div class="activity-show-header">
       <div class="photo">
         <% if @activity.photo.attached? %>
-          <%= cl_image_tag @activity.photo.key  %>
+          <%= cl_image_tag @activity.photo.key %>
         <% end %>
       </div>
       <div class="hosting">
