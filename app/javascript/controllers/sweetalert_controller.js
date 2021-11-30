@@ -18,7 +18,29 @@ export default class extends Controller {
         link.click();
       }
     });
-  }
+    this.initSweetalert('#sweet-cancel', {
+      title: "Are you sure?",
+      text: "You will not be attending this event",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    },
+      (willDelete) => {
+        if (willDelete) {
+          swal("Your booking has been cancelled", {
+            icon: "success",
+          }).then(
+            (value) => {
+              if (value) {
+                const link = document.querySelector('.cancel-btn');
+                link.click();
+              }
+            })
+        } else {
+          swal("Booking not cancelled!");
+        }
+      })
+    }
 
   initSweetalert(selector, options = {}, callback = () => { }) {
   const swalButton = document.querySelector(selector);

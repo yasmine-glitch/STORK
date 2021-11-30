@@ -33,14 +33,15 @@
           <%if @activity.users.include?(current_user) %>
             <p id="already_in">You're already in!</p>
             <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
-            <p><%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "btn btn-ghost" unless current_user == @activity.owner %></p>
+            <p><button id="sweet-cancel">Cancel</button></p>
+            <%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "hidden cancel-btn" unless current_user == @activity.owner %>
           <% elsif policy(@activity).create? && @all_participants.count < @activity.capacity_max %>
             <% unless current_user == @activity.owner  %>
               <button id="registration" class="btn btn-gradient">Count me in!</button>
               <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
             <% end %>
           <% else %>
-            <p id="sorry_full">Sorry, Activity full! 🙇</p>
+            <p id="sorry_full">Sorry, Activity full!</p>
             <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
           <% end %>
         </div>
@@ -55,14 +56,32 @@
     <p><%= @activity.description %></p>
     <h3><%=pluralize(@all_participants.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
     </div>
-    <div class="card-participants">
-      <% @all_participants.first(7).each do |user| %>
-        <div class="card-participants-infos">
-        <%= link_to user_path(user) do %>
-          <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
+    <div data-controller="scroll">
+      <div class="card-participants">
+        <% @all_participants.first(7).each do |user| %>
+          <div class="card-participants-infos">
+          <%= link_to user_path(user) do %>
+            <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
+          <% end %>
+            <h2><%= user.first_name %> <%= user.last_name %></h2>
+            <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+          </div>
         <% end %>
-          <h2><%= user.first_name %> <%= user.last_name %></h2>
-          <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+      </div>
+        <button id="more" data-scroll-target="test"> View More </button>
+      <% if @all_participants.length >7%>
+        <div class="left-participants left-participants-hidden" data-scroll-target="listhide">
+          <div class="left-participants-info">
+            <% @all_participants.last(@all_participants.length - 7).each do |user| %>
+              <div class="card-participants-infos">
+              <%= link_to user_path(user) do %>
+                <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
+              <% end %>
+                <h2><%= user.first_name %> <%= user.last_name %></h2>
+                <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+              </div>
+            <% end %>
+          </div>
         </div>
       <% end %>
     </div>

@@ -136,7 +136,8 @@ activity21 = { name: "We are going to dance ! Salsa, Kizomba", category: "Dancin
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save
-  puts "Created #{activity.name} 🌉"
+  Chatroom.create(activity: activity, name: "#{activity.name} chat")
+  puts "Created #{activity.name} and the dedicated chatroom 🌉"
 end
 
 puts "Creating bookings..."
