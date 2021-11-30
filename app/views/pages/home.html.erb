@@ -41,32 +41,30 @@
   </div>
 </div>
 
-
-<h2 class="container mt-3">Most popular activities on Stork...</h2>
+<h2 class="container-home">Most popular activities on Stork</h2>
 <div class="d-flex justify-content-center">
   <% @activities.each do |activity| %>
     <div class="popular-card-activity">
       <%= link_to activity_path(activity) do%>
-        <div class="pop-activity">
-          <% if activity.photo.attached? %>
-            <div class="popular-card-image" style="background-image: url(<%= cl_image_path activity.photo.key %>)">
-              <div class="banner-places-left">
-                <p><%= activity.capacity_max - activity.users.length %> places left... Register now !</p>
+
+        <div class="pop-activity" style="
+        <% if activity.photo.attached? %>
+        background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+        <% end %>
+        ">
+          <div class="popular-card-image">
+            <div class="img-details">
+              <p class="popular-card-title"><%= activity.name %></p>
+              <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
               </div>
             </div>
-          <% end %>
-          <div class="popular-card-body p-3 d-flex flex-column">
-            <div class="popular-card-body-first-part">
-              <div class="d-flex justify-content-between">
-                <h5 class="popular-card-title"><%= activity.name %></h5>
-                <p> 🔥 </p>
-              </div>
-              <p class="popular-card-text"><%= activity.description %></p>
-            </div>
-            <div class="popular-card-body-second-part">
-            <p><%= activity.users.length %> participants</p>
-            </div>
-          </div>
+        <div class="activity-infos">
+          <i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %>
+        </div>
+
+          <div class="banner-places-left">
+            <%= activity.capacity_max - activity.users.length %> places left... Register now !
+        </div>
         </div>
       <% end %>
     </div>

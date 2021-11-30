@@ -1,11 +1,11 @@
 .box_for_search_bar{
   align-items: center;
-  padding: 15px;
   margin-top: 30px;
   height: max-content;
   border-radius: 40px;
   margin-bottom: 60px;
   border: 1px;
+  margin-left: 170px;
   i{
     background-color: blue;
     width: 50px;
@@ -17,6 +17,11 @@
     padding: 10px;
   }
 }
+
+.box_for_search_bar p {
+    font-size: 26px;
+    margin: 0;
+  }
 
 .search_bar {
   display: flex;

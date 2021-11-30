@@ -25,26 +25,33 @@
 .banner-places-left {
   background-color: $red-poppy;
   opacity: 0.95;
-  border-radius: 5px;
+  border-radius: 0px 0px 5px 5px;
   color: white;
   width: fit-content;
-  p {
-    padding: 10px;
-    margin: 0
-  }
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
 }
 
 .popular-card-image {
-  height: 200px;
-  background-size: cover;
-  background-position: center;
+  height: 300px;
   align-items: end;
+  display: flex;
+  p {
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 16px;
+  }
 }
 
 .pop-activity {
   display: flex;
   flex-direction: column;
   height: 100%;
+  border-radius: 5px;
 }
 
 .popular-card-body {
@@ -60,4 +67,35 @@
   p {
     text-align: right
   }
+}
+
+.popular-card-title {
+  padding-left: 10px;
+  p{
+    margin-left: 15px;
+    width: 75%;
+    margin-bottom:0;
+    padding: 10px;
+  }
+}
+
+.pop-activity .img-details {
+  display:flex;
+  justify-content: space-between;
+  padding-top: 2em;
+  p{
+    padding: 5px 10px;
+    margin-bottom: 0;
+  }
+}
+
+.pop-activity .activity-infos {
+  padding-left: 10px;
+  color: white;
+  padding-bottom: 5px;
+}
+
+.pop-activity {
+  background-size: cover;
+  background-position: center;
 }
