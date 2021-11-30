@@ -1,7 +1,6 @@
 .popular-card-activity{
    /* je voudrais afficher trois cartes par ligne */
-  width: 30%;
-  overflow: scroll; /* pourquoi ça ne marche pas ?? */
+  width: 25%;
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
@@ -39,7 +38,6 @@
   height: 200px;
   background-size: cover;
   background-position: center;
-  display: flex;
   align-items: end;
 }
 

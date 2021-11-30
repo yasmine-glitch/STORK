@@ -21,10 +21,19 @@
   }
 }
 
-.navbar-lewagon .home-navbar {
+.home-navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  color: white;
+  background-color: transparent;
+}
+
+.home-navbar .navbar-brand img {
+  color: white;
+}
+
+.home-navbar .nav-link {
   color: white;
 }
