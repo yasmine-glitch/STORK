@@ -2,9 +2,6 @@
   justify-content: space-between;
   background: $white;
   align-items: center!important;
-  margin-left: 20px;
-  margin-right: 10px;
-  margin-top: 5px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -19,11 +16,10 @@
 .navbar-lewagon .logo-name {
   display: flex;
   align-items: center;
-  p{
+  p {
     font-size: 22px;
     font-family:'Sora', sans-serif;
     margin-bottom: 0px;
-    padding-left: 10px;
   }
 }
 

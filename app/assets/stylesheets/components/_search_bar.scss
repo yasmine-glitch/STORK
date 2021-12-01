@@ -1,12 +1,10 @@
 .box_for_search_bar{
   align-items: center;
-  margin-top: 30px;
-  height: max-content;
+  margin-top: 60px;
   border-radius: 40px;
   margin-bottom: 60px;
   border: 1px;
-  margin-left: 170px;
-  i{
+  i {
     background-color: blue;
     width: 50px;
     height: 50px;
@@ -16,11 +14,20 @@
     text-align: center;
     padding: 10px;
   }
+  form {
+    background: rgba(255,255,255,0.07);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(7px);
+    position: relative;
+    overflow: hidden;
+  }
 }
 
 .box_for_search_bar p {
-    font-size: 26px;
+    font-size: 18px;
     margin: 0;
+    margin-bottom: 3px;
   }
 
 .search_bar {
@@ -55,9 +62,6 @@
   margin-left: 25px;
 }
 
-.box_for_search_bar p {
-  margin-bottom: 50px;
-}
 
 .search_bar .btn-filter {
   margin-right: -25px;
@@ -72,6 +76,6 @@
 }
 
 .search-activity-place .datepicker {
-  font-family: epilogue sans-serif;
   color: grey;
+  border-radius: 6px;
 }
