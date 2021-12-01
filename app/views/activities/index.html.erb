@@ -1,52 +1,47 @@
 <!-- affiche une liste de tags à sélectionner-->
 <div class="container">
-  <div class="container">
 
-
-    <div class="title">
-      <h1><%= @title %></h1>
-    </div>
-
-    <div class="wrapper-tags">
-
-      <%= form_tag activities_path, method: :get, data: { controller: "auto-submit geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] }   do %>
-      <div class="form-index">
-        <div class= "btn btn-filter" style="width: 400px" data-geocoder-target="autocomplete" >
-          <%= text_field_tag :query,
-            params[:query],
-            data: { geocoder_target: "address", action: "change->auto-submit#submit" },
-            class: "form-control d-none"
-          %>
-        </div>
-
-        <div class= "btn btn-filter" style="width: 200px">
-          <%= text_field_tag :start_date,
-            params[:start_date],
-            class: "datepicker form-control",
-            "data-controller": "flatpickr",
-            value: Date.today,
-            data: { action: "change->auto-submit#submit" }
-          %>
-        </div>
-      </div>
-
-      <div class="filters">
-        <% Activity::CATEGORIES.each do |category| %>
-          <span class="tags-precision">
-            <% filter_tags = params[:categories].present? ? params[:categories] : @user_hobbies %>
-            <%= check_box_tag "categories[]", category[0], filter_tags.include?(category[0]), id: category[0], data: { action: "change->auto-submit#submit" } %>
-            <%= label_tag category[0], "#{category[0].capitalize} #{category[1]}" %>
-          </span>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
+  <div class="title">
+    <h1><%= @title %></h1>
   </div>
 
-<div class="flex-container"
-     data-controller="mapbox"
-     data-mapbox-markers-value="<%= @markers.to_json %>"
-     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <div class="wrapper-tags">
+
+    <%= form_tag activities_path, method: :get, data: { controller: "auto-submit geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] }   do %>
+    <div class="form-index">
+      <div class= "btn btn-filter" style="width: 400px" data-geocoder-target="autocomplete" >
+        <%= text_field_tag :query,
+          params[:query],
+          data: { geocoder_target: "address", action: "change->auto-submit#submit" },
+          class: "form-control d-none"
+        %>
+      </div>
+
+      <div class= "btn btn-filter" style="width: 200px">
+        <%= text_field_tag :start_date,
+          params[:start_date],
+          class: "datepicker form-control",
+          "data-controller": "flatpickr",
+          value: Date.today,
+          data: { action: "change->auto-submit#submit" }
+        %>
+      </div>
+    </div>
+
+    <div class="filters">
+      <% Activity::CATEGORIES.each do |category| %>
+        <span class="tags-precision">
+          <% filter_tags = params[:categories].present? ? params[:categories] : @user_hobbies %>
+          <%= check_box_tag "categories[]", category[0], filter_tags.include?(category[0]), id: category[0], data: { action: "change->auto-submit#submit" } %>
+          <%= label_tag category[0], "#{category[0].capitalize} #{category[1]}" %>
+        </span>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="flex-container">
   <!-- affiche les résultats d'activity cards correspondant à la recherche-->
   <div class="container flex-item" style="width: 60vw;">
     <div class="wrapper">
@@ -74,18 +69,14 @@
               <div class="banner-places-left">
                 <%= activity.capacity_max - activity.users.length %> places left... Register now !
               </div>
-            </div>
         <% end %>
       </div>
     </div>
 
-
-    <!-- carte Mapbox-->
-    <div class="flex-item" style="width: 50vw; height: 100vh;"
-      data-controller="mapbox"
-      data-mapbox-target="map"
-      data-mapbox-markers-value="<%= @markers.to_json %>"
-      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-    </div>
+  <!-- carte Mapbox-->
+  <div class="flex-item" style="width: 50vw; height: 100vh;"
+    data-controller="mapbox"
+    data-mapbox-target="map"
+    data-mapbox-markers-value="<%= @markers.to_json %>"
+    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-</div>
