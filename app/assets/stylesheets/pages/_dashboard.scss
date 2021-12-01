@@ -10,6 +10,11 @@
   .book_btn{
     text-align: center;
   }
+  h2 {
+    color: #e65c5d;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 }
 
 #information_card {
@@ -57,4 +62,9 @@
 
 #information_table {
   text-align: left;
+}
+
+.table .booking_status {
+  color:#6FCB64;
+  font-weight: bold;
 }

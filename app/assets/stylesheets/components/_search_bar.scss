@@ -27,6 +27,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .search-activity {
+    margin-right: -10px;
+  }
 }
 
 
@@ -52,6 +55,23 @@
   margin-left: 25px;
 }
 
-.search_bar .btn-filter{
+.box_for_search_bar p {
+  margin-bottom: 50px;
+}
+
+.search_bar .btn-filter {
   margin-right: -25px;
+}
+
+.search_bar .btn-gradient {
+  height: 40px;
+}
+
+#search_bar_div {
+  padding-left: 1px;
+}
+
+.search-activity-place .datepicker {
+  font-family: epilogue sans-serif;
+  color: grey;
 }

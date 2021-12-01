@@ -43,46 +43,48 @@
     </div>
   </div>
 
-  <div class="flex-container">
-    <!-- affiche les résultats d'activity cards correspondant à la recherche-->
-
-    <div class="container flex-item" style="width: 50vw;">
-      <div class="wrapper">
-        <% @activities.each do |activity| %>
-            <div class="card-activity">
-              <%= link_to activity_path(activity) do%>
-              <% if activity.photo.attached? %>
-                <div class="activity-img" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path activity.photo.key %>);">
-                  <p><i class="fas fa-map-marked-alt"></i> <%= activity.place %></p>
-                </div>
-              <% end %>
-              <div class="card-body">
-                <div class="wrapper">
-                  <h5 class="card-title"><%= activity.name.truncate(20) %></h5>
-                  <div class="calendar">
-                    <div class="calendar-top"> <%= activity.start_date.strftime("%b") %></div>
-                    <div class="calendar-bottom"><%= activity.start_date.strftime("%-d") %></div>
-                  </div>
-                </div>
-                <p class="card-text"><%= activity.description.truncate(100) %></p>
-                <div class="users-avatar">
-                  <% activity.users.first(5).each do |user| %>
-
-                    <%= cl_image_tag user.photo.key, crop: :thumb, class: "avatar", alt: "avatar"  %>
-                  <% end %>
-                </div>
-                <%= link_to "See More", activity_path(activity), class: "btn btn-gradient" %>
+<div class="flex-container"
+     data-controller="mapbox"
+     data-mapbox-markers-value="<%= @markers.to_json %>"
+     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+  <!-- affiche les résultats d'activity cards correspondant à la recherche-->
+  <div class="container flex-item" style="width: 60vw;">
+    <div class="wrapper">
+      <% @activities.each do |activity| %>
+        <div class="popular-card-activity">
+             id = "activity_<%= activity.id %>"
+             data-action="mouseenter->mapbox#openPopup">
+          <%= link_to activity_path(activity) do%>
+            <div class="pop-activity" style="
+            <% if activity.photo.attached? %>
+            background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+            <% end %>
+            ">
+            <div class="popular-card-image">
+              <div class="img-details">
+                <p class="popular-card-title"><%= activity.name %></p>
+                <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
               </div>
             </div>
-          <% end %>
+            <div class="activity-infos">
+              <i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %>
+            </div>
+        </div>
+              <div class="banner-places-left">
+                <%= activity.capacity_max - activity.users.length %> places left... Register now !
+              </div>
+            </div>
         <% end %>
       </div>
     </div>
 
+
     <!-- carte Mapbox-->
     <div class="flex-item" style="width: 50vw; height: 100vh;"
       data-controller="mapbox"
+      data-mapbox-target="map">
       data-mapbox-markers-value="<%= @markers.to_json %>"
       data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
+</div>
