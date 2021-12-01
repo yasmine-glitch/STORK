@@ -31,7 +31,7 @@ class ActivitiesController < ApplicationController
           @activities = @activities.filter { |activity| activity.start_date.to_date > params[:start_date].to_date }
         else
           # write a sentence for the user
-          @title = "We found #{@activities.length} activities near #{params[:query]}"
+          @title = "We found #{helpers.pluralize(@activities.count, 'activity')} near #{params[:query]}"
         end
       end
 
@@ -48,7 +48,7 @@ class ActivitiesController < ApplicationController
         @activities = policy_scope(Activity).order(start_date: :asc)
         @activities = @activities.filter { |activity| activity.start_date.to_date >= params[:start_date].to_date }
       else
-        @title = "We found #{@activities.length} activities in the world"
+        @title = "We found #{helpers.pluralize(@activities.count, 'activity')} in the world"
       end
 
       # if the user didn't type any place or date
@@ -69,7 +69,7 @@ class ActivitiesController < ApplicationController
         end
 
       else
-        @title = "We found #{@activities.length} activities today in the world"
+        @title = "We found #{helpers.pluralize(@activities.count, 'activity')} today in the world"
       end
     end
     ## END OF HOMEPAGE SEARCH'S RESULTS
@@ -125,3 +125,5 @@ class ActivitiesController < ApplicationController
     end
   end
 end
+
+console
