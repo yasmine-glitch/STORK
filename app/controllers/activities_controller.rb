@@ -75,10 +75,12 @@ class ActivitiesController < ApplicationController
     ## END OF HOMEPAGE SEARCH'S RESULTS
 
     # GET ALL ACTIVITIES GPS COORD;
+
     @markers = @activities.map do |activity|
       {
         lat: activity.latitude,
         lng: activity.longitude,
+        id: activity.id,
         info_window: render_to_string(partial: "info_window", locals: { activity: activity })
       }
     end
