@@ -12,7 +12,7 @@
           <p>Search an activity</p>
             <%= form_tag activities_path, method: :get do %>
               <div class="search_bar">
-                <div class= "btn btn-filter" style="width: 400px" data-controller="geocoder" data-geocoder-api-key-value="<%=ENV['MAPBOX_API_KEY']%>">
+                <div class= "search-activity" style="width: 400px" data-controller="geocoder" data-geocoder-api-key-value="<%=ENV['MAPBOX_API_KEY']%>" data-geocoder-target="autocomplete">
                   <%= text_field_tag :query,
                     params[:query],
                     data: { geocoder_target: "address" },
@@ -20,7 +20,7 @@
                   %>
                 </div>
 
-                <div class= "btn btn-filter" style="width: 200px">
+                <div class= "search-activity-place" style="width: 200px">
                   <%= text_field_tag :start_date,
                     params[:start_date],
                     class: "datepicker form-control",
