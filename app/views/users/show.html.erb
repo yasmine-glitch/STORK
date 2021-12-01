@@ -8,13 +8,36 @@
           <% if @user.photo.attached? %>
             <%= cl_image_tag @user.photo.key, class: "avatar-large-profil", alt: "avatar-large-profil"   %>
           <% end %>
-          <h3><%= @user.first_name %> <%= @user.last_name %></h3>
-          <p><i class="fas fa-laptop-house"></i>  <%= @user.company %></p>
-          <p><i class="fas fa-briefcase"></i>  <%= @user.industry %></p>
-          <p><i class="fas fa-address-card"></i>  <%= @user.job_title %></p>
-          <p><i class="fas fa-globe"></i>  lives in <%= @user.country %></p>
-          <p><i class="fas fa-birthday-cake"></i>  <%= @user.age %> years old</p>
-          <p><i class="fas fa-jedi"></i>  <%= @user.years_exp %> years of experience</p>
+          <table class="table" id="information_table">
+            <tr>
+              <th><i class="fas fa-user"></i></th>
+              <td><strong><%= @user.first_name %> <%= @user.last_name %><strong></td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-envelope-open-text"></i></th>
+              <td><%= @user.company %></td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-laptop-house"></th>
+              <td><%= @user.industry %></td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-address-card"></th>
+              <td><%= @user.job_title %></td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-globe"></th>
+              <td><%= @user.country %></td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-birthday-cake"></th>
+              <td><%= @user.age %></td>
+            </tr>
+            <tr>
+              <th><i class="fas fa-jedi"></th>
+              <td><%= @user.years_exp %></td>
+            </tr>
+          </table>
         </div>
       </div>
 

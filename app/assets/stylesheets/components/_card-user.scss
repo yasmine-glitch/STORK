@@ -25,7 +25,6 @@
   padding: 25px;
   p{
   color: $black;
-  text-align: justify;
   };
   h3{
     color: $red-poppy;
@@ -104,5 +103,13 @@
 }
 
 .left-panel {
-  width: 60%;
+  width: 25%;
+}
+
+#information_table td {
+  border-bottom-width: 0;
+}
+
+#information_table th {
+  border-bottom-width: 0;
 }
