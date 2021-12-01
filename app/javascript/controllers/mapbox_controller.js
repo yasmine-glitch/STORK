@@ -37,19 +37,37 @@ export default class extends Controller {
     this.map.fitBounds(bounds, { padding: 50, maxZoom: 15, duration: 0 });
   }
 
-  openPopup(event) {
+  redMarker(event) {
     const hovered_card = event.currentTarget
     const id = hovered_card.id
     this.markersArray.forEach((marker) => {
-      const popup = marker.getPopup()
-      const isPopupOpen = popup.isOpen()
-      if (isPopupOpen){
-        marker.togglePopup()
-      }
       const markerId = marker._element.id
       if (id == markerId) {
-        marker.togglePopup()
+        const newLng = marker._lngLat.lng
+        const newLat = marker._lngLat.lat
+        marker.remove()
+        const newMarker = new mapboxgl.Marker({
+          color: "#e65c5d"
+        })
+          .setLngLat([newLng, newLat])
+          .addTo(this.map);
        }
+    })
+  }
+
+  blueMarker(event) {
+    const hovered_card = event.currentTarget
+    const id = hovered_card.id
+    this.markersArray.forEach((marker) => {
+      const markerId = marker._element.id
+      if (id == markerId) {
+        const newLng = marker._lngLat.lng
+        const newLat = marker._lngLat.lat
+        marker.remove()
+        const newMarker = new mapboxgl.Marker()
+          .setLngLat([newLng, newLat])
+          .addTo(this.map);
+      }
     })
   }
 }
