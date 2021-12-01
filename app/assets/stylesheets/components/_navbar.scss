@@ -1,7 +1,10 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: $white;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  align-items: center!important;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 5px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,7 +12,8 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 50px;
+  margin-bottom: 5px;
 }
 
 .navbar-lewagon .logo-name {
@@ -18,6 +22,8 @@
   p{
     font-size: 22px;
     font-family:'Sora', sans-serif;
+    margin-bottom: 0px;
+    padding-left: 10px;
   }
 }
 
@@ -28,6 +34,9 @@
   right: 0;
   color: white;
   background-color: transparent;
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 5px;
   #nav-link {
     color: white
   }
@@ -35,8 +44,26 @@
 
 .home-navbar .navbar-brand img {
   color: white;
+  width: 50px;
 }
 
 .home-navbar .navbarSupportedContent .nav_link {
   color: white;
+}
+
+.navbar-nav {
+  padding-inline: 10px;
+  align-items: center;
+}
+
+.nav-item {
+  padding-inline: 10px;
+  .dropdown {
+    padding-right: 20px;
+  }
+}
+
+.user-pic {
+  width: 50px;
+  border-radius: 50%;
 }

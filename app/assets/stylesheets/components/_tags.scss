@@ -15,20 +15,13 @@
 
 .form-index {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .filters {
   display: flex;
+  margin-bottom: 10px;
 }
-
-// .tags{
-//     display: inline-block;
-//     white-space: nowrap;
-//     padding-right: 8px;
-//     padding-top: 4px;
-//     padding-bottom: 4px;
-//     width: 100%;
-// }
 
 .tags-precision{
   padding-inline: 2px;
@@ -49,6 +42,7 @@
     line-height: 16px;
     font-weight: normal;
     font-size: larger;
+    margin-top: 10px;
   }
   label:hover {
     border: 1px solid #4A4A4A;
