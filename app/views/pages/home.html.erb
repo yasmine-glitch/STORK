@@ -45,7 +45,7 @@
 <h2 class="container-home">Most popular activities on Stork</h2>
 <div class="d-flex justify-content-center">
   <% @activities.each do |activity| %>
-    <div class="popular-card-activity">
+    <div class="popular-card-activity home">
       <%= link_to activity_path(activity) do%>
         <div class="pop-activity" style="
         <% if activity.photo.attached? %>
