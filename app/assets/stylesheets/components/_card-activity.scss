@@ -1,6 +1,5 @@
 .wrapper{
   display: flex;
-  flex-wrap: wrap;
 }
 
 .card-activity{
@@ -91,7 +90,7 @@
   height: 63px;
 }
 
-.wrapper .popular-card-activity a {
+.wrapper-index .popular-card-activity a {
   display: flex;
   flex-direction: column;
 }
