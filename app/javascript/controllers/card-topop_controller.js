@@ -25,9 +25,9 @@ export default class extends Controller {
     var markers = document.querySelectorAll('.mapboxgl-marker')
     // console.log(markers)
     markers.forEach(function(marker) {
-      console.log(marker.id)
+      // console.log(marker.id)
       if (id == marker.id) {
-        console.log("click")
+        // console.log("click")
         marker.click()
         marker.classList.add('hovered_marker')
       }

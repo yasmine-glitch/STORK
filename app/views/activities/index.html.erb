@@ -42,18 +42,18 @@
   </div>
 </div>
 
-<div class="flex-container" data-controller="mapbox">
+<div class="flex-container"
+     data-controller="mapbox"
+     data-mapbox-markers-value="<%= @markers.to_json %>"
+     data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <!-- affiche les résultats d'activity cards correspondant à la recherche-->
   <div class="container flex-item"
-       style="width: 50vw;"
-       data-controller="card-topop">
+       style="width: 50vw;">
     <div class="wrapper">
       <% @activities.each do |activity| %>
           <div class="card-activity"
-               id = 'activity_<%= activity.id %>'
-               data-card-topop-target="card"
-               data-action="mouseenter->card-topop#openPopup"
-               data-action="mouseleave->card-topop#closePopup">
+               id = "activity_<%= activity.id %>"
+               data-action="mouseenter->mapbox#openPopup">
             <%= link_to activity_path(activity) do%>
             <% if activity.photo.attached? %>
               <div class="activity-img" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= cl_image_path activity.photo.key %>);">
@@ -85,8 +85,6 @@
 
   <!-- carte Mapbox-->
   <div class="flex-item" style="width: 50vw; height: 100vh;"
-    data-mapbox-target="map"
-    data-mapbox-markers-value="<%= @markers.to_json %>"
-    data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    data-mapbox-target="map">
   </div>
 </div>
