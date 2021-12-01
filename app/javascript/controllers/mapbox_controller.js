@@ -41,18 +41,45 @@ export default class extends Controller {
     const hovered_card = event.currentTarget
     const id = hovered_card.id
     this.markersArray.forEach((marker) => {
-      const popup = marker.getPopup()
-      const isPopupOpen = popup.isOpen()
-      if (isPopupOpen){
-        marker.togglePopup()
-      }
+      // const popup = marker.getPopup()
+      // const isPopupOpen = popup.isOpen()
+      // if (isPopupOpen){
+      //   marker.togglePopup()
+      // }
       const markerId = marker._element.id
       if (id == markerId) {
-        marker.togglePopup()
-        const currentMarker = marker.getElement()
-        console.log(marker._color)
-        marker._color = "#e65c5d"
+        // marker.togglePopup()
+        const newLng = marker._lngLat.lng
+        const newLat = marker._lngLat.lat
+        marker.remove()
+        const newMarker = new mapboxgl.Marker({
+          color: "#e65c5d"
+        })
+          .setLngLat([newLng, newLat])
+          .addTo(this.map);
        }
+    })
+  }
+
+  closePopup(event) {
+    const hovered_card = event.currentTarget
+    const id = hovered_card.id
+    this.markersArray.forEach((marker) => {
+      // const popup = marker.getPopup()
+      // const isPopupOpen = popup.isOpen()
+      // if (isPopupOpen){
+      //   marker.togglePopup()
+      // }
+      const markerId = marker._element.id
+      if (id == markerId) {
+        // marker.togglePopup()
+        const newLng = marker._lngLat.lng
+        const newLat = marker._lngLat.lat
+        marker.remove()
+        const newMarker = new mapboxgl.Marker()
+          .setLngLat([newLng, newLat])
+          .addTo(this.map);
+      }
     })
   }
 }
