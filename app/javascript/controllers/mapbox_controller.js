@@ -49,6 +49,9 @@ export default class extends Controller {
       const markerId = marker._element.id
       if (id == markerId) {
         marker.togglePopup()
+        const currentMarker = marker.getElement()
+        console.log(marker._color)
+        marker._color = "#e65c5d"
        }
     })
   }
