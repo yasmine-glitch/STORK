@@ -37,6 +37,7 @@
               <th>Start Date</th>
               <th>End Date</th>
               <th>Status</th>
+              <th></th>
             </tr>
 
             <% @user.bookings.each do |booking| %>
@@ -50,11 +51,6 @@
                 <td>
                   <%= link_to activity_path(Activity.find_by_id(booking.activity_id)) do %>
                     <i class="far fa-eye"></i>
-                  <% end %>
-                </td>
-                <td>
-                  <%= link_to dashboard_path do %>
-                    <i class="fas fa-exchange-alt"></i>
                   <% end %>
                 </td>
                 <td>
