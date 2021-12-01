@@ -1,11 +1,11 @@
 .box_for_search_bar{
   align-items: center;
-  padding: 15px 10px;
-  margin-top: 60px;
+  margin-top: 30px;
   height: max-content;
-  background-color: rgba(255,255,255, 0.8);
   border-radius: 40px;
   margin-bottom: 60px;
+  border: 1px;
+  margin-left: 170px;
   i{
     background-color: blue;
     width: 50px;
@@ -17,6 +17,11 @@
     padding: 10px;
   }
 }
+
+.box_for_search_bar p {
+    font-size: 26px;
+    margin: 0;
+  }
 
 .search_bar {
   display: flex;
@@ -40,4 +45,13 @@
   border-color: #8bbffd;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(22,127,251,0.25);
+}
+
+.box_for_search_bar button {
+  margin-top: 0px;
+  margin-left: 25px;
+}
+
+.search_bar .btn-filter{
+  margin-right: -25px;
 }

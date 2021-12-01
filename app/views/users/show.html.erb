@@ -1,102 +1,94 @@
-<div class="flex-container">
- <!-- affiche en haut de la page les infos sur le user-->
- <!-- dans un encadré à gauche : avatar, nom, company, job title, industry, age, years exp-->
-  <%# <div class="container"> %>
-    <div class="wrapper">
-      <div class="card-user">
-        <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "avatar-large-profil", alt: "avatar-large-profil"   %>
-        <% end %>
-        <h3><%= @user.first_name %> <%= @user.last_name %></h3>
-        <p><i class="fas fa-laptop-house"></i>  <%= @user.company %></p>
-        <p><i class="fas fa-briefcase"></i>  <%= @user.industry %></p>
-        <p><i class="fas fa-address-card"></i>  <%= @user.job_title %></p>
-        <p><i class="fas fa-globe"></i>  lives in <%= @user.country %></p>
-        <p><i class="fas fa-birthday-cake"></i>  <%= @user.age %> years old</p>
-        <p><i class="fas fa-jedi"></i>  <%= @user.years_exp %> years of experience</p>
+<div class="container">
+  <div class="flex-container w-100">
+  <!-- affiche en haut de la page les infos sur le user-->
+  <!-- dans un encadré à gauche : avatar, nom, company, job title, industry, age, years exp-->
+    <%# <div class="container"> %>
+      <div class="wrapper left-panel">
+        <div class="card-user">
+          <% if @user.photo.attached? %>
+            <%= cl_image_tag @user.photo.key, class: "avatar-large-profil", alt: "avatar-large-profil"   %>
+          <% end %>
+          <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+          <p><i class="fas fa-laptop-house"></i>  <%= @user.company %></p>
+          <p><i class="fas fa-briefcase"></i>  <%= @user.industry %></p>
+          <p><i class="fas fa-address-card"></i>  <%= @user.job_title %></p>
+          <p><i class="fas fa-globe"></i>  lives in <%= @user.country %></p>
+          <p><i class="fas fa-birthday-cake"></i>  <%= @user.age %> years old</p>
+          <p><i class="fas fa-jedi"></i>  <%= @user.years_exp %> years of experience</p>
+        </div>
       </div>
-    </div>
-  <%# </div> %>
-  <!-- dans un encadré à droite : la bio -->
-  <div class="wrapper">
-    <div class="user-bio">
-      <h3>Hello, my name is <%= @user.first_name %></h3>
-      <p>member since <%= @user.created_at.strftime("%e %^b %Y") %></p>
-      <br>
-      <br>
-      <h4>About <%= @user.first_name %></h4>
-      <p><%= @user.bio %></p>
+
+    <div class="wrapper">
+      <div class="user-bio">
+        <h3><a href="#"><i class="fab fa-twitter"></i></a> <a href="#"><i class="fab fa-linkedin"></i></a></h3>
+        <h3>Hello, my name is <%= @user.first_name %></h3>
+        <p>member since <%= @user.created_at.strftime("%e %^b %Y") %></p>
+        <h4>About <%= @user.first_name %></h4>
+        <p><%= @user.bio %></p>
+        <h4>My hobbies</h4>
+          <ul>
+            <%@user.hobbies.each do |hobby|%>
+              <li><%= hobby %><li>
+            <%end%>
+          </ul>
+      </div>
     </div>
   </div>
-  <div class="chat-show-profile">
-        <p>Chat with <%= @user.first_name %></p>
-        <%= image_tag "chat.PNG" %>
+
+  <h2 class="mt4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork</h2>
+  <h3 class="mt4 ps-3"> <%= @user.first_name %> is participating to <%= @user.activities.length %> events !</h3>
+  <div class="d-flex justify-content-evenly">
+    <% @user.activities.each do |activity| %>
+      <div class="card-user-activities">
+        <%= link_to activity_path(activity) do%>
+          <div class="pop-activity" style="
+            <% if activity.photo.attached? %>
+            background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+            <% end %>
+            ">
+              <div class="popular-card-image">
+                <div class="img-details">
+                  <p class="popular-card-title"><%= activity.name %></p>
+                  <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
+                  </div>
+                </div>
+            <div class="activity-infos">
+              <i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %>
+            </div>
+              <div class="banner-places-left">
+                <%= activity.capacity_max - activity.users.length %> places left... Join <%= @user.first_name %>
+            </div>
+          </div>
+        <% end %>
       </div>
-</div>
+    <% end %>
+  </div>
 
-<h2 class="mt4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork...</h2>
-<h3 class="mt4 ps-3"> <%= @user.first_name %> participated in <%= @user.activities.length %> events !</h3>
-<div class="d-flex justify-content-start">
-  <% @user.activities.each do |activity| %>
-    <div class="card-user-activities">
-      <%= link_to activity_path(activity) do%>
-        <div class="user-activity">
-          <% if activity.photo.attached? %>
-            <div class="card-user-image" style="background-image: url(<%= cl_image_path activity.photo.key %>)">
+  <h3 class="mt-4 ps-3"> <%= @user.first_name %> is hosting <%= @activities.length %> events !</h3>
+  <div class="d-flex justify-content-center">
+    <% @activities.each do |activity| %>
+      <div class="card-user-activities">
+        <%= link_to activity_path(activity) do%>
+          <div class="pop-activity" style="
+            <% if activity.photo.attached? %>
+            background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+            <% end %>
+            ">
+              <div class="popular-card-image">
+                <div class="img-details">
+                  <p class="popular-card-title"><%= activity.name %></p>
+                  <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
+                  </div>
+                </div>
+            <div class="activity-infos">
+              <i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %>
             </div>
-          <% end %>
-          <div class="user-card-body p-3 d-flex flex-column">
-            <div class="user-card-body-first-part">
-              <div class="d-flex justify-content-between">
-                <h5 class="popular-card-title"><%= activity.name %></h5>
-              </div>
-              <div class="d-flex justify-content-between">
-                <p class="popular-card-place"><%= activity.place %></p>
-              </div>
-              <div class="d-flex justify-content-between">
-                <p class="popular-card-date"><%= activity.start_date.strftime("%e %^b %Y") %></p>
-              </div>
-              <p class="popular-card-text"><%= activity.description.first(50) %></p>
-            </div>
-            <div class="user-card-body-second-part">
-            <p><%= activity.users.length %> participants</p>
+              <div class="banner-places-left">
+                <%= activity.capacity_max - activity.users.length %> places left... Join <%= @user.first_name %>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-<h3 class="mt-4 ps-3"> <%= @user.first_name %> organized <%= @activities.length %> events !</h3>
-<div class="d-flex justify-content-center">
-  <% @activities.each do |activity| %>
-    <div class="card-user-activities">
-      <%= link_to activity_path(activity) do%>
-        <div class="user-activity">
-          <% if activity.photo.attached? %>
-            <div class="card-user-image" style="background-image: url(<%= cl_image_path activity.photo.key %>)">
-            </div>
-          <% end %>
-          <div class="user-card-body p-3 d-flex flex-column">
-            <div class="user-card-body-first-part">
-              <div class="d-flex justify-content-between">
-                <h5 class="popular-card-title"><%= activity.name %></h5>
-              </div>
-              <div class="d-flex justify-content-between">
-                <p class="popular-card-place"><%= activity.place %></p>
-              </div>
-              <div class="d-flex justify-content-between">
-                <p class="popular-card-date"><%= activity.start_date.strftime("%e %^b %Y %R") %></p>
-              </div>
-              <p class="popular-card-text"><%= activity.description.first(50) %></p>
-            </div>
-            <div class="user-card-body-second-part">
-            <p><%= activity.users.length %> participants</p>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

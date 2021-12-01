@@ -12,7 +12,7 @@
     <div class="activity-show-header">
       <div class="photo">
         <% if @activity.photo.attached? %>
-          <%= cl_image_tag @activity.photo.key  %>
+          <%= cl_image_tag @activity.photo.key %>
         <% end %>
       </div>
       <div class="hosting">
@@ -33,7 +33,8 @@
           <%if @activity.users.include?(current_user) %>
             <p id="already_in">You're already in!</p>
             <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
-            <p><%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "btn btn-ghost" unless current_user == @activity.owner %></p>
+            <p><button id="sweet-cancel">Cancel</button></p>
+            <%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "hidden cancel-btn" unless current_user == @activity.owner %>
           <% elsif policy(@activity).create? && @all_participants.count < @activity.capacity_max %>
             <% unless current_user == @activity.owner  %>
               <button id="registration" class="btn btn-gradient">Count me in!</button>
@@ -67,7 +68,7 @@
           </div>
         <% end %>
       </div>
-        <button data-scroll-target="test"> View More </button>
+        <button id="more" data-scroll-target="test"> View More </button>
       <% if @all_participants.length >7%>
         <div class="left-participants left-participants-hidden" data-scroll-target="listhide">
           <div class="left-participants-info">

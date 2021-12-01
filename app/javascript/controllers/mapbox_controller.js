@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import mapboxgl from 'mapbox-gl';
 
 export default class extends Controller {
+  static targets = ["map"]
   static values = {
     apiKey: String,
     markers: Array
@@ -11,7 +12,7 @@ export default class extends Controller {
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
-      container: this.element,
+      container: this.mapTarget,
       style: 'mapbox://styles/mapbox/streets-v10'
     });
     this._addMarkersToMap();
@@ -30,7 +31,6 @@ export default class extends Controller {
   _fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds();
     this.markersValue.forEach(marker => bounds.extend([marker.lng, marker.lat]));
-    console.log(bounds)
     this.map.fitBounds(bounds, { padding: 50, maxZoom: 15, duration: 0 });
   }
 }

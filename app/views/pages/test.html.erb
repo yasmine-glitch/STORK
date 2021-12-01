@@ -1,0 +1,37 @@
+<div class="m-5">
+  <div class="card-activity-description">
+    <img src="<%= cl_image_path @activity.photo.key %>" />
+    <div class="card-activity-description-infos">
+      <div>
+        <h2><%= @activity.name %></h2>
+        <p class="mt-2"><%= @activity.description %></p>
+        <div class="d-flex">
+          <div class="card-activity-description-date me-4"><i class="far fa-calendar-alt"></i>
+            <%= @activity.start_date.strftime("%A %B %e") %>
+          </div>
+
+          <div class="card-activity-description-date"><i class="far fa-calendar-alt"></i>
+            <%= @activity.place %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hosting-btn" data-controller="sweetalert">
+      <%if @activity.users.include?(current_user) %>
+        <p id="already_in">You're already in!</p>
+        <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+        <p><button id="sweet-cancel">Cancel</button></p>
+        <%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "hidden cancel-btn" unless current_user == @activity.owner %>
+      <% elsif policy(@activity).create? && @all_participants.count < @activity.capacity_max %>
+        <% unless current_user == @activity.owner  %>
+          <button id="registration" class="btn btn-gradient">Count me in!</button>
+          <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
+        <% end %>
+      <% else %>
+        <p id="sorry_full">Sorry, Activity full!</p>
+        <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+      <% end %>
+    </div>
+  </div>
+</div>

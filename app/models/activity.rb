@@ -3,7 +3,7 @@ class Activity < ApplicationRecord
   has_many :bookings
   has_many :users, through: :bookings
   has_one_attached :photo
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
 
   # Geocoding set-up
   geocoded_by :place
@@ -18,4 +18,18 @@ class Activity < ApplicationRecord
                   using: {
                     tsearch: { prefix: true, any_word: true } # <-- now `superman batm` will return something!
                   }
+
+  CATEGORIES = [
+    ["Sports", "🏓" ],
+    ["Nature", "🏔"],
+    ["Visiting", "🗽"],
+    ["Food", "🍜"],
+    ["Bars", "🍺"],
+    ["Tech", "💾"],
+    ["Arts", "🎨"],
+    ["Crafts", "🪚"],
+    ["Dancing", "🕺🏼"],
+    ["Singing", "🎤"],
+    ["Shopping", "🛍"]
+  ]
 end

@@ -1,8 +1,17 @@
 // Specific CSS for your home-page
 #stork_title {
   font-size: 50px;
+  color: white;
+  margin-bottom: 100px;
+  margin-left: 185px;
+
 }
 
 .content-wrapper {
   min-height: calc(100vh - 70px - 80px);
+}
+
+.container-home {
+  margin-left: 185px;
+  margin-top: 10px;
 }

@@ -1,0 +1,38 @@
+<div class="message-wrapper" id="message-<%= message.id %>" data-user-id="<%= message.user.id %>">
+  <div class="d-flex message-right <%= 'new_message' if new == 'true'%> <%= 'd-none' if current_user != message.user%> mt-3">
+    <div class="ms-3" style="width: -webkit-fill-available">
+      <small>
+        <div class="d-flex justify-content-between">
+          <i class="ms-3 text-secondary"><%= "" %></i>
+          <%# message.created_at.strftime("%a %b %e at %l:%M %p") %>
+          <strong><%= message.user.first_name %> <%= message.user.last_name %></strong>
+        </div>
+      </small>
+      <div class="d-flex justify-content-end">
+        <div class="mess-content-right">
+          <p><%= message.content %></p>
+        </div>
+      </div>
+    </div>
+    <div class="ms-2">
+      <%= cl_image_tag message.user.photo.key, crop: :thumb, class:"avatar" %>
+    </div>
+  </div>
+
+  <div class="d-flex message-left <%= 'new_message' if new == 'true'%> <%= 'd-none' if current_user == message.user%> mt-3">
+    <div>
+      <%= cl_image_tag message.user.photo.key, crop: :thumb, class:"avatar" %>
+    </div>
+    <div class="ms-3" style="width: -webkit-fill-available">
+    <small>
+      <div class="d-flex justify-content-between">
+        <strong><%= message.user.first_name %> <%= message.user.last_name %></strong>
+        <i class="ms-3 text-secondary"><%= "" %></i>
+      </div>
+    </small>
+    <div class="mess-content">
+      <p><%= message.content %></p>
+    </div>
+    </div>
+  </div>
+</div>

@@ -30,13 +30,15 @@
   h3{
     color: $red-poppy;
   };
+  ul {
+    list-style-type: none;
+  }
 }
 
 
 .card-user-activities{
    /* je voudrais afficher trois cartes par ligne */
-  width: 30%;
-  overflow: scroll; /* pourquoi ça ne marche pas ?? */
+  width: 25%;
   background-color: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
@@ -51,10 +53,6 @@
     }
     h5 {
       color: $red-poppy;
-    }
-    .popular-card-date {
-      color: #e65c5d;
-      font-weight: bold;
     }
 }
 
@@ -77,9 +75,8 @@
   flex-grow: 1;
 }
 
-.chat-show-profile {
+.hobby-show-profile {
   margin-top: 20px;
-  height: 50%;
   background-color: white;
   border-radius: 10px;
   margin: 20px;
@@ -95,4 +92,16 @@
     color: #e65c5d;
     font-weight: bold;
   }
+  ul {
+    list-style-type: none;
+  }
+}
+
+.user-bio a{
+  font-size: 30px;
+  padding-right: 30px;
+}
+
+.left-panel {
+  width: 60%;
 }
