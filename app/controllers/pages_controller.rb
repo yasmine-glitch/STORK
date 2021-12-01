@@ -10,6 +10,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    @owneractivities = Activity.where(owner: current_user)
   end
 
   def test
