@@ -52,7 +52,7 @@
       <% @activities.each do |activity| %>
         <div class="popular-card-activity index"
           id = "activity_<%= activity.id %>"
-          data-action="mouseenter->mapbox#openPopup mouseleave->mapbox#closePopup">
+          data-action="mouseenter->mapbox#redMarker mouseleave->mapbox#blueMarker">
           <%= link_to activity_path(activity) do %>
             <div class="pop-activity" style="
               <% if activity.photo.attached? %>
