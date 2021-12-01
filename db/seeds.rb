@@ -80,10 +80,10 @@ picture_id_woman = 1
     password_confirmation: "hellostork"
   )
   user.email = "#{user.first_name}.#{user.last_name}@gmail.com"
-  user.photo.attach(io: URI.open("https://randomuser.me/api/portraits/men/#{picture_id_woman}.jpg"), filename: "#{user.first_name}#{user.last_name}.png", content_type: "image/jpg")
+  user.photo.attach(io: URI.open("https://randomuser.me/api/portraits/women/#{picture_id_woman}.jpg"), filename: "#{user.first_name}#{user.last_name}.png", content_type: "image/jpg")
   user.hobby_list.add(["Sports", "Nature", "Visiting", "Food", "Bars", "Tech", "Arts", "Crafts", "Dancing", "Singing", "Shopping"].sample(5))
   user.save
-  picture_id += 1
+  picture_id_woman += 1
   puts "Created #{user.first_name} 👩‍🦰"
 end
 

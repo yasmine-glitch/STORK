@@ -14,9 +14,9 @@ class PagesController < ApplicationController
 
   def test
     @activity = Activity.find(146)
-
+    @activities = Activity.where(owner_id: @activity.owner_id)
     @booking = Booking.new
-    @booking_exist = Booking.find_by(activity_id: params[:id], user_id: current_user)
+    @booking_exist = Booking.find_by(activity_id: 146, user_id: current_user)
     @all_participants = [@activity.owner, @activity.users].flatten
   end
 end

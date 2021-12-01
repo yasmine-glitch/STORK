@@ -1,10 +1,15 @@
+.card-activity-description-wrapper {
+  width: 100%;
+}
+
+
 .card-activity-description {
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  width: 600px;
   background-color: $red-poppy;
   color: white;
+  height: 100%;
 }
 
 .card-activity-description > img {
@@ -14,7 +19,7 @@
 }
 
 .card-activity-description h2 {
-  font-size: 20px;
+  font-size: 28px;
   font-weight: bold;
   margin: 0;
 }
@@ -23,14 +28,18 @@
   font-size: 12px;
   opacity: .7;
   margin: 0;
+  text-align: center;
 }
 
 .card-activity-description .card-activity-description-infos {
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
   position: relative;
+}
+
+.card-activity-description-infos {
+  height: 100%;
 }
 
 .card-activity-description-infos .card-activity-description-user {
@@ -47,4 +56,54 @@
   width: fit-content;
   padding: 10px;
   font-size: 12px;
+}
+
+.card-activity-description-button {
+  border: 1px solid white;
+  border-radius: 5px;
+  width: fit-content;
+  font-size: 16px;
+  padding: 10px;
+  color: $red-poppy;
+  background-color: white;
+}
+
+.card-owner-infos-wrapper {
+  background-color: white;
+  width: 100%;
+}
+
+.card-owner-infos-details {
+  background-color: rgba(230, 92, 93, 0.1);
+  // margin-top: 10px;
+  // margin-left: 20px;
+  margin-right: 10px;
+  color: $red-poppy;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card-owner-infos-bio {
+  color:rgba(6, 3, 5, 0.6)
+}
+
+.card-owner-infos-past {
+  background-color: rgba(230, 92, 93, 0.1);
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 30px;
+  color: $red-poppy;
+  p {
+    font-size: 20px;
+    margin: 0;
+  }
+}
+
+.view-profile {
+  color: $red-poppy;
 }

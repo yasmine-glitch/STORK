@@ -87,6 +87,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    @activities = Activity.where(owner_id: @activity.owner_id)
     authorize @activity
     @booking = Booking.new
     @booking_exist = Booking.find_by(activity_id: params[:id], user_id: current_user)

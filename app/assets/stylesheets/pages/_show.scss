@@ -94,14 +94,12 @@ color: #e65c5d;
 }
 
 .hosting-btn {
-  padding-left: 20px;
   a {
     margin-left: 22px;
   }
     #sweet-cancel {
       border: none;
       background-color: white;
-      margin-left: 85px;
     }
 }
 
@@ -119,9 +117,22 @@ color: #e65c5d;
 }
 
 .hosting-btn #already_in{
-  font-size: 22px;
+  font-size: 16px;
   font-weight: bold;
-  margin-left: 50px;
+
+}
+
+#find-other-activity {
+  background-color: white;
+  border-radius: 5px;
+  color: $red-poppy;
+  width: fit-content;
+  padding: 10px;
+  margin-bottom: 10px;
+
+  a {
+    margin: 0;
+  }
 }
 
 .activity-description i {
@@ -147,8 +158,10 @@ color: #e65c5d;
 }
 
 .show_bottom_page {
-  background-color: white;
   border-radius: 0px 0px 5px 5px;
+  h3 {
+    font-size: 20px;
+  }
 }
 
 .map-show {
@@ -171,4 +184,23 @@ color: #e65c5d;
 .chat-show img {
   width: 90%;
   margin: 0px;
+}
+
+
+#registration {
+  background-color: white;
+  border-radius: 5px;
+  color: $red-poppy;
+  width: fit-content;
+  padding: 10px 50px;
+  &:hover {
+    background-color: rgb(244, 244, 244);
+    cursor: pointer;
+  }
+}
+
+.card-owner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
 }
