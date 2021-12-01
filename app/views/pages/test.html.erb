@@ -1,37 +1,215 @@
-<div class="m-5">
-  <div class="card-activity-description">
-    <img src="<%= cl_image_path @activity.photo.key %>" />
-    <div class="card-activity-description-infos">
-      <div>
-        <h2><%= @activity.name %></h2>
-        <p class="mt-2"><%= @activity.description %></p>
-        <div class="d-flex">
-          <div class="card-activity-description-date me-4"><i class="far fa-calendar-alt"></i>
-            <%= @activity.start_date.strftime("%A %B %e") %>
-          </div>
+<div class="container mt-3">
+  <div class="d-flex">
+    <div class="card-owner-infos-wrapper">
+      <div class="card-owner-infos m-5">
+        <%= link_to user_path(@activity.owner_id) do %>
+          <%= cl_image_tag @activity.owner.photo.key, class: "avatar-show-large", alt: "avatar-show-large" %>
+        <% end %>
+        <div class="card-owner-infos-bio mt-3">
+          <h5>About <%= @activity.owner.first_name %> <%= @activity.owner.last_name %> </h5>
+          <p><%= @activity.owner.bio %></p>
+        </div>
 
-          <div class="card-activity-description-date"><i class="far fa-calendar-alt"></i>
-            <%= @activity.place %>
+        <div class="d-flex justify-content-between">
+            <p class="card-owner-infos-details"><i class="fas fa-laptop-house"></i> <br> <%= @activity.owner.company %></p>
+            <p class="card-owner-infos-details"><i class="fas fa-briefcase"></i> <br> <%= @activity.owner.industry %></p>
+            <p class="card-owner-infos-details"><i class="fas fa-address-card"></i> <br> <%= @activity.owner.job_title %></p>
+            <p class="card-owner-infos-details"><i class="fas fa-globe"></i> <br> <%= @activity.owner.country %></p>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <div class="card-owner-infos-past">
+            <p>Participated 🚀</p>
+            <strong><%= @activity.owner.activities.length  %></strong>
+          </div>
+          <div class="card-owner-infos-past">
+            <p>Organized 🚀</p>
+            <strong><%= @activities.length %></strong>
           </div>
         </div>
       </div>
+      <div>
+        <p class="me-4 text-end view-profile"><i class="far fa-eye"></i> View <%= @activity.owner.first_name %>'s full profile</p>
+      </div>
     </div>
 
-    <div class="hosting-btn" data-controller="sweetalert">
-      <%if @activity.users.include?(current_user) %>
-        <p id="already_in">You're already in!</p>
-        <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
-        <p><button id="sweet-cancel">Cancel</button></p>
-        <%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "hidden cancel-btn" unless current_user == @activity.owner %>
-      <% elsif policy(@activity).create? && @all_participants.count < @activity.capacity_max %>
-        <% unless current_user == @activity.owner  %>
-          <button id="registration" class="btn btn-gradient">Count me in!</button>
-          <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
+
+
+
+
+    <div class="">
+      <div class="card-activity-description">
+        <img src="<%= cl_image_path @activity.photo.key %>" />
+        <div class="d-flex flex-column", style="flex-grow: 1; height: 100%;">
+          <div class="card-activity-description-infos">
+            <div>
+              <h2><%= @activity.name %></h2>
+              <p class="mt-2"><%= @activity.description %></p>
+              <div class="d-flex">
+                <div class="card-activity-description-date me-4"><i class="far fa-calendar-alt"></i>
+                  <%= @activity.start_date.strftime("%A %B %e") %>
+                </div>
+
+                <div class="card-activity-description-date"><i class="fas fa-map-marked-alt"></i>
+                  <%= @activity.place %>
+                </div>
+              </div>
+              <div class="d-flex justify-content-end mt-5 me-3">
+                <h3 class="card-activity-description-button">Count me In !</h3>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container mt-4">
+  <div class="show_bottom_page">
+    <h3><%=pluralize(@all_participants.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
+    </div>
+    <div data-controller="scroll">
+      <div class="card-participants">
+        <% @all_participants.first(6).each do |user| %>
+          <div class="card-participants-infos">
+          <%= link_to user_path(user) do %>
+            <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
+          <% end %>
+            <h2><%= user.first_name %> <%= user.last_name %></h2>
+            <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+          </div>
         <% end %>
-      <% else %>
-        <p id="sorry_full">Sorry, Activity full!</p>
-        <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+      </div>
+      <% if @all_participants.length > 6%>
+        <div class="left-participants left-participants-hidden" data-scroll-target="listhide">
+          <div class="left-participants-info">
+            <% @all_participants.last(@all_participants.length - 6).each do |user| %>
+              <div class="card-participants-infos">
+                <%= link_to user_path(user) do %>
+                  <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
+                <% end %>
+                <h2><%= user.first_name %> <%= user.last_name %></h2>
+                <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <button id="more" data-scroll-target="test" data-action="click->scroll#toggleList"> View More </button>
       <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="banner-show">
+  <div class="blurry-background" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url(<%= cl_image_path @activity.photo.key %>)">
+  </div>
+  <div class="container">
+    <div class="activity-main-infos" >
+      <h3><%= @activity.name %></h3>
+      <div class="date"><i class="far fa-calendar-alt"></i>
+      <%= @activity.start_date.strftime("%A %B %e") %></div>
+      <p><i class="fas fa-clock"></i>
+      <%= @activity.start_date.strftime("%R %:z" " " "UTC") %><p>
+    </div>
+    <div class="activity-show-header">
+      <div class="photo">
+        <% if @activity.photo.attached? %>
+          <%= cl_image_tag @activity.photo.key %>
+        <% end %>
+      </div>
+      <div class="hosting">
+        <div class="hosting-infos">
+          <h3>Hosted by</h3>
+          <%= link_to user_path(@activity.owner_id) do %>
+          <%= cl_image_tag @activity.owner.photo.key, class: "avatar-show-large", alt: "avatar-show-large" %>
+          <% end %>
+          <div class="name"><%= @activity.owner.first_name %> <%= @activity.owner.last_name %></div>
+          <div class="owner">
+            <p><i class="fas fa-laptop-house"></i> <%= @activity.owner.company %></p>
+            <p><i class="fas fa-briefcase"></i> <%= @activity.owner.industry %></p>
+            <p><i class="fas fa-address-card"></i> <%= @activity.owner.job_title %></p>
+            <p><i class="fas fa-globe"></i> <%= @activity.owner.country %></p>
+          </div>
+        </div>
+        <div class="hosting-btn" data-controller="sweetalert">
+          <%if @activity.users.include?(current_user) %>
+            <p id="already_in">You're already in!</p>
+            <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+            <p><button id="sweet-cancel">Cancel</button></p>
+            <%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "hidden cancel-btn" unless current_user == @activity.owner %>
+          <% elsif policy(@activity).create? && @all_participants.count < @activity.capacity_max %>
+            <% unless current_user == @activity.owner  %>
+              <button id="registration" class="btn btn-gradient">Count me in!</button>
+              <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
+            <% end %>
+          <% else %>
+            <p id="sorry_full">Sorry, Activity full!</p>
+            <%= link_to "Find Another Activity", activities_path, class: "btn btn-gradient" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="show_bottom_page">
+    <div class="activity-description">
+    <div class="place"><i class="fas fa-map-marked-alt"></i> <%= @activity.place %></div>
+    <p><%= @activity.description %></p>
+    <h3><%=pluralize(@all_participants.count, "registered participant")%> for this event  (Max <%= @activity.capacity_max%>) </h3>
+    </div>
+    <div data-controller="scroll">
+      <div class="card-participants">
+        <% @all_participants.first(7).each do |user| %>
+          <div class="card-participants-infos">
+          <%= link_to user_path(user) do %>
+            <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
+          <% end %>
+            <h2><%= user.first_name %> <%= user.last_name %></h2>
+            <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+          </div>
+        <% end %>
+      </div>
+      <% if @all_participants.length >7%>
+        <button id="more" data-scroll-target="test"> View More </button>
+        <div class="left-participants left-participants-hidden" data-scroll-target="listhide">
+          <div class="left-participants-info">
+            <% @all_participants.last(@all_participants.length - 7).each do |user| %>
+              <div class="card-participants-infos">
+              <%= link_to user_path(user) do %>
+                <%= cl_image_tag user.photo.key, class: "avatar-show", alt: "avatar-show" %>
+              <% end %>
+                <h2><%= user.first_name %> <%= user.last_name %></h2>
+                <p><i class="fas fa-laptop-house"> </i><%= user.company %></p>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="map-show">
+      <div class="map-show-details">
+        <p>Place Details</p>
+          <!-- carte Mapbox-->
+        <div class="flex-item" style="width: 100%; height: 400px;"
+          data-controller="mapbox"
+          data-mapbox-markers-value="<%= @markers.to_json %>"
+          data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
+      </div>
+      <div class="chat-show">
+        <p>Chat with <%= @activity.owner.first_name %></p>
+        <%= image_tag "chat.PNG" %>
+      </div>
     </div>
   </div>
 </div>

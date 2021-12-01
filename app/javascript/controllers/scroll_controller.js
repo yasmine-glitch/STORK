@@ -8,9 +8,20 @@ export default class extends Controller {
   connect() {
     console.log(this.testTarget);
     console.log(this.listhideTarget)
-    this.testTarget.addEventListener("click",(event)=>{
-      this.listhideTarget.classList.toggle("left-participants-hidden");
-    })
+    // this.testTarget.addEventListener("click",(event)=>{
+    //   this.listhideTarget.classList.toggle("left-participants-hidden");
+    // })
+  }
 
+  toggleList(event) {
+    this.listhideTarget.classList.toggle("left-participants-hidden");
+    console.log(event.currentTarget);
+    let result;
+    if (event.currentTarget.innerText == "View Less") {
+      event.currentTarget.innerText = "View More";
+    } else {
+      event.currentTarget.innerText = "View Less"
+    }
+    return result;
   }
 }
