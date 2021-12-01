@@ -6,7 +6,7 @@
   background-color: $black-banner;
   p {
     color: white;
-    font-size: 40px;
+    // font-size: 40px;
     font-weight: bold;
   }
   span {
@@ -38,8 +38,10 @@
 
 #header {
   padding-top: 110px;
+  margin-left: 185px;
+  width: 50%;
   p {
-    margin-left: 185px;
+    font-size: 30px;
   }
 }
 
