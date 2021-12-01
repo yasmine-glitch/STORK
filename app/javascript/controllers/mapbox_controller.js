@@ -20,7 +20,6 @@ export default class extends Controller {
   }
 
   _addMarkersToMap() {
-    // définir une variable d'array vide pour y insérer les marker un à un
     this.markersArray = []
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window);
@@ -29,7 +28,6 @@ export default class extends Controller {
       .setPopup(popup)
       .addTo(this.map)
       markerElement._element.id = `activity_${marker.id}`
-      // insérer chq markeur dans l'array
       this.markersArray.push(markerElement)
     });
   }
@@ -40,7 +38,6 @@ export default class extends Controller {
   }
 
   openPopup(event) {
-    // console.log("enter")
     const hovered_card = event.currentTarget
     const id = hovered_card.id
     this.markersArray.forEach((marker) => {
