@@ -54,12 +54,12 @@
         ">
           <div class="popular-card-image">
             <div class="img-details">
-              <p class="popular-card-title"><%= activity.name %></p>
-              <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
+              <p class="popular-card-title"><%= activity.name.truncate(25) %></p>
               </div>
             </div>
         <div class="activity-infos">
-          <i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %>
+          <div><i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%a %b %e") %></div>
+          <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
         </div>
 
           <div class="banner-places-left">
