@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center" id="dashboard_title">Dashboard</h1>
+  <h1 class="text-center" id="dashboard_title">Welcome back <%= @user.first_name %>! </h1>
   <div class = "d-flex justify-content-between three_dashboard_cards">
     <div class="dashboard_card" id="information_card">
       <h2>My Information</h2>
@@ -28,7 +28,7 @@
     </div>
     <div>
       <div class="dashboard_card" id="reservation_card">
-        <h2>My Planned Activities (<%= @user.bookings.count %>)</h2>
+        <h2>You have <%=pluralize(@user.bookings.count, "upcoming activity")%>!</h2>
           <% if @user.bookings.exists? %>
             <table class="table">
               <tr>
@@ -45,7 +45,7 @@
                   <td><%= Activity.find_by_id(booking.activity_id).place %></td>
                   <td><%= booking.activity.start_date.strftime("%e %^b %Y %R") %></td>
                   <td><%= booking.activity.end_date.strftime("%e %^b %Y %R") %></td>
-                  <td><%= booking.status %></td>
+                  <td class="booking_status"><%= booking.status %></td>
 
                   <td>
                     <%= link_to activity_path(Activity.find_by_id(booking.activity_id)) do %>
@@ -83,29 +83,27 @@
 
 
       <div class="dashboard_card">
-        <h2>My Past Trips (<%= @user.activities.count %>)</h2>
-          <% if @user.activities.exists? %>
-            <table class="table">
-              <tr>
-                <th>Activity</th>
-                <th>Place</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-              </tr>
-
-              <% @user.activities.each do |activity| %>
-                <tr>
-                  <td><%= activity.name %></td>
-                  <td><%= activity.place %> year(s) old</td>
-                  <td><%= activity.start_date.strftime("%e %^b %Y") %></td>
-                  <td><%= activity.end_date.strftime("%e %^b %Y") %></td>
-                  <td>
-                    <%= link_to activity_path(activity.id) do %>
-                      <i class="far fa-eye"></i>
-                    <% end %>
-                  </td>
+        <h2>You are the host of <%=pluralize(@owneractivities.count, "activity")%>!</h2>
+          <% if @owneractivities.exists? %>
+              <% @owneractivities.each do |activity| %>
+                <div class="pop-activity" style="
+                <% if activity.photo.attached? %>
+                background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+                <% end %>
+                ">
+                  <div class="popular-card-image">
+                    <div class="img-details">
+                      <p class="popular-card-title"><%= activity.name %></p>
+                      <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
+                      </div>
+                    </div>
+                <div class="activity-infos">
+                  <i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %>
+                </div>
+                <div class="banner-places-left">
+                  <%= activity.capacity_max - activity.users.length %> places left
+                </div>
               <% end %>
-            </table>
           <% end %>
       </div>
     </div>
