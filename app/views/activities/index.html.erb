@@ -46,13 +46,16 @@
   <div class="container flex-item" style="width: 60vw;">
     <div class="wrapper">
       <% @activities.each do |activity| %>
-        <div class="popular-card-activity">
+        <div class="popular-card-activity"
+             id = "activity_<%= activity.id %>"
+             data-action="mouseenter->mapbox#openPopup">
           <%= link_to activity_path(activity) do%>
             <div class="pop-activity" style="
             <% if activity.photo.attached? %>
-            background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+              background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+              <% end %>
+              ">
             <% end %>
-            ">
             <div class="popular-card-image">
               <div class="img-details">
                 <p class="popular-card-title"><%= activity.name %></p>
@@ -67,10 +70,9 @@
                 <%= activity.capacity_max - activity.users.length %> places left... Register now !
               </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
-</div>
+
   <!-- carte Mapbox-->
   <div class="flex-item" style="width: 50vw; height: 100vh;"
     data-controller="mapbox"
