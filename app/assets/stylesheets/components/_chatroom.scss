@@ -26,6 +26,11 @@
   }
 }
 
+.chatroom-wrapper {
+  backdrop-filter: blur(8px);
+  // background: contain;
+}
+
 .new_message {
 
   padding: 1rem;

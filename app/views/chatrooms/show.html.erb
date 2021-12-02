@@ -1,71 +1,74 @@
-<div class="container">
-  <div class="d-flex chatbox_box">
+<div style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url('<%= cl_image_path @activity.photo.key %>')">
+  <div class="chatroom-wrapper">
+  <div class="container p-3">
+    <div class="d-flex chatbox_box">
 
-    <div class="all_chats">
-      <h2 class="mt-4 ms-5 me-3 mb-4">Chats</h2>
-      <% @current_user.activities.each do |activity| %>
-        <% if activity.chatroom.messages.length != 0 %>
-          <%= link_to activity_chatroom_path(activity, activity.chatroom, anchor: "message-#{activity.chatroom.messages.last.id}" ) do %>
-            <div>
-              <div class="card-chat <%= "active" if activity.chatroom.id == @chatroom.id %> <%= "card-hover" if activity.chatroom.id != @chatroom.id %>">
-                <%= cl_image_tag activity.photo.key, class:"card-chat-image" %>
-                <div class="card-chat-infos">
-                  <div style= "width: 260px">
-                    <h2><%= activity.name %></h2>
-                    <p><%= activity.chatroom.messages.last.user.first_name %>:  <%= activity.chatroom.messages.last.content %></p>
+      <div class="all_chats">
+        <h2 class="mt-4 ms-5 me-3 mb-4">Chats</h2>
+        <% @current_user.activities.each do |activity| %>
+          <% if activity.chatroom.messages.length != 0 %>
+            <%= link_to activity_chatroom_path(activity, activity.chatroom) do %>
+              <div>
+                <div class="card-chat <%= "active" if activity.chatroom.id == @chatroom.id %> <%= "card-hover" if activity.chatroom.id != @chatroom.id %>">
+                  <%= cl_image_tag activity.photo.key, class:"card-chat-image" %>
+                  <div class="card-chat-infos">
+                    <div style= "width: 260px">
+                      <h2><%= activity.name %></h2>
+                      <p><%= activity.chatroom.messages.last.user.first_name %>:  <%= activity.chatroom.messages.last.content %></p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        <% else %>
-          <%= link_to activity_chatroom_path(activity, activity.chatroom ) do %>
-            <div>
-              <div class="card-chat <%= "active" if activity.chatroom.id == @chatroom.id %> <%= "card-hover" if activity.chatroom.id != @chatroom.id %>">
-                <%= cl_image_tag activity.photo.key, class:"card-chat-image" %>
-                <div class="card-chat-infos">
-                  <div style= "width: 260px">
-                    <h2><%= activity.name %></h2>
+            <% end %>
+          <% else %>
+            <%= link_to activity_chatroom_path(activity, activity.chatroom ) do %>
+              <div>
+                <div class="card-chat <%= "active" if activity.chatroom.id == @chatroom.id %> <%= "card-hover" if activity.chatroom.id != @chatroom.id %>">
+                  <%= cl_image_tag activity.photo.key, class:"card-chat-image" %>
+                  <div class="card-chat-infos">
+                    <div style= "width: 260px">
+                      <h2><%= activity.name %></h2>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
-      <div class="chat_title_box d-flex">
-        <h2 style="margin: 0">#<%= @activity.name %></h2>
-        <div class="d-flex flex-grow-1 justify-content-end">
-          <% @chatroom.activity.users.first(5).each do |user| %>
-            <%= cl_image_tag user.photo.key, crop: :thumb, class: "avatar", alt: "avatar" %>
-            <% end %>
-            <% if  @chatroom.activity.users.count - 5 > 0 %>
-              <p class="more_participants" style="display:flex;justify-content:center;align-items:center;"> <%= @chatroom.activity.users.count - 5  %>+ </p>
-            <% end %>
-        </div>
-      </div>
-
-      <div class="messages" data-chatroom-subscription-target="allmessages">
-        <% @chatroom.messages.each do |message| %>
-          <%= render "messages/message", message: message, new: 'false' %>
         <% end %>
       </div>
 
-      <%= simple_form_for [@activity, @chatroom, @message], remote: true, data:{action: "submit->chatroom-subscription#disconnect"} do |f| %>
-        <div class="d-flex">
-          <%= f.input :content, id: "input_form", label: false, placeholder: "Message ##{@chatroom.name}" %>
-          <%= button_tag type: 'submit', id: "send_message_button" do %>
-            <i class="fas fa-paper-plane"></i>
+      <div class="chatroom" data-controller="chatroom-subscription" data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>">
+        <div class="chat_title_box d-flex">
+          <h2 style="margin: 0">#<%= @activity.name %></h2>
+          <div class="d-flex flex-grow-1 justify-content-end">
+            <% @chatroom.activity.users.first(5).each do |user| %>
+              <%= cl_image_tag user.photo.key, crop: :thumb, class: "avatar", alt: "avatar" %>
+              <% end %>
+              <% if  @chatroom.activity.users.count - 5 > 0 %>
+                <p class="more_participants" style="display:flex;justify-content:center;align-items:center;"> <%= @chatroom.activity.users.count - 5  %>+ </p>
+              <% end %>
+          </div>
+        </div>
+
+        <div class="messages" data-chatroom-subscription-target="allmessages">
+          <% @chatroom.messages.each do |message| %>
+            <%= render "messages/message", message: message, new: 'false' %>
           <% end %>
         </div>
-      <% end %>
+
+        <%= simple_form_for [@activity, @chatroom, @message], remote: true, data:{action: "submit->chatroom-subscription#disconnect"} do |f| %>
+          <div class="d-flex">
+            <%= f.input :content, id: "input_form", label: false, placeholder: "Message ##{@chatroom.name}" %>
+            <%= button_tag type: 'submit', id: "send_message_button" do %>
+              <i class="fas fa-paper-plane"></i>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
-
+</div>
 
 
 
