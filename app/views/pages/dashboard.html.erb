@@ -38,9 +38,10 @@
               <th>End Date</th>
               <th>Status</th>
               <th></th>
+              <th></th>
             </tr>
 
-            <% @user.bookings.each do |booking| %>
+            <% @user.bookings.joins(:activity).merge(Activity.order(start_date: :asc)).each do |booking| %>
               <tr>
                 <td><%= Activity.find_by_id(booking.activity_id).name %></td>
                 <td><%= Activity.find_by_id(booking.activity_id).place %></td>
@@ -77,23 +78,27 @@
       </div>
       <div class="dashboard_card">
         <h2>You are the host of <%=pluralize(@owneractivities.count, "activity")%>!</h2>
-        <% @owneractivities.each do |activity| %>
-          <div class="pop-activity" style="background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path(activity.photo.key) if activity.photo.attached?  %>)">
-            <div class="popular-card-image">
-              <div class="img-details">
-                <p class="popular-card-title"><%= activity.name %></p>
-              </div>
-            </div>
+        <div class="activity-cards-grid">
+          <% @owneractivities.each do |activity| %>
+            <%= link_to activity_path(activity), class: "hover-activity-cards" do %>
+              <div class="pop-activity" style="background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path(activity.photo.key) if activity.photo.attached?  %>)">
+                <div class="popular-card-image">
+                  <div class="img-details">
+                    <p class="popular-card-title"><%= activity.name %></p>
+                  </div>
+                </div>
 
-            <div class="activity-infos">
-              <div><i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %></div>
-              <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %></p>
-            </div>
-            <div class="banner-places-left">
-              <%= activity.capacity_max - activity.users.length %> places left
-            </div>
-          </div>
-        <% end %>
+                <div class="activity-infos">
+                  <div><i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%A %B %e") %></div>
+                  <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %></p>
+                </div>
+                <div class="banner-places-left">
+                  <%= activity.capacity_max - activity.users.length %> places left
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
