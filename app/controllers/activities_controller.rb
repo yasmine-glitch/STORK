@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = policy_scope(Activity).order(start_date: :asc)
-      @user_hobbies = current_user.hobby_list
+    @user_hobbies = current_user.hobby_list
     params[:categories] ||= []
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
