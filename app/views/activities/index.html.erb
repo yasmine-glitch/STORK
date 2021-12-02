@@ -20,10 +20,9 @@
         </div>
         <div class= "btn btn-filter" style="width: 200px">
           <%= text_field_tag :start_date,
-            params[:start_date],
+            params[:start_date].present? ? params[:start_date] : Date.today,
             class: "datepicker form-control",
             "data-controller": "flatpickr",
-            value: Date.today,
             data: { action: "change->auto-submit#submit" }
           %>
         </div>
