@@ -272,8 +272,8 @@ User.all.sample(28).each do |user|
   booking.save!
 end
 
-puts 'Creating 15 bookings for the activity -- Morning footing near the Tage....'
-User.all.sample(15).each do |user|
+puts 'Creating 14 bookings for the activity -- Morning footing near the Tage....'
+User.all.sample(14).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Morning footing near the Tage').id,
     user_id: user.id

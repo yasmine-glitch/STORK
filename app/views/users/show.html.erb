@@ -60,7 +60,7 @@
 
   <h2 class="mt4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork</h2>
   <h3 class="mt4 ps-3"> <%= @user.first_name %> is participating to <%= @user.activities.length %> events !</h3>
-  <div class="d-flex justify-content-evenly">
+  <div class="d-flex justify-content-start">
     <% @user.activities.each do |activity| %>
       <div class="card-user-activities">
         <%= link_to activity_path(activity) do%>
@@ -88,7 +88,7 @@
   </div>
 
   <h3 class="mt-4 ps-3"> <%= @user.first_name %> is hosting <%= @activities.length %> events !</h3>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-start">
     <% @activities.each do |activity| %>
       <div class="card-user-activities">
         <%= link_to activity_path(activity) do%>
