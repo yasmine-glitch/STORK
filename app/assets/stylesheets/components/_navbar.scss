@@ -34,7 +34,10 @@
   margin-right: 10px;
   margin-top: 5px;
   #nav-link {
-    color: white
+    color: white;
+  }
+  p {
+    color: white;
   }
 }
 
@@ -62,4 +65,5 @@
 .user-pic {
   width: 50px;
   border-radius: 50%;
+  cursor: pointer;
 }
