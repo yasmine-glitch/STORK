@@ -47,7 +47,7 @@ picture_id = 1
     company: Faker::Company.name,
     job_title: ["Developer", "Accountant", "Account Manager", "Investor", "Manager", "Event Planner", "Director of Operations"].sample,
     industry: ["Tech/IT", "Food", "Bank/Insurance", "Hospitality", "Renewable Energy", "Automotive"].sample,
-    bio: ["I love sports, I practice tennis and running. I'm here to meet new people and enjoy my free time while traveling", "Hello, I have 2 children and I am keen of cryptos. Let's meet to dicuss about business!", "I love discovering new culture but I hate doing it alone, let's meet!", "I like to talk and spend time with people! I am keen of new technologies and would like to discuss with some pros about it :)", "I love to meet up new people. Feel free to contact me!", "Travelling is my hobby, I love my job because I travel everywhere around the world. I'm here because I'd like to share exxperiences with people and share ideas about business."].sample,
+    bio: ["I love sports, I practice tennis and running. I'm here to meet new people and enjoy my free time while traveling", "Hello, I have 2 children and I am keen of cryptos. Let's meet to dicuss about business!", "I love discovering new culture but I hate doing it alone, let's meet!", "I like to talk and spend time with people! I am keen of new technologies and would like to discuss with some pros about it :)", "I am keen of arts and music. I am very open-minded and very interested in economy and technology", "Travelling is my hobby, I love my job because I travel everywhere around the world. I'm here because I'd like to share experiences with people and share ideas about business."].sample,
     country: Faker::Address.country,
     age: rand(25..40),
     years_exp: rand(3..20),
