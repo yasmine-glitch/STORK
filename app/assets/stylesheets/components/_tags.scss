@@ -16,11 +16,22 @@
 .form-index {
   display: flex;
   margin-bottom: 10px;
+  width: 100%;
+  .btn.btn-filter{
+    width: 45%;
+    padding-left: 0px;
+  }
+  .mapboxgl-ctrl-geocoder.mapboxgl-ctrl{
+    max-width: unset;
+  }
 }
 
 .filters {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 10px;
+  justify-content: space-between;
+  margin-right: 7px;
 }
 
 .tags-precision{

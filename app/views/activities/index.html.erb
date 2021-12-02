@@ -1,84 +1,81 @@
-<!-- affiche une liste de tags à sélectionner-->
-<div class="container">
-
-  <div class="title">
-    <h1><%= @title %></h1>
-  </div>
-
-  <div class="wrapper-tags">
-
-    <%= form_tag activities_path, method: :get, data: { controller: "auto-submit geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] }   do %>
-    <div class="form-index">
-      <div class= "btn btn-filter" style="width: 400px" data-geocoder-target="autocomplete" >
-        <%= text_field_tag :query,
-          params[:query],
-          data: { geocoder_target: "address", action: "change->auto-submit#submit" },
-          class: "form-control d-none"
-        %>
-      </div>
-
-      <div class= "btn btn-filter" style="width: 200px">
-        <%= text_field_tag :start_date,
-          params[:start_date],
-          class: "datepicker form-control",
-          "data-controller": "flatpickr",
-          value: Date.today,
-          data: { action: "change->auto-submit#submit" }
-        %>
-      </div>
-    </div>
-
-    <div class="filters">
-      <% Activity::CATEGORIES.each do |category| %>
-        <span class="tags-precision">
-          <% filter_tags = params[:categories].present? ? params[:categories] : @user_hobbies %>
-          <%= check_box_tag "categories[]", category[0], filter_tags.include?(category[0]), id: category[0], data: { action: "change->auto-submit#submit" } %>
-          <%= label_tag category[0], "#{category[0].capitalize} #{category[1]}" %>
-        </span>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="flex-container"
+<div class="d-flex"
      data-controller="mapbox"
      data-mapbox-markers-value="<%= @markers.to_json %>"
      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 
-  <!-- affiche les résultats d'activity cards correspondant à la recherche-->
-  <div class="container flex-item" style="width: 60vw;">
-    <div class="wrapper-index">
-      <% @activities.each do |activity| %>
-        <div class="popular-card-activity index"
-          id = "activity_<%= activity.id %>"
-          data-action="mouseenter->mapbox#redMarker mouseleave->mapbox#blueMarker">
-          <%= link_to activity_path(activity) do %>
-            <div class="pop-activity" style="
-              <% if activity.photo.attached? %>
-                background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
-              <% end %>
-            ">
-
-          <div class="popular-card-image">
-            <div class="img-details">
-              <p class="popular-card-title"><%= activity.name.truncate(25) %></p>
-            </div>
-          </div>
-            <div class="activity-infos">
-              <div><i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%a %b %e") %></div>
-              <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
-            </div>
-            <div class="banner-places-left">
-              <%= activity.capacity_max - activity.users.length %> places left... Register now !
-            </div>
-          </div>
-          <% end %>
+  <!-- Index left side : Header (title, search bar & tags list) and search results-->
+  <div style="padding-right: 10px">
+    <!-- Header (title, search bar & tags list)-->
+    <div class="wrapper-tags" style="max-width: 60vw; padding-left: 22px">
+      <h1><%= @title %></h1>
+      <!-- search bar-->
+      <%= form_tag activities_path, method: :get, data: { controller: "auto-submit geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] }   do %>
+      <div class="form-index">
+        <div class= "btn btn-filter" data-geocoder-target="autocomplete" >
+          <%= text_field_tag :query,
+            params[:query],
+            data: { geocoder_target: "address", action: "change->auto-submit#submit" },
+            class: "form-control d-none"
+          %>
         </div>
+        <div class= "btn btn-filter" style="width: 200px">
+          <%= text_field_tag :start_date,
+            params[:start_date],
+            class: "datepicker form-control",
+            "data-controller": "flatpickr",
+            value: Date.today,
+            data: { action: "change->auto-submit#submit" }
+          %>
+        </div>
+      </div>
+      <!-- tags list-->
+      <div class="filters">
+        <% Activity::CATEGORIES.each do |category| %>
+          <span class="tags-precision">
+            <% filter_tags = params[:categories].present? ? params[:categories] : @user_hobbies %>
+            <%= check_box_tag "categories[]", category[0], filter_tags.include?(category[0]), id: category[0], data: { action: "change->auto-submit#submit" } %>
+            <%= label_tag category[0], "#{category[0].capitalize} #{category[1]}" %>
+          </span>
+        <% end %>
+      </div>
       <% end %>
     </div>
+
+    <!-- affiche les résultats d'activity cards correspondant à la recherche-->
+    <div class="flex-item" style="width: 60vw; padding-left: 22px">
+      <div class="wrapper-index">
+        <% @activities.each do |activity| %>
+          <div class="popular-card-activity index"
+            id = "activity_<%= activity.id %>"
+            data-action="mouseenter->mapbox#redMarker mouseleave->mapbox#blueMarker">
+            <%= link_to activity_path(activity) do %>
+              <div class="pop-activity" style="
+                <% if activity.photo.attached? %>
+                  background-image:linear-gradient(rgba(0, 0, 0, 0), black), url(<%= cl_image_path activity.photo.key %>)
+                <% end %>
+              ">
+
+            <div class="popular-card-image">
+              <div class="img-details">
+                <p class="popular-card-title"><%= activity.name.truncate(25) %></p>
+              </div>
+            </div>
+              <div class="activity-infos">
+                <div><i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%a %b %e") %></div>
+                <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
+              </div>
+              <div class="banner-places-left">
+                <%= activity.capacity_max - activity.users.length %> places left... Register now !
+              </div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <!-- carte Mapbox-->
+
+  <!-- Index right side :carte Mapbox-->
   <div class="flex-item" style="width: 50vw; height: 100vh;"
     data-mapbox-target="map">
   </div>
