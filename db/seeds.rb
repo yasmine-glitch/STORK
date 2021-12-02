@@ -13,7 +13,7 @@ puts "Users destroyed ✅"
 
 puts 'Creating users...'
 
-user1 = { first_name: "Caroline", last_name: "Gognet", company: "Softbank", job_title: "fullstack developer", industry: "Bank/Insurane", bio: "Hi I am Caroline. I live and work in Japan since 2019. I am a fullstack developer at Softbank in Tokyo. I am passionate about tech and love meeting new people", country: "Japan", age: "36", years_exp: "12", email: "caroline@stork.com", password: "hellostork", password_confirmation: "hellostork", photo: "https://avatars.githubusercontent.com/u/89100834?v=4" }
+user1 = { first_name: "Caroline", last_name: "Gognet", company: "Softbank", job_title: "fullstack developer", industry: "Bank/Insurance", bio: "Hi I am Caroline. I am Mexican but live and work in Japan since 2019. I am a fullstack developer at Softbank in Tokyo. I am passionate about tech, cryptos and real estate investments. I'm on Stork to meet people that will make me discover new interests and enjoy my free time keeping meeting interesting people ", country: "Japan", age: "31", years_exp: "12", email: "caroline@stork.com", password: "hellostork", password_confirmation: "hellostork", photo: "https://avatars.githubusercontent.com/u/89100834?v=4" }
 
 user2 = { first_name: "Amelie", last_name: "Patin", company: "Accor", job_title: "product manager", industry: "Hospitality", bio: "I am Amélie, a PM based in Paris. I love Portugal, visiting cities and eating pastries. My dream is to open my own pastry shop one day !", country: "France", age: "35", years_exp: "12", email: "amelie@stork.com", password: "hellostork", password_confirmation: "hellostork", photo: "https://res.cloudinary.com/wagon/image/upload/c_fill,g_face,h_200,w_200/v1633340679/pyt6x9r7vu6fi9lq9ajs.jpg" }
 
@@ -46,10 +46,10 @@ picture_id = 1
     last_name: Faker::Name.last_name,
     company: Faker::Company.name,
     job_title: ["Developer", "Accountant", "Account Manager", "Investor", "Manager", "Event Planner", "Director of Operations"].sample,
-    industry: ["Tech/IT", "Food", "Bank/Assurance", "Hospitality", "Renewable Energy"].sample,
-    bio: ["I love bitcoin", "Hello, I am very kind and super cool", "I love football", "I like to talk and spend time with friends!", "I love to meet up new people. Feel free to contact me!", "Travelling is my hobby, I love my job because I travel everywhere around the world."].sample,
+    industry: ["Tech/IT", "Food", "Bank/Insurance", "Hospitality", "Renewable Energy", "Automotive"].sample,
+    bio: ["I love sports, I practice tennis and running. I'm here to meet new people and enjoy my free time while traveling", "Hello, I have 2 children and I am keen of cryptos. Let's meet to dicuss about business!", "I love discovering new culture but I hate doing it alone, let's meet!", "I like to talk and spend time with people! I am keen of new technologies and would like to discuss with some pros about it :)", "I love to meet up new people. Feel free to contact me!", "Travelling is my hobby, I love my job because I travel everywhere around the world. I'm here because I'd like to share exxperiences with people and share ideas about business."].sample,
     country: Faker::Address.country,
-    age: rand(28..60),
+    age: rand(25..40),
     years_exp: rand(3..20),
     password: "hellostork",
     password_confirmation: "hellostork"
@@ -72,7 +72,7 @@ picture_id_woman = 1
     company: Faker::Company.name,
     job_title: ["Developer", "Accountant", "Account Manager", "Investor", "Manager", "Event Planner", "Director of Operations"].sample,
     industry: ["Tech/IT", "Food", "Bank/Assurance", "Hospitality", "Renewable Energy"].sample,
-    bio: ["I love bitcoin", "Hello, I am very kind and super cool", "I love football and danse", "I like to talk and spend time with friends!", "I love to meet up new people. Feel free to contact me!", "Travelling is my hobby, I love my job because I travel everywhere around the world."].sample,
+    bio: ["I love sports, I practice tennis and running. I'm here to meet new people and enjoy my free time while traveling", "Hello, I have 2 children and I am keen of cryptos. Let's meet to dicuss about business!", "I love discovering new culture but I hate doing it alone, let's meet!", "I like to talk and spend time with people! I am keen of new technologies and would like to discuss with some pros about it :)", "I love to meet up new people. Feel free to contact me!", "Travelling is my hobby, I love my job because I travel everywhere around the world. I'm here because I'd like to share exxperiences with people and share ideas about business."].sample,
     country: Faker::Address.country,
     age: rand(28..60),
     years_exp: rand(3..20),
@@ -108,11 +108,11 @@ activity8 = { name: "Shopping in Akihabara", category: "Shopping", place: "Akiha
 
 activity9 = { name: "Samba ! Dance lessons", category: "Dancing", place: "Rio de Janeiro, Brazil", description: "I love dancing and am really excited about learning the basics of Samba with Ricardo and Manuela ! I met them during Carnival and they proposed to teach me some steps. Wanna join ?", owner_id: User.find_by_first_name('Yukio').id, capacity_max: "60", start_date: DateTime.new(2021,12,5,18), end_date: DateTime.new(2021,12,5,22), photo: "https://media.istockphoto.com/photos/couple-dancers-practicing-in-studio-holding-hands-picture-id1264865152?b=1&k=20&m=1264865152&s=170667a&w=0&h=Hd2LdgDMsfhenPsHtAJuv7h4QdbW1qLrcJbQZEV06HA=" }
 
-activity10 = { name: "The blockchain Job Fair in Hong Kong", category: "Tech", place: "5 Connaught Rd Central, Central, Hong Kong", description: "Are you looking for the opportunity of your dreams in Data or Blockchain technologies? This unique event is for you! Register quickly as places are limited and we will not be able to accept all registrations 👨🏼‍🎓", owner_id: User.find_by_first_name('Karim').id, capacity_max: "100", start_date: DateTime.new(2021,12,7,8), end_date: DateTime.new(2021,12,7,18), photo: "https://media.istockphoto.com/photos/bitcoin-network-concept-on-digital-screen-picture-id1297465792?b=1&k=20&m=1297465792&s=170667a&w=0&h=w4ADFjvxsfswEwKcsX1QZNVlBaXmPyYbzF13iuUggm0=" }
+activity10 = { name: "The blockchain Job Fair in Hong Kong", category: "Tech", place: "5 Connaught Rd Central, Central, Hong Kong", description: "Are you looking for the opportunity of your dreams in Data or Blockchain technologies? This unique event is for you! Register quickly as places are limited and we will not be able to accept all registrations 👨🏼‍🎓", owner_id: User.find_by_first_name('Karim').id, capacity_max: "100", start_date: DateTime.new(2022,01,12,8), end_date: DateTime.new(2022,01,12,18), photo: "https://media.istockphoto.com/photos/bitcoin-network-concept-on-digital-screen-picture-id1297465792?b=1&k=20&m=1297465792&s=170667a&w=0&h=w4ADFjvxsfswEwKcsX1QZNVlBaXmPyYbzF13iuUggm0=" }
 
 activity11 = { name: "Giant basketball tournament in Hong Kong", category: "Sports", place: "2 Tse Wai Ave, Ngau Chi Wan, Hong Kong", description: "For basketball fans! Come and participate in our giant basketball tournament on a legendary court overlooking the city of Hong Kong. We'll have a drink at the end of the tournament;)", owner_id: User.find_by_first_name('Karim').id, capacity_max: "40", start_date: DateTime.new(2021,12,3,16), end_date: DateTime.new(2021,12,3,22), photo: "https://images.unsplash.com/photo-1465509419584-d2b0ff1ce390?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJhc2tldGJhbGwlMjBob25nJTIwa29uZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" }
 
-activity12 = { name: "Ping Pong tournament", category: "Sports", place: "Campo dos Mártires da Pátria, Lisbon", description: "Don't miss this crazy event for ping pong lovers ! If you like to ping, if you like to pong. Be there !", owner_id: User.find_by_first_name('Caroline').id, capacity_max: "20", start_date: DateTime.new(2021,12,04,16), end_date: DateTime.new(2021,12,04,22), photo: "https://images.unsplash.com/photo-1593786481097-cf281dd12e9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGluZyUyMHBvbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" }
+activity12 = { name: "Morning footing near the Tage", category: "Sports", place: "Rua das Janelas Verdes, Lisbon", description: "Join me if you like for a 10kms run from Lisboa to Belem and back in order to enjoy the city while doing some exercise!", owner_id: User.find_by_first_name('Caroline').id, capacity_max: "15", start_date: DateTime.new(2021,12,04,10), end_date: DateTime.new(2021,12,04,12), photo: "https://images.unsplash.com/photo-1551927336-09d50efd69cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80" }
 
 activity13 = { name: "Olympiades du Wagon Lisboa", category: "Bars", place: "R. Dom Pedro V 89, 1250-093 Lisbon", description: "Come and test yourself against the best Ruby developers in Lisbon, the students at Le Wagon! Bag races, blind tests, surfing, beer pong: get ready !", owner_id: User.find_by_first_name('Sam').id, capacity_max: "30", start_date: DateTime.new(2021,12,9,16), end_date: DateTime.new(2021,12,9,22), photo: "https://media.istockphoto.com/photos/taking-aim-to-shoot-picture-id497960796?b=1&k=20&m=497960796&s=170667a&w=0&h=zQa5vznMz38sZM5JgrDpHJZx_3_vj5N_bDa2Z1uHldw=" }
 
@@ -130,9 +130,13 @@ activity19 = { name: "Pottery class with Tiago", category: "Crafts", place: "Rua
 
 activity20 = { name: "Shopping spree in downtown Lisbon!", category: "Shopping", place: "Avenida da Liberdade, Lisbon", description: "Lisbon is a great city to shop! Join me for a friendly trip through the city's best shopping streets. We will start with Avenida da Liberdade then Rua Garrett, then Alfama and finally Rua Augusta.", owner_id: User.all.sample(1)[0].id, capacity_max: "8", start_date: DateTime.new(2021,12,7,14), end_date: DateTime.new(2021,12,7,18), photo: "https://media.istockphoto.com/photos/rua-augusta-and-baixa-lisbon-picture-id531477763?b=1&k=20&m=531477763&s=170667a&w=0&h=qlOvsCEf7RbmFtuFgtzsEnAZYpP8at1OhV0wEITJIhw=" }
 
-activity21 = { name: "We are going to dance ! Salsa, Kizomba", category: "Dancing", place: "Rua da Cintura do Porto de Lisboa Armazem, Lisbon", description: "For lovers of Salsa and Kizomba, go for an evening of madness with very very good dancers. Be careful, you need a minimum level in Latin dance to really have fun on the dance floor.", owner_id: User.all.sample(1)[0].id, capacity_max: "20", start_date: DateTime.new(2021,12,4,21), end_date: DateTime.new(2021,12,5,6), photo: "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2Fsc2F8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" }
+activity21 = { name: "We are going to dance ! Salsa, Kizomba", category: "Dancing", place: "Rua Antonio Pedro 40, Arroios, Lisbon", description: "For lovers of Salsa and Kizomba, go for an evening of madness with very very good dancers. Be careful, you need a minimum level in Latin dance to really have fun on the dance floor.", owner_id: User.all.sample(1)[0].id, capacity_max: "20", start_date: DateTime.new(2021,12,3,21), end_date: DateTime.new(2021,12,3,6), photo: "https://images.unsplash.com/photo-1504609813442-a8924e83f76e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2Fsc2F8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" }
 
-[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15, activity16, activity17, activity18, activity19, activity20, activity21].each_with_index do |attributes, index|
+activity22 = { name: "Dinner in Lisbon", category: "Food", place: "Rua da Adiça 58, Lisbon", description: "I propose to have dinner in a nice local restaurant in Lisboa, let's meet and enjoy while networking!", owner_id: User.all.sample(1)[0].id, capacity_max: "6", start_date: DateTime.new(2021,12,3,20), end_date: DateTime.new(2021,12,3,23), photo: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" }
+
+activity23 = { name: "Fado night show", category: "Visiting", place: " rua das Escolas Gerais, Lisbon", description: "Join me to watch a show of a typical portuguese song. You can buy your tickets online www.fadolisbon.com and we meet there 30 minutes before the show", owner_id: User.all.sample(1)[0].id, capacity_max: "5", start_date: DateTime.new(2021,12,3,21), end_date: DateTime.new(2021,12,3,22), photo: "https://media.istockphoto.com/photos/mature-male-guitarist-on-the-stage-picture-id1349231100?b=1&k=20&m=1349231100&s=170667a&w=0&h=qsn-mxEfhddXFcs1uqVJ0MzOSjbNuOMSGXoXZb9PHFo=" }
+
+[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15, activity16, activity17, activity18, activity19, activity20, activity21, activity22, activity23].each_with_index do |attributes, index|
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save
@@ -268,10 +272,10 @@ User.all.sample(28).each do |user|
   booking.save!
 end
 
-puts 'Creating 17 bookings for the activity -- Ping Pong tournament....'
-User.all.sample(17).each do |user|
+puts 'Creating 15 bookings for the activity -- Morning footing near the Tage....'
+User.all.sample(15).each do |user|
   booking = Booking.new(
-    activity_id: Activity.find_by_name('Ping Pong tournament').id,
+    activity_id: Activity.find_by_name('Morning footing near the Tage').id,
     user_id: user.id
   )
   booking.save!
@@ -299,6 +303,24 @@ puts 'Creating 26 bookings for the activity -- Networking event for tech people 
 User.all.sample(26).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Networking event for tech people in Bairro Alto').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 4 bookings for the activity -- Dinner in Lisbon....'
+User.all.sample(4).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Dinner in Lisbon').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 4 bookings for the activity -- Fado night show....'
+User.all.sample(4).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Fado night show').id,
     user_id: user.id
   )
   booking.save!
