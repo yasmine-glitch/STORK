@@ -83,7 +83,7 @@ class ActivitiesController < ApplicationController
         id: activity.id,
         info_window: render_to_string(partial: "info_window", locals: { activity: activity })
       }
-    end
+    end 
   end
 
 
