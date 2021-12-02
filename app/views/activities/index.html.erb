@@ -61,11 +61,17 @@
             </div>
               <div class="activity-infos">
                 <div><i class="far fa-calendar-alt"></i> <%= activity.start_date.strftime("%a %b %e") %></div>
-                <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length %> </p>
+                <p class="participants-home"><i class="fas fa-user-friends"></i> <%= activity.users.length + 1 %> </p>
               </div>
-              <div class="banner-places-left">
-                <%= activity.capacity_max - activity.users.length %> places left... Register now !
-              </div>
+              <% if activity.capacity_max - activity.users.length - 1 == 0  %>
+                <div class="banner-places-left bg-dark">
+                  Sorry, Activity Full
+                </div>
+              <% else %>
+                <div class="banner-places-left">
+                  <%= activity.capacity_max - activity.users.length - 1 %> places left... Register now !
+                </div>
+              <% end %>
             </div>
             <% end %>
           </div>
