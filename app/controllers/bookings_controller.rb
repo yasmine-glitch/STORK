@@ -7,7 +7,7 @@ class BookingsController < ApplicationController
     @booking.activity = @activity
     authorize @activity
     if @booking.save
-      redirect_to dashboard_path(@booking)
+      redirect_to dashboard_path
     else
       render :new
     end
