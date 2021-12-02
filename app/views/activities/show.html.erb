@@ -63,7 +63,7 @@
                 </div>
               </div>
               <div class="d-flex justify-content-end mt-5 me-3">
-                <div class="hosting-btn" data-controller="sweetalert">
+                <div class="hosting-btn" data-controller="sweetalert confetti">
                   <%if @activity.users.include?(current_user) %>
                     <p id="already_in">You are registered for this activity!</p>
                     <div class="d-flex justify-content-center">
@@ -75,7 +75,7 @@
                     <%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "hidden cancel-btn" unless current_user == @activity.owner %>
                   <% elsif policy(@activity).create? && @all_participants.count < @activity.capacity_max %>
                     <% unless current_user == @activity.owner  %>
-                      <div id="registration">Count me in!</div>
+                      <div id="registration" data-action="click->confetti#displayConfetti">Count me in!</div>
                       <%= link_to "", activity_bookings_path(@activity), method: :post, class: "hidden registration_hidden_btn" %>
                     <% end %>
                   <% else %>
