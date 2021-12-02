@@ -48,7 +48,7 @@
 
 .dashboard_button:hover {
   margin-top: 20px;
-  background-color: #e65c5d;
+  background-color: #e53434;
   border: none;
   border-radius: 8px;
   color: #f7dd74;
@@ -67,4 +67,19 @@
 .table .booking_status {
   color:#6FCB64;
   font-weight: bold;
+}
+
+.table i {
+  color: black;
+  font-weight: 400;
+}
+
+.activity-cards-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+}
+
+.hover-activity-cards:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
