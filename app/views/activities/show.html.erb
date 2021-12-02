@@ -1,23 +1,23 @@
 <div class="container mt-3">
   <div class="d-flex">
-    <div class="card-owner-infos-wrapper">
+    <div class="card-owner-infos-wrapper" style="border-radius: 5px">
       <div class="card-owner-infos m-5">
         <%= link_to user_path(@activity.owner_id) do %>
           <%= cl_image_tag @activity.owner.photo.key, class: "avatar-show-large", alt: "avatar-show-large" %>
         <% end %>
         <div class="card-owner-infos-bio mt-3">
-          <h5>About <%= @activity.owner.first_name %> <%= @activity.owner.last_name %> </h5>
-          <p><%= @activity.owner.bio %></p>
+          <h3 style="margin-top: 16px">About <%= @activity.owner.first_name %> <%= @activity.owner.last_name %> </h3>
+          <p style="margin-top: 20px"><%= @activity.owner.bio %></p>
         </div>
 
-        <div class="card-owner-grid">
-            <p class="card-owner-infos-details"><i class="fas fa-laptop-house"></i> <br> <%= @activity.owner.company %></p>
-            <p class="card-owner-infos-details"><i class="fas fa-briefcase"></i> <br> <%= @activity.owner.industry %></p>
-            <p class="card-owner-infos-details"><i class="fas fa-address-card"></i> <br> <%= @activity.owner.job_title %></p>
-            <p class="card-owner-infos-details"><i class="fas fa-globe"></i> <br> <%= @activity.owner.country %></p>
+        <div >
+            <p class="card-owner-infos-details" style="margin-top: 40px"><i class="fas fa-laptop-house" style="padding-right: 16px;"></i> <%=@activity.owner.company %></p>
+            <p class="card-owner-infos-details"><i class="fas fa-briefcase" style="padding-right: 16px;"></i> <%=@activity.owner.industry %></p>
+            <p class="card-owner-infos-details"><i class="fas fa-address-card" style="padding-right: 16px;"></i> <%=@activity.owner.job_title %></p>
+            <p class="card-owner-infos-details"><i class="fas fa-globe" style="padding-right: 16px;"></i> <%=@activity.owner.country %></p>
         </div>
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between" style="margin-top: 82px">
           <div class="card-owner-infos-past">
             <p>Participated 🚀</p>
             <strong><%= @activity.owner.activities.length  %></strong>
@@ -40,19 +40,25 @@
 
 
     <div class="card-activity-description-wrapper">
-      <div class="card-activity-description">
-        <img src="<%= cl_image_path @activity.photo.key %>" />
-        <div class="d-flex flex-column", style="flex-grow: 1; height: 100%;">
+      <div class="card-activity-description" style="border-radius: 5px">
+        <img src="<%= cl_image_path @activity.photo.key %>" style="height: 55%" />
+        <div class="d-flex flex-column">
           <div class="card-activity-description-infos">
             <div>
               <h2 id='activity-name'><%= @activity.name %></h2>
               <p class="mt-2"><%= @activity.description %></p>
-              <div class="d-flex">
-                <div class="card-activity-description-date me-4"><i class="far fa-calendar-alt"></i>
-                  <span id="activity-date"><%= @activity.start_date.strftime("%A %B %e") %></span>
+              <div class="d-flex" style="justify-content: space-between;">
+                <div class="card-activity-description-date me-4 d-flex" style="width: 50%; padding-inline: 24px; justify-content: space-between">
+                  <div>
+                    <i class="far fa-calendar-alt"></i>
+                    <span id="activity-date"><%= @activity.start_date.strftime("%A %B %e") %></span>
+                  </div>
+                  <div>
+                    <i class="fas fa-clock"></i>
+                    <span id="activity-date"><%= @activity.start_date.strftime("%H:%M") %></span>
+                  </div>
                 </div>
-
-                <div class="card-activity-description-date"><i class="fas fa-map-marked-alt"></i>
+                <div class="card-activity-description-date" style="padding-inline: 24px"><i class="fas fa-map-marked-alt"></i>
                   <%= @activity.place %>
                 </div>
               </div>

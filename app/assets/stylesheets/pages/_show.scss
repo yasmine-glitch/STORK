@@ -200,7 +200,8 @@ color: #e65c5d;
 }
 
 .card-owner-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 1em;
+  // display: flex;
+  // flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10%;
 }
