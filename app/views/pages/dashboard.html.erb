@@ -30,7 +30,7 @@
       <div class="dashboard_card" id="reservation_card">
         <h2>You have <%=pluralize(@user.bookings.count, "upcoming activity")%>!</h2>
         <% if @user.bookings.exists? %>
-          <table class="table">
+          <table class="table icons-bold">
             <tr>
               <th>Activity</th>
               <th>Place</th>
