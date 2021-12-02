@@ -112,7 +112,7 @@ activity10 = { name: "The blockchain Job Fair in Hong Kong", category: "Tech", p
 
 activity11 = { name: "Giant basketball tournament in Hong Kong", category: "Sports", place: "2 Tse Wai Ave, Ngau Chi Wan, Hong Kong", description: "For basketball fans! Come and participate in our giant basketball tournament on a legendary court overlooking the city of Hong Kong. We'll have a drink at the end of the tournament;)", owner_id: User.find_by_first_name('Karim').id, capacity_max: "40", start_date: DateTime.new(2021,12,3,16), end_date: DateTime.new(2021,12,3,22), photo: "https://images.unsplash.com/photo-1465509419584-d2b0ff1ce390?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGJhc2tldGJhbGwlMjBob25nJTIwa29uZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60" }
 
-activity12 = { name: "Morning footing near the Tage", category: "Sports", place: "Rua das Janelas Verdes, Lisbon", description: "Join me if you like for a 10kms run from Lisboa to Belem and back in order to enjoy the city while doing some exercise!", owner_id: User.find_by_first_name('Caroline').id, capacity_max: "15", start_date: DateTime.new(2021,12,04,10), end_date: DateTime.new(2021,12,04,12), photo: "https://images.unsplash.com/photo-1551927336-09d50efd69cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80" }
+activity12 = { name: "Morning footing near Tage", category: "Sports", place: "Rua das Janelas Verdes, Lisbon", description: "Join me if you like for a 10kms run from Lisboa to Belem and back in order to enjoy the city while doing some exercise!", owner_id: User.find_by_first_name('Caroline').id, capacity_max: "15", start_date: DateTime.new(2021,12,04,10), end_date: DateTime.new(2021,12,04,12), photo: "https://images.unsplash.com/photo-1551927336-09d50efd69cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80" }
 
 activity13 = { name: "Olympiades du Wagon Lisboa", category: "Bars", place: "R. Dom Pedro V 89, 1250-093 Lisbon", description: "Come and test yourself against the best Ruby developers in Lisbon, the students at Le Wagon! Bag races, blind tests, surfing, beer pong: get ready !", owner_id: User.find_by_first_name('Sam').id, capacity_max: "30", start_date: DateTime.new(2021,12,9,16), end_date: DateTime.new(2021,12,9,22), photo: "https://media.istockphoto.com/photos/taking-aim-to-shoot-picture-id497960796?b=1&k=20&m=497960796&s=170667a&w=0&h=zQa5vznMz38sZM5JgrDpHJZx_3_vj5N_bDa2Z1uHldw=" }
 
@@ -134,9 +134,11 @@ activity21 = { name: "We are going to dance ! Salsa, Kizomba", category: "Dancin
 
 activity22 = { name: "Dinner in Lisbon", category: "Food", place: "Rua da Adiça 58, Lisbon", description: "I propose to have dinner in a nice local restaurant in Lisboa, let's meet and enjoy while networking!", owner_id: User.all.sample(1)[0].id, capacity_max: "6", start_date: DateTime.new(2021,12,3,20), end_date: DateTime.new(2021,12,3,23), photo: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" }
 
-activity23 = { name: "Fado night show", category: "Visiting", place: " rua das Escolas Gerais, Lisbon", description: "Join me to watch a show of a typical portuguese song. You can buy your tickets online www.fadolisbon.com and we meet there 30 minutes before the show", owner_id: User.all.sample(1)[0].id, capacity_max: "5", start_date: DateTime.new(2021,12,3,21), end_date: DateTime.new(2021,12,3,22), photo: "https://media.istockphoto.com/photos/mature-male-guitarist-on-the-stage-picture-id1349231100?b=1&k=20&m=1349231100&s=170667a&w=0&h=qsn-mxEfhddXFcs1uqVJ0MzOSjbNuOMSGXoXZb9PHFo=" }
+activity23 = { name: "Fado night show", category: "Visiting", place: "Rua das Escolas Gerais, Lisbon", description: "Join me to watch a show of a typical portuguese song. You can buy your tickets online www.fadolisbon.com and we meet there 30 minutes before the show", owner_id: User.all.sample(1)[0].id, capacity_max: "5", start_date: DateTime.new(2021,12,3,21), end_date: DateTime.new(2021,12,3,22), photo: "https://media.istockphoto.com/photos/mature-male-guitarist-on-the-stage-picture-id1349231100?b=1&k=20&m=1349231100&s=170667a&w=0&h=qsn-mxEfhddXFcs1uqVJ0MzOSjbNuOMSGXoXZb9PHFo=" }
 
-[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15, activity16, activity17, activity18, activity19, activity20, activity21, activity22, activity23].each_with_index do |attributes, index|
+activity24 = { name: "Lucha libre show", category: "Visiting", place: "Rua Barata Salgueiro 5, Lisbon", description: "Join me to watch a show of lucha libre. It is wrestling and the show looks amazing! You can buy your tickets online www.luchalibrelisbon.com and we meet there 30 minutes before the show", owner_id: User.all.sample(1)[0].id, capacity_max: "10", start_date: DateTime.new(2021,12,3,20), end_date: DateTime.new(2021,12,3,22), photo: "https://images.unsplash.com/photo-1563844528129-067e06a638e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" }
+
+[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15, activity16, activity17, activity18, activity19, activity20, activity21, activity22, activity23, activity24].each_with_index do |attributes, index|
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save
@@ -272,10 +274,10 @@ User.all.sample(28).each do |user|
   booking.save!
 end
 
-puts 'Creating 14 bookings for the activity -- Morning footing near the Tage....'
-User.all.sample(14).each do |user|
+puts 'Creating 13 bookings for the activity -- Morning footing near the Tage....'
+User.all.sample(13).each do |user|
   booking = Booking.new(
-    activity_id: Activity.find_by_name('Morning footing near the Tage').id,
+    activity_id: Activity.find_by_name('Morning footing near Tage').id,
     user_id: user.id
   )
   booking.save!
@@ -308,8 +310,8 @@ User.all.sample(26).each do |user|
   booking.save!
 end
 
-puts 'Creating 4 bookings for the activity -- Dinner in Lisbon....'
-User.all.sample(4).each do |user|
+puts 'Creating 3 bookings for the activity -- Dinner in Lisbon....'
+User.all.sample(3).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Dinner in Lisbon').id,
     user_id: user.id
@@ -317,10 +319,19 @@ User.all.sample(4).each do |user|
   booking.save!
 end
 
-puts 'Creating 4 bookings for the activity -- Fado night show....'
-User.all.sample(4).each do |user|
+puts 'Creating 3 bookings for the activity -- Fado night show....'
+User.all.sample(3).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Fado night show').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 6 bookings for the activity -- Lucha libre show....'
+User.all.sample(6).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Lucha libre show').id,
     user_id: user.id
   )
   booking.save!
