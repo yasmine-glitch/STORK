@@ -1,25 +1,20 @@
 .card-user{
     flex-grow: 1;
-    background: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 10px;
+    background: #ffffff;
+    border-radius: 5px;
     margin: 20px;
     flex-direction: column;
     padding: 25px;
-    text-align: center;
+    text-align: left;
     p{
     color: $black;
-    };
-    h3{
-      color: $red-poppy;
     };
   }
 
 .user-bio{
   flex-grow: 1;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-radius: 10px;
+  background: #ffffff;
+  border-radius: 5px;
   margin: 20px;
   flex-direction: column;
   padding: 25px;
@@ -31,6 +26,24 @@
   };
   ul {
     list-style-type: none;
+  }
+  .hobby-user {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid rgb(238, 219, 219);
+    background-color: rgb(255, 255, 255);
+    outline: none;
+    margin: 0px;
+    border-radius: 30px;
+    color: rgb(34, 34, 34);
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    position: relative;
+    padding: 10px 16px;
+    line-height: 16px;
+    font-weight: normal;
+    font-size: larger;
+    margin-top: 10px;
   }
 }
 
@@ -103,11 +116,11 @@
 }
 
 .left-panel {
-  width: 25%;
+  flex-grow: 1;
 }
 
 .right-panel {
-  width: 75%;
+  flex-grow: 1;
   p {
     font-size: 18px;
   }
@@ -116,18 +129,20 @@
   }
 }
 
-#information_table td {
+.information_table {
+  display: flex;
   border-bottom-width: 0;
   font-size: 18px;
-}
-
-#information_table th {
-  border-bottom-width: 0;
-  .fa-user {
-    font-size: 22px;
-    font-weight: bold;
+  .main-profile-info {
+    padding-left: 1em;
+    text-align: left;
+    
+    h6 {
+      color: $red-poppy;
+    }
   }
 }
+
 
 #information_table .user_name {
   font-size: 22px;
