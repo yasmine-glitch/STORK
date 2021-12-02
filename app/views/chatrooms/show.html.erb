@@ -1,10 +1,10 @@
-<div style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url('<%= cl_image_path @activity.photo.key %>')">
+<div class="chatroom-wrapper-wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),url('<%= cl_image_path @activity.photo.key %>')">
   <div class="chatroom-wrapper">
-  <div class="container p-3">
+
     <div class="d-flex chatbox_box">
 
       <div class="all_chats">
-        <h2 class="mt-4 ms-5 me-3 mb-4">Chats</h2>
+        <h2 class="mt-4 ms-5 me-3 mb-4">Messages</h2>
         <% @current_user.activities.each do |activity| %>
           <% if activity.chatroom.messages.length != 0 %>
             <%= link_to activity_chatroom_path(activity, activity.chatroom) do %>
@@ -57,7 +57,7 @@
         </div>
 
         <%= simple_form_for [@activity, @chatroom, @message], remote: true, data:{action: "submit->chatroom-subscription#disconnect"} do |f| %>
-          <div class="d-flex">
+          <div class="d-flex" id='chat-input'>
             <%= f.input :content, id: "input_form", label: false, placeholder: "Message ##{@chatroom.name}" %>
             <%= button_tag type: 'submit', id: "send_message_button" do %>
               <i class="fas fa-paper-plane"></i>
@@ -66,7 +66,7 @@
         <% end %>
       </div>
     </div>
-  </div>
+
 </div>
 </div>
 

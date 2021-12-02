@@ -1,6 +1,5 @@
 .chatroom {
   background: white;
-  height: calc(100vh - 75px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,6 +28,10 @@
 .chatroom-wrapper {
   backdrop-filter: blur(8px);
   // background: contain;
+  flex-grow: 1;
+  display: flex;
+  padding: 2em 0;
+  height: calc(100vh - 81px - 100px);
 }
 
 .new_message {
@@ -43,7 +46,6 @@
 }
 
 .all_chats {
-  height: calc(100vh - 75px);
   background: white;
 
   h1 {
@@ -76,8 +78,8 @@
 
 .chatbox_box {
   border: 1px solid rgb(220, 220, 220);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 0 200px;
+  width: 80vw;
 }
 
 
@@ -177,4 +179,21 @@ background-color: aliceblue;
     margin-top: 5px;
     margin-bottom: 5px;
   }
+}
+
+.chatrooms-show .content-wrapper {
+  display: flex;
+  flex-direction: column
+}
+
+.chatroom-wrapper-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 81px - 100px);
+  overflow: hidden;
+}
+
+#chat-input .message_content {
+  margin-bottom: unset !important;
 }
