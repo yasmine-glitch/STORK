@@ -138,7 +138,9 @@ activity23 = { name: "Fado night show", category: "Visiting", place: "Rua das Es
 
 activity24 = { name: "Lucha libre show", category: "Visiting", place: "Rua Barata Salgueiro 5, Lisbon", description: "Join me to watch a show of lucha libre. It is wrestling and the show looks amazing! You can buy your tickets online www.luchalibrelisbon.com and we meet there 30 minutes before the show", owner_id: User.all.sample(1)[0].id, capacity_max: "10", start_date: DateTime.new(2021,12,3,20), end_date: DateTime.new(2021,12,3,22), photo: "https://images.unsplash.com/photo-1563844528129-067e06a638e5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" }
 
-[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15, activity16, activity17, activity18, activity19, activity20, activity21, activity22, activity23, activity24].each_with_index do |attributes, index|
+activity25 = { name: "Drinks Tapas & Karaoke", category: "Singing", place: "Rua Seara Nova 5, Lisbon", description: "Join me to enjoy the atmosphere of Lisbon around some drinks and let benefit for a portuguese night to sing Karaoke. Let you talent coming out 🎤. We meet in front of the bar", owner_id: User.all.sample(1)[0].id, capacity_max: "15", start_date: DateTime.new(2021,12,3,18), end_date: DateTime.new(2021,12,3,22), photo: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" }
+
+[activity1, activity2, activity3, activity4, activity5, activity6, activity7, activity8, activity9, activity10, activity11, activity12, activity13, activity14, activity15, activity16, activity17, activity18, activity19, activity20, activity21, activity22, activity23, activity24, activity25].each_with_index do |attributes, index|
   activity = Activity.new(attributes)
   activity.photo.attach(io: URI.open(attributes[:photo]), filename: "#{activity.owner_id}_#{index}.jpg", content_type: "image/jpg")
   activity.save
@@ -332,6 +334,15 @@ puts 'Creating 6 bookings for the activity -- Lucha libre show....'
 User.all.sample(6).each do |user|
   booking = Booking.new(
     activity_id: Activity.find_by_name('Lucha libre show').id,
+    user_id: user.id
+  )
+  booking.save!
+end
+
+puts 'Creating 9 bookings for the activity -- Drinks Tapas & Karaoke....'
+User.all.sample(9).each do |user|
+  booking = Booking.new(
+    activity_id: Activity.find_by_name('Drinks Tapas & Karaoke').id,
     user_id: user.id
   )
   booking.save!
