@@ -37,7 +37,7 @@
 }
 
 .card-activity-description-infos {
-  height: 100%;
+  height: 270px;
 }
 
 .card-activity-description-infos .card-activity-description-user {
@@ -48,6 +48,7 @@
 }
 
 .card-activity-description-date {
+  align-items: center;
   margin-top: 20px;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.4);

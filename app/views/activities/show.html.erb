@@ -17,7 +17,7 @@
             <p class="card-owner-infos-details"><i class="fas fa-globe" style="padding-right: 16px;"></i> <%=@activity.owner.country %></p>
         </div>
 
-        <div class="d-flex justify-content-between" style="margin-top: 82px">
+        <div class="d-flex justify-content-between" style="margin-top: 50px">
           <div class="card-owner-infos-past">
             <p>Participated 🚀</p>
             <strong><%= @activity.owner.activities.length  %></strong>
@@ -41,17 +41,17 @@
 
     <div class="card-activity-description-wrapper">
       <div class="card-activity-description" style="border-radius: 5px">
-        <img src="<%= cl_image_path @activity.photo.key %>" style="height: 55%" />
+        <img src="<%= cl_image_path @activity.photo.key %>" style="height: 500px" />
         <div class="d-flex flex-column">
           <div class="card-activity-description-infos">
             <div>
               <h2 id='activity-name'><%= @activity.name %></h2>
               <p class="mt-2"><%= @activity.description %></p>
-              <div class="d-flex" style="justify-content: space-between;">
+              <div class="d-flex" style="justify-content: space-between; margin-top: 25px">
                 <div class="card-activity-description-date me-4 d-flex" style="width: 50%; padding-inline: 24px; justify-content: space-between">
                   <div>
                     <i class="far fa-calendar-alt"></i>
-                    <span id="activity-date"><%= @activity.start_date.strftime("%A %B %e") %></span>
+                    <span id="activity-date"><%= @activity.start_date.strftime("%a %b %e") %></span>
                   </div>
                   <div>
                     <i class="fas fa-clock"></i>
