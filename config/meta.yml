@@ -1,5 +1,5 @@
 meta_product_name: "STORK"
 meta_title: "STORK - Develop your network wherever you go!"
-meta_description: "STORK allows you to do some networking while enjoying time when you are travelling for work"
-meta_image: "logo_stork.png" # should exist in `app/assets/images/`
+meta_description: "STORK allows you to do some professional networking while enjoying time when you are travelling"
+meta_image: "logo_og_image.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
