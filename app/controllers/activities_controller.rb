@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = policy_scope(Activity).order(start_date: :asc)
-    @user_hobbies = current_user.hobby_list
+      @user_hobbies = current_user.hobby_list
     params[:categories] ||= []
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
@@ -89,6 +89,7 @@ class ActivitiesController < ApplicationController
 
   def show
     @activity = Activity.find(params[:id])
+    @activities = Activity.where(owner_id: @activity.owner_id)
     authorize @activity
     @booking = Booking.new
     @booking_exist = Booking.find_by(activity_id: params[:id], user_id: current_user)
