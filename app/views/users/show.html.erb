@@ -11,7 +11,7 @@
           <table class="table" id="information_table">
             <tr>
               <th><i class="fas fa-user"></i></th>
-              <td><strong><%= @user.first_name %> <%= @user.last_name %><strong></td>
+              <td class="user_name"><strong><%= @user.first_name %> <%= @user.last_name %><strong></td>
             </tr>
             <tr>
               <th><i class="fas fa-envelope-open-text"></i></th>
@@ -41,19 +41,18 @@
         </div>
       </div>
 
-    <div class="wrapper">
+    <div class="wrapper right-panel">
       <div class="user-bio">
         <h3><a href="#"><i class="fab fa-twitter"></i></a> <a href="#"><i class="fab fa-linkedin"></i></a></h3>
         <h3>Hello, my name is <%= @user.first_name %></h3>
         <p>member since <%= @user.created_at.strftime("%e %^b %Y") %></p>
         <h4>About <%= @user.first_name %></h4>
         <p><%= @user.bio %></p>
-        <h4>My hobbies</h4>
-          <ul>
+        <h4>Hobbies</h4>
             <%@user.hobbies.each do |hobby|%>
-              <li><%= hobby %><li>
+              <% hobby_test = Activity::CATEGORIES.select{ |category| category.include?(hobby.name) } %>
+              <p><%= hobby %> <%= hobby_test[0][1] %><p>
             <%end%>
-          </ul>
       </div>
     </div>
   </div>
