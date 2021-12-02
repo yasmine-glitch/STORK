@@ -19,7 +19,7 @@ export default class extends Controller {
     this.geocoder.addTo(this.autocompleteTarget);
     this.geocoder.on("result", event => {
       this._setInputValue(event)
-      // this.element.submit()
+      if (this.element.tagName === "FORM") { this.element.submit()};
     });
     this.geocoder.on("clear", () => this._clearInputValue());
   }
