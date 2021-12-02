@@ -1,7 +1,7 @@
 class ActivitiesController < ApplicationController
   def index
     @activities = policy_scope(Activity).order(start_date: :asc)
-    @user_hobbies = current_user.hobby_list
+      @user_hobbies = current_user.hobby_list
     params[:categories] ||= []
 
     ## RETURN THE RESULTS FROM THE HOMEPAGE SEARCH
@@ -11,13 +11,13 @@ class ActivitiesController < ApplicationController
       # if yes, render all activities located XX km around this address
       @activities = @activities.search_by_place(params[:query]).near(params[:query], 100)
       # return only the activity which are not full
-      @activities = @activities.select { |activity| activity.bookings.length < activity.capacity_max }
+      @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter the activities depending on the hobbies of the user || the filters he clicks on the index
       filter_activities
       # check if the user enter a date
       if params[:start_date].present?
         # if yes, filter the previous search results by start_date
-        @activities = @activities.filter { |activity| activity.start_date.to_date >= params[:start_date].to_date }
+        @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
         # if there is no activity on the selected date
         if @activities.empty?
           # inform the user and advise him to take a look to other activities
@@ -26,7 +26,7 @@ class ActivitiesController < ApplicationController
           # filter the activities depending on the hobbies of the user || the filters he clicks on the index
           filter_activities
           # return only the activity which are not full
-          @activities = @activities.select { |activity| activity.bookings.length < activity.capacity_max }
+          @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
           # filter the previous search results by start_date
           @activities = @activities.filter { |activity| activity.start_date.to_date > params[:start_date].to_date }
         else
@@ -38,7 +38,7 @@ class ActivitiesController < ApplicationController
       # if the user didn't typed an address, check if he typed a date
     elsif params[:start_date].present?
       # if yes, render all activities with the same start date
-      @activities = @activities.filter { |activity| activity.start_date.to_date >= params[:start_date].to_date }
+      @activities = @activities.filter { |activity| activity.start_date.to_date == params[:start_date].to_date }
       # filter activities
       filter_activities
       # if there is no activity at that date
@@ -54,7 +54,7 @@ class ActivitiesController < ApplicationController
       # if the user didn't type any place or date
     else
       # render all activities not fully booked
-      @activities = @activities.select { |activity| activity.bookings.length < activity.capacity_max }
+      @activities = @activities.select { |activity| activity.bookings.length <= activity.capacity_max }
       # filter activities with a future start date
       @activities = @activities.filter { |activity| activity.start_date.to_date >= DateTime.now }
       # filter activities
@@ -83,7 +83,7 @@ class ActivitiesController < ApplicationController
         id: activity.id,
         info_window: render_to_string(partial: "info_window", locals: { activity: activity })
       }
-    end 
+    end
   end
 
 
@@ -100,7 +100,7 @@ class ActivitiesController < ApplicationController
         lat: @activity.latitude,
         lng: @activity.longitude,
         info_window: render_to_string(partial: "info_window", locals: { activity: @activity }),
-        } ]
+        }]
   end
 
   def create

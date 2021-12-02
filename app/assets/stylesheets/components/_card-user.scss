@@ -106,10 +106,30 @@
   width: 25%;
 }
 
+.right-panel {
+  width: 75%;
+  p {
+    font-size: 18px;
+  }
+  li {
+    font-size: 18px;
+  }
+}
+
 #information_table td {
   border-bottom-width: 0;
+  font-size: 18px;
 }
 
 #information_table th {
   border-bottom-width: 0;
+  .fa-user {
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
+
+#information_table .user_name {
+  font-size: 22px;
+  font-weight: bold;
 }
