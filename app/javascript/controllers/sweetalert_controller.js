@@ -7,7 +7,7 @@ export default class extends Controller {
   connect() {
     const activity = document.querySelector("#activity-name").innerText
     const date = document.querySelector("#activity-date").innerText
-    console.log(activity)
+    // console.log(activity)
     this.initSweetalert('#registration', {
       title: `Get ready for ${activity}!`,
       text: `Happening on ${date}`,
