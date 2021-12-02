@@ -16,14 +16,14 @@
         <ul class="navbar-nav me-auto">
           <% if user_signed_in? %>
             <li class="nav-item active">
-              <%= link_to "Discover", "/activities", class: "nav-link", id: "nav-link" %>
+              <%= link_to "Discover", "/activities", class: "nav-link", id: "nav-link-discover" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Bookings", "/dashboard", class: "nav-link", id: "nav-link" %>
+              <%= link_to "Bookings", "/dashboard", class: "nav-link", id: "nav-link-bookings" %>
             </li>
             <% if current_user.activities.present? %>
               <li class="nav-item">
-                <%= link_to "Messages", activity_chatroom_path(current_user.activities.last, current_user.activities.last.chatroom), method: :get, class: "nav-link", id: "nav-link" %>
+                <%= link_to "Messages", activity_chatroom_path(current_user.activities.last, current_user.activities.last.chatroom), method: :get, class: "nav-link", id: "nav-link-messages" %>
               </li>
             <% end %>
             <li class="nav-item dropdown">

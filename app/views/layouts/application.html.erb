@@ -48,7 +48,7 @@
     <meta name="twitter:image:src" content="<%= meta_image %>">
   </head>
 
-  <body data-current-user-id="<%= current_user.id if current_user %>">
+  <body data-current-user-id="<%= current_user.id if current_user %>" class="<%=params[:controller]%>-<%=params[:action]%>">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <div class="content-wrapper">

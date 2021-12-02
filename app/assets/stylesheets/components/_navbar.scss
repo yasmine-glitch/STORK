@@ -33,9 +33,16 @@
   margin-left: 20px;
   margin-right: 10px;
   margin-top: 5px;
-  #nav-link {
+  #nav-link-discover {
     color: white;
   }
+  #nav-link-bookings {
+    color: white;
+  }
+  #nav-link-messages {
+    color: white;
+  }
+
   p {
     color: white;
   }
@@ -70,4 +77,22 @@
 
 .navbar-light .navbar-nav .nav-link-logout {
     color: white;
+}
+
+
+.activities-index #nav-link-discover {
+    border-bottom: 3px solid $red-poppy ;
+}
+
+.pages-dashboard #nav-link-bookings {
+    border-bottom: 3px solid $red-poppy ;
+}
+
+.chatrooms-show #nav-link-messages {
+    border-bottom: 3px solid $red-poppy ;
+}
+
+.navbar-expand-sm .navbar-nav .nav-link {
+  padding: 0;
+  border-bottom: 3px solid transparent;
 }
