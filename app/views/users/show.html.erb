@@ -3,62 +3,47 @@
   <!-- affiche en haut de la page les infos sur le user-->
   <!-- dans un encadré à gauche : avatar, nom, company, job title, industry, age, years exp-->
     <%# <div class="container"> %>
-      <div class="wrapper left-panel">
-        <div class="card-user">
+    <div class="wrapper left-panel">
+      <div class="card-user">
+        <div class="information-table">
           <% if @user.photo.attached? %>
             <%= cl_image_tag @user.photo.key, class: "avatar-large-profil", alt: "avatar-large-profil"   %>
           <% end %>
-          <table class="table" id="information_table">
-            <tr>
-              <th><i class="fas fa-user"></i></th>
-              <td class="user_name"><strong><%= @user.first_name %> <%= @user.last_name %><strong></td>
-            </tr>
-            <tr>
-              <th><i class="fas fa-envelope-open-text"></i></th>
-              <td><%= @user.company %></td>
-            </tr>
-            <tr>
-              <th><i class="fas fa-laptop-house"></th>
-              <td><%= @user.industry %></td>
-            </tr>
-            <tr>
-              <th><i class="fas fa-address-card"></th>
-              <td><%= @user.job_title %></td>
-            </tr>
-            <tr>
-              <th><i class="fas fa-globe"></th>
-              <td><%= @user.country %></td>
-            </tr>
-            <tr>
-              <th><i class="fas fa-birthday-cake"></th>
-              <td><%= @user.age %></td>
-            </tr>
-            <tr>
-              <th><i class="fas fa-jedi"></th>
-              <td><%= @user.years_exp %></td>
-            </tr>
-          </table>
+          <div class="main-profile-info">
+            <h6><%= @user.first_name %> <%= @user.last_name %> | <span><%= @user.age %> yo</span></h6>
+            <p><i class="fas fa-globe"></i> <%= @user.country %></p>
+            <a href="#"><i class="fab fa-twitter" style="color: #e65c5d"></i></a>
+            <a href="#"><i class="fab fa-linkedin" style="color: #e65c5d"></i></a>
+          </div>
+        </div>
+        <div class="user-professional-infos">
+          <p><%= @user.job_title %></p>
+          <p><i class="fas fa-envelope-open-text"></i><%= @user.company %> (<%= @user.industry %>)</p>
         </div>
       </div>
+    </div>
 
     <div class="wrapper right-panel">
       <div class="user-bio">
-        <h3><a href="#"><i class="fab fa-twitter"></i></a> <a href="#"><i class="fab fa-linkedin"></i></a></h3>
-        <h3>Hello, my name is <%= @user.first_name %></h3>
-        <p>member since <%= @user.created_at.strftime("%e %^b %Y") %></p>
-        <h4>About <%= @user.first_name %></h4>
-        <p><%= @user.bio %></p>
-        <h4>Hobbies</h4>
-            <%@user.hobbies.each do |hobby|%>
+        <h3 style="color: rgba(6,3,5,0.6)">Hello, my name is <%= @user.first_name %></h3>
+        <p style="color: rgba(6,3,5,0.6)">member since <%= @user.created_at.strftime("%e %^b %Y") %></p>
+        <h4 style="color: rgba(6,3,5,0.6);margin-top: 97px;">About <%= @user.first_name %></h4>
+        <p style="color: rgba(6,3,5,0.6)"><%= @user.bio %></p>
+        <h4 style="color: rgba(6,3,5,0.6)">Hobbies</h4>
+        <div class="filters">
+          <%@user.hobbies.each do |hobby|%>
+            <div class="tags-precision">
               <% hobby_test = Activity::CATEGORIES.select{ |category| category.include?(hobby.name) } %>
-              <p><%= hobby %> <%= hobby_test[0][1] %><p>
-            <%end%>
+              <p class="hobby-user"><%= hobby %> <%= hobby_test[0][1] %><p>
+            </div>
+          <%end%>
+        </div>
       </div>
     </div>
   </div>
 
   <h2 class="mt4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork</h2>
-  <h3 class="mt4 ps-3"> <%= @user.first_name %> is participating to <%= @user.activities.length %> events !</h3>
+  <h3 class="mt4 ps-3"> <%= @user.first_name %> is participating to <%=pluralize(@user.activities.length, "event")%></h3>
   <div class="d-flex justify-content-start">
     <% @user.activities.each do |activity| %>
       <div class="card-user-activities">
@@ -86,7 +71,7 @@
     <% end %>
   </div>
 
-  <h3 class="mt-4 ps-3"> <%= @user.first_name %> is hosting <%= @activities.length %> events !</h3>
+  <h3 class="mt-4 ps-3"> <%= @user.first_name %> is hosting <%=pluralize(@activities.length, "event")%></h3>
   <div class="d-flex justify-content-start">
     <% @activities.each do |activity| %>
       <div class="card-user-activities">

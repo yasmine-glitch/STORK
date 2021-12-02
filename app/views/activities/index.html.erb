@@ -69,7 +69,7 @@
                 </div>
               <% else %>
                 <div class="banner-places-left">
-                  <%= activity.capacity_max - activity.users.length - 1 %> places left... Register now !
+                  <%= pluralize(activity.capacity_max - activity.users.length - 1, "place") %> left... Register now !
                 </div>
               <% end %>
             </div>
