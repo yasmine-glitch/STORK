@@ -4,6 +4,7 @@
 
 
 .card-activity-description {
+  height: 100%;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -12,7 +13,7 @@
 }
 
 .card-activity-description > img {
-  height: 200px;
+  height: 300px;
   width: 100%;
   object-fit: cover;
 }

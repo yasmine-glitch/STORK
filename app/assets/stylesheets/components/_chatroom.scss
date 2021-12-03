@@ -47,6 +47,9 @@
 
 .all_chats {
   background: white;
+  overflow-y: auto;
+  // padding-right: 3em;
+  overflow-x: hidden;
 
   h1 {
     border-bottom: 1px solid $red-poppy;
