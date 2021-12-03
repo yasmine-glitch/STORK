@@ -1,4 +1,10 @@
+
 <div class="container mt-3">
+  <div class="back-button">
+    <%= link_to activities_path(query:params[:query], start_date:params[:start_date], categories:params[:categories]) do%>
+      <p> <i class="fas fa-long-arrow-alt-left"></i> Back </p>
+    <% end %>
+  </div>
   <div class="d-flex">
     <div class="card-owner-infos-wrapper" style="border-radius: 5px">
       <div class="card-owner-infos m-5">
@@ -62,15 +68,13 @@
                   <%= @activity.place %>
                 </div>
               </div>
-              <div class="d-flex justify-content-end mt-5 me-3">
+              <div class="d-flex justify-content-center mt-5 me-3">
                 <div class="hosting-btn" data-controller="sweetalert confetti">
                   <%if @activity.users.include?(current_user) %>
                     <p id="already_in">You are registered for this activity!</p>
                     <div class="d-flex justify-content-center">
-                      <div>
-                        <div id="find-other-activity"><%= link_to "Find Another Activity", activities_path, id:"find-other-activity" %></div>
-                        <p><button id="sweet-cancel">Cancel your booking</button></p>
-                      </div>
+                      <div id="find-other-activity"><%= link_to "Find Another Activity", activities_path, id:"find-other-activity" %></div>
+                      <p><button id="sweet-cancel">Cancel your booking</button></p>
                     </div>
                     <%= link_to "Cancel Booking",activity_booking_path(@activity, @booking_exist), method: :delete, class: "hidden cancel-btn" unless current_user == @activity.owner %>
                   <% elsif policy(@activity).create? && @all_participants.count < @activity.capacity_max %>
