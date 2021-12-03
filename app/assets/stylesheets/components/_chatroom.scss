@@ -50,6 +50,7 @@
   overflow-y: auto;
   // padding-right: 3em;
   overflow-x: hidden;
+  flex: 0 0 380px;
 
   h1 {
     border-bottom: 1px solid $red-poppy;
@@ -114,7 +115,7 @@ background-color: aliceblue;
 }
 
 .card-chat h2 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   margin: 0;
 }
