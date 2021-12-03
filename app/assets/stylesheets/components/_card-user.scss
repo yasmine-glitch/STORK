@@ -1,5 +1,4 @@
 .card-user{
-    flex-grow: 1;
     background: #ffffff;
     border-radius: 5px;
     margin: 20px;
@@ -7,6 +6,8 @@
     padding: 25px;
     text-align: left;
     color: rgba(6,3,5,0.6);
+    display: flex;
+    justify-content: space-between;
     p{
     color: $black;
     };
@@ -30,7 +31,6 @@
   }
   .hobby-user {
     width: 100%;
-    cursor: pointer;
     text-align: center;
     border: 1px solid rgb(238, 219, 219);
     background-color: rgb(255, 255, 255);
@@ -134,15 +134,6 @@
   display: flex;
   border-bottom-width: 0;
   font-size: 18px;
-  // .main-profile-info {
-  //   padding-left: 1em;
-  //   text-align: left;
-  //   color: rgba(6,3,5,0.6);
-
-  //   h6 {
-  //     color: $red-poppy;
-  //   }
-  // }
 }
 
 
@@ -153,13 +144,23 @@
 
 .main-profile-info {
   color: rgba(6,3,5,0.6);
+  h6 {
+    color: $red-poppy;
+  }
   p {
     color: rgba(6,3,5,0.6);
   }
 }
 
-.user-professional-info {
-  p {
+.user-professional-infos p {
     color: rgba(6,3,5,0.6);
-  }
+}
+
+.mt3 {
+  margin-top: 40px;
+  color: rgba(6,3,5,0.6);
+}
+
+.mt4 {
+  color: rgba(6,3,5,0.6);
 }
