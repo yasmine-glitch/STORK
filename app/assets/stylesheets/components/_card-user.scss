@@ -6,6 +6,7 @@
     flex-direction: column;
     padding: 25px;
     text-align: left;
+    color: rgba(6,3,5,0.6);
     p{
     color: $black;
     };
@@ -133,18 +134,32 @@
   display: flex;
   border-bottom-width: 0;
   font-size: 18px;
-  .main-profile-info {
-    padding-left: 1em;
-    text-align: left;
-    
-    h6 {
-      color: $red-poppy;
-    }
-  }
+  // .main-profile-info {
+  //   padding-left: 1em;
+  //   text-align: left;
+  //   color: rgba(6,3,5,0.6);
+
+  //   h6 {
+  //     color: $red-poppy;
+  //   }
+  // }
 }
 
 
 #information_table .user_name {
   font-size: 22px;
   font-weight: bold;
+}
+
+.main-profile-info {
+  color: rgba(6,3,5,0.6);
+  p {
+    color: rgba(6,3,5,0.6);
+  }
+}
+
+.user-professional-info {
+  p {
+    color: rgba(6,3,5,0.6);
+  }
 }
