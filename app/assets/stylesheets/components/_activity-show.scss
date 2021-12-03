@@ -37,10 +37,6 @@
   position: relative;
 }
 
-.card-activity-description-infos {
-
-}
-
 .card-activity-description-infos .card-activity-description-user {
   position: absolute;
   right: 16px;
@@ -107,4 +103,10 @@
 
 .view-profile {
   color: $red-poppy;
+}
+
+.back-button {
+  p {
+  color: grey;
+  }
 }
