@@ -18,7 +18,7 @@
         </div>
         <div class="user-professional-infos">
           <p><%= @user.job_title %></p>
-          <p><i class="fas fa-envelope-open-text"></i><%= @user.company %> (<%= @user.industry %>)</p>
+          <p><i class="fas fa-envelope-open-text" style="margin-right: 10px;"></i><%= @user.company %> (<%= @user.industry %>)</p>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
     </div>
   </div>
 
-  <h2 class="mt4 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork</h2>
+  <h2 class="mt3 ps-3">Discover what <%= @user.first_name %> has been up to lately on Stork</h2>
   <h3 class="mt4 ps-3"> <%= @user.first_name %> is participating to <%=pluralize(@user.activities.length, "event")%></h3>
   <div class="d-flex justify-content-start">
     <% @user.activities.each do |activity| %>
@@ -71,7 +71,7 @@
     <% end %>
   </div>
 
-  <h3 class="mt-4 ps-3"> <%= @user.first_name %> is hosting <%=pluralize(@activities.length, "event")%></h3>
+  <h3 class="mt3 ps-3"> <%= @user.first_name %> is hosting <%=pluralize(@activities.length, "event")%></h3>
   <div class="d-flex justify-content-start">
     <% @activities.each do |activity| %>
       <div class="card-user-activities">
