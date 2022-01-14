@@ -12,6 +12,7 @@ class Activity < ApplicationRecord
   validates :name, :place, :start_date, :end_date, :capacity_max, presence: true
   geocoded_by :place
 
+  # Pg search set-up
   include PgSearch::Model
   pg_search_scope :search_by_place,
                   against: :place,
